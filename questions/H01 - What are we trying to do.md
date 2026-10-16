@@ -11,3 +11,7 @@ Develop a framework for finding missed optimizations in **AscendNPU-IR**. Produc
 | **Delivery process** | Shorten the investigation and validation work between noticing an opportunity and having an improvement ready for integration. |
 
 **Research perspective — optional:** Determine which parts of the investigation can be automated economically and what evidence is sufficient to trust the results.
+
+## TODO
+
+- [ ] Consider changing the titles in the `Perspective` column.

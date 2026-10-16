@@ -8,4 +8,8 @@ A framework could connect generation, compilation, checking and comparison into 
 
 Open questions: which code boundary, correctness checks and improvement metric would make this practical and useful?
 
-[[directions/Candidate Directions]] · [[questions/H01 - What are we trying to do]]
+## Paper connection
+
+[[papers/LPO]] (§§3.2–3.3, Figure 2) demonstrates the LLVM discovery/checking workflow behind this candidate. Applying that approach to AscendNPU-IR is a possible adaptation; target support has not been established.
+
+[[directions/Candidate Directions]] · [[papers/LPO]]

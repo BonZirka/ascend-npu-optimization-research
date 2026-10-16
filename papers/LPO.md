@@ -54,6 +54,12 @@ Possible ideas to investigate: bounded replacements, static screening and counte
 
 This suggests asking whether a useful report needs target timing, and what could independently check an Ascend rewrite. We have not selected a metric or verification route.
 
+Candidate directions connected to this paper, all unselected:
+
+- [[directions/Automated testing for missed optimizations]] — adaptation of the demonstrated search/checking method.
+- [[directions/Systematic investigation of applicability]] — our proposed extension of the generalization question.
+- [[directions/Tracking opportunities across compiler revisions]] — our proposed extension of maintaining a finding corpus.
+
 Related: [[PRAGMA]]; [[questions/H03 - What is new in our approach]]; [[questions/H08 - How will we check success]].
 
 ## Open questions

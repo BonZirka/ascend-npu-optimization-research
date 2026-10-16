@@ -55,6 +55,8 @@ Possible ideas to investigate: profiles with metric descriptions, variant-specif
 
 We need to examine whether detailed profiles provide enough useful guidance to justify their collection cost for our problem.
 
+Related candidate: [[directions/Tracking opportunities across compiler revisions]]. This is our unselected extension; PRAGMA's variant/evidence history is a possible supporting idea, not a demonstration of revision tracking.
+
 Related: [[LPO]]; [[questions/H02 - How is it done today]]; [[questions/H08 - How will we check success]].
 
 ## Open questions

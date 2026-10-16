@@ -8,4 +8,8 @@ A framework could coordinate related experiments and preserve their conditions a
 
 Open questions: which dimensions matter, how much testing is affordable, and what conclusions would the collected evidence support?
 
-[[directions/Candidate Directions]] · [[questions/H01 - What are we trying to do]]
+## Paper connection
+
+[[papers/LPO]] (§5.2) identifies generalization of discovered patterns as work still performed by maintainers. Investigating applicability across shapes, types, layouts and settings is an extension proposed in our discussion, not a demonstrated LPO capability.
+
+[[directions/Candidate Directions]] · [[papers/LPO]]

@@ -7,7 +7,7 @@ Develop a framework for finding missed optimizations in **AscendNPU-IR**. Produc
 | Perspective | What we want to achieve |
 | --- | --- |
 | **Customer value** | Make software updates deliver useful, dependable improvements across the workloads customers run on their NPUs. |
-| **Technical capability** | Find optimization opportunities the compiler currently misses and produce actionable evidence for improving generated kernels. |
+| **Technical capability** | Identify recurring patterns behind inefficient generated kernels and determine which compiler changes could address them across multiple workloads. |
 | **Delivery process** | Shorten the investigation and validation work between noticing an opportunity and having an improvement ready for integration. |
 
 **Research perspective — optional:** Determine which parts of the investigation can be automated economically and what evidence is sufficient to trust the results.

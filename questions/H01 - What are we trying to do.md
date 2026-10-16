@@ -12,6 +12,8 @@ Develop a framework for finding missed optimizations in **AscendNPU-IR**. Produc
 
 **Research perspective — optional:** Determine which parts of the investigation can be automated economically and what evidence is sufficient to trust the results.
 
+Candidate directions are recorded in [[directions/Candidate Directions]]. None has been selected.
+
 ## TODO
 
 - [ ] Consider changing the titles in the `Perspective` column.

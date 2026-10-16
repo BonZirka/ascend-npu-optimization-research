@@ -56,9 +56,9 @@ This suggests asking whether a useful report needs target timing, and what could
 
 Candidate directions connected to this paper, all unselected:
 
-- [[directions/Automated testing for missed optimizations]] — adaptation of the demonstrated search/checking method.
-- [[directions/Systematic investigation of applicability]] — our proposed extension of the generalization question.
-- [[directions/Tracking opportunities across compiler revisions]] — our proposed extension of maintaining a finding corpus.
+- [[directions/D01 - Automated testing for missed optimizations]] — adaptation of the demonstrated search/checking method.
+- [[directions/D02 - Systematic investigation of applicability]] — our proposed extension of the generalization question.
+- [[directions/D03 - Tracking opportunities across compiler revisions]] — our proposed extension of maintaining a finding corpus.
 
 Related: [[PRAGMA]]; [[questions/H03 - What is new in our approach]]; [[questions/H08 - How will we check success]].
 

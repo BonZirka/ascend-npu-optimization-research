@@ -1,9 +1,9 @@
 # Candidate research directions
 
-These capabilities were discussed while considering the papers below. **None has been selected.** Paper connections distinguish demonstrated methods from extensions proposed in our discussion.
+These capabilities were discussed while considering the papers below. **None has been selected.** Paper connections distinguish demonstrated methods from extensions proposed in our discussion. Direction IDs are stable references, not priorities.
 
-| Candidate | Paper connection |
-| --- | --- |
-| [[directions/Automated testing for missed optimizations]] | Adaptation of [[papers/LPO]]'s discovery/checking workflow. |
-| [[directions/Systematic investigation of applicability]] | Our extension, motivated by [[papers/LPO]]'s discussion of pattern generalization. |
-| [[directions/Tracking opportunities across compiler revisions]] | Our extension, related to [[papers/LPO]]'s finding corpus and [[papers/PRAGMA]]'s code/evidence history. |
+| ID | Candidate | Paper connection |
+| --- | --- | --- |
+| D01 | [[directions/D01 - Automated testing for missed optimizations|Automated testing for missed optimizations]] | Adaptation of [[papers/LPO]]'s discovery/checking workflow. |
+| D02 | [[directions/D02 - Systematic investigation of applicability|Systematic investigation of applicability]] | Our extension, motivated by [[papers/LPO]]'s discussion of pattern generalization. |
+| D03 | [[directions/D03 - Tracking opportunities across compiler revisions|Tracking opportunities across compiler revisions]] | Our extension, related to [[papers/LPO]]'s finding corpus and [[papers/PRAGMA]]'s code/evidence history. |

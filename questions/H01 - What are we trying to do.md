@@ -2,6 +2,8 @@
 
 [[Pitch Presentation]]
 
+Develop a framework for finding missed optimizations in **AscendNPU-IR**. Produce reproducible reports containing the original code, a proposed replacement, the conditions under which it applies, correctness-check results, and a comparison using the selected improvement metric.
+
 | Perspective | What we want to achieve |
 | --- | --- |
 | **Customer value** | Make software updates deliver useful, dependable improvements across the workloads customers run on their NPUs. |

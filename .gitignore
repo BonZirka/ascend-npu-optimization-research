@@ -1,0 +1,13 @@
+.DS_Store
+.build/
+node_modules/
+.env
+.env.*
+__pycache__/
+.obsidian/workspace*.json
+.obsidian/cache/
+.obsidian/plugins/
+.obsidian/graph.json
+.obsidian/hotkeys.json
+.obsidian/bookmarks.json
+.trash/

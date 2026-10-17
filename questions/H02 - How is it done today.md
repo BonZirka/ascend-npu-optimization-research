@@ -27,6 +27,8 @@ Nightly regression testing provides another signal: performance has deteriorated
 
 **Q: What proactive searches for missed optimizations already take place, and how are they organized?**
 
+Related terminology research: [[questions/Q01 - Taxonomy of bug finding and performance search|Q01 — Taxonomy of bug finding and performance search]].
+
 ## Investigating an optimization task
 
 A perf-like profiling tool is available, but its name and capabilities need clarification.

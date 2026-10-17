@@ -19,8 +19,6 @@ Comparing the same kernel across GPU/NPU platforms can reveal relatively slow ca
 
 A performance gap provides a reason to investigate. It does not, by itself, establish a missed compiler optimization or show how much of the gap a compiler change could eliminate.
 
-**Q: How routinely do cross-platform kernel comparisons drive optimization tasks in the AscendNPU-IR team?**
-
 A possible implication for the proposal is recorded in [[research/Framework-generated comparison references|Framework-generated comparison references]]. This remains a hypothesis to investigate.
 
 Nightly regression testing provides another signal: performance has deteriorated relative to an existing baseline. A stable baseline can still contain missed optimization opportunities.

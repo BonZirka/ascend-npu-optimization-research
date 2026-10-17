@@ -1,3 +1,40 @@
+# How is it done today?
+
 [[Pitch Presentation]]
+
+Working notes based on the project owner's observations. This is a partial account of the **AscendNPU-IR** team's workflow; the uncertainties below still need investigation.
+
+## Current practices
+
+- **Performance regression testing:** nightly testing looks for performance regressions. Reverting code changes is one response to detected regressions.
+- **Performance issue tickets:** newly discovered performance issues in already merged code are assigned to developers for investigation.
+- **Kernel-specific tasks:** some tasks ask engineers to make a particular kernel faster without prescribing an optimization. Investigation includes inspecting the generated code.
+- **Optimization epics:** broader tasks target improvements to a class of optimizations. How these tasks are selected and prioritized is not yet understood.
+
+**Q: How are kernel-specific optimization tasks and optimization epics selected and prioritized?**
+
+## Identifying slow cases
+
+Comparing the same kernel across GPU/NPU platforms can reveal relatively slow cases and motivate optimization work. The working hypothesis is that comparisons against CUDA implementations motivate some kernel-specific tasks and optimization epics; their actual role in the team's workflow needs confirmation.
+
+A performance gap provides a reason to investigate. It does not, by itself, establish a missed compiler optimization or show how much of the gap a compiler change could eliminate.
+
+**Q: How routinely do cross-platform kernel comparisons drive optimization tasks in the AscendNPU-IR team?**
+
+Nightly regression testing provides another signal: performance has deteriorated relative to an existing baseline. A stable baseline can still contain missed optimization opportunities. The project owner's current knowledge does not establish what proactive search already takes place.
+
+**Q: What proactive searches for missed optimizations already take place, and how are they organized?**
+
+## Investigating an optimization task
+
+A perf-like profiling tool is available, but its name and capabilities need clarification.
+
+**Q: Which profiling tool does the team use, and what information does it provide during an optimization investigation?**
+
+The difficulties vary by task. Reported examples include insufficient runnable examples for profiling, complex IR that is hard to inspect, uncertainty about a suitable optimization, and validation tools that require substantial manual reasoning. Occasionally, identifying where in the compiler to implement a fix is also difficult.
+
+These observations describe the working environment. They do not establish a commitment for this project to solve those difficulties.
+
+**Q: What tools or processes already help engineers turn a slow case into a candidate compiler improvement?**
 
 ## TODO

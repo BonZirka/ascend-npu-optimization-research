@@ -6,10 +6,10 @@ Working notes based on the project owner's observations. This is a partial accou
 
 ## Current practices
 
-- **Performance regression testing:** nightly testing looks for performance regressions. Reverting code changes is one response to detected regressions.
+- **Performance regression testing:** nightly testing aims to reduce the number of performance regressions that reach upstream. Reverting code changes is one response to detected regressions.
 - **Performance issue tickets:** newly discovered performance issues in already merged code are assigned to developers for investigation.
 - **Kernel-specific tasks:** some tasks ask engineers to make a particular kernel faster without prescribing an optimization. Investigation includes inspecting the generated code.
-- **Optimization epics:** broader tasks target improvements to a class of optimizations. How these tasks are selected and prioritized is not yet understood.
+- **Optimization epics:** broader tasks target improvements to a class of optimizations. Comparisons with other accelerators are a likely source of these epics, although this has not been confirmed.
 
 **Q: How are kernel-specific optimization tasks and optimization epics selected and prioritized?**
 
@@ -21,9 +21,9 @@ A performance gap provides a reason to investigate. It does not, by itself, esta
 
 **Q: How routinely do cross-platform kernel comparisons drive optimization tasks in the AscendNPU-IR team?**
 
-Nightly regression testing provides another signal: performance has deteriorated relative to an existing baseline. A stable baseline can still contain missed optimization opportunities. The project owner's current knowledge does not establish what proactive search already takes place.
+A possible implication for the proposal is recorded in [[research/Framework-generated comparison references|Framework-generated comparison references]]. This remains a hypothesis to investigate.
 
-**Q: What proactive searches for missed optimizations already take place, and how are they organized?**
+Nightly regression testing provides another signal: performance has deteriorated relative to an existing baseline. A stable baseline can still contain missed optimization opportunities.
 
 ## Investigating an optimization task
 

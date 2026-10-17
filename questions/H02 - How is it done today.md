@@ -11,7 +11,7 @@ Working notes based on the project owner's observations. This is a partial accou
 - **Kernel-specific tasks:** some tasks ask engineers to make a particular kernel faster without prescribing an optimization. Investigation includes inspecting the generated code.
 - **Optimization epics:** broader tasks target improvements to a class of optimizations. Comparisons with other accelerators are a likely source of these epics, although this has not been confirmed.
 
-**Q: How are kernel-specific optimization tasks and optimization epics selected and prioritized?**
+**[[questions/Q02 - Selection and prioritization of optimization tasks|Q02: How are kernel-specific optimization tasks and optimization epics selected and prioritized?]]**
 
 ## Identifying slow cases
 
@@ -23,7 +23,7 @@ A possible implication for the proposal is recorded in [[research/Framework-gene
 
 Nightly regression testing provides another signal: performance has deteriorated relative to an existing baseline. A stable baseline can still contain missed optimization opportunities.
 
-**Q: What proactive searches for missed optimizations already take place, and how are they organized?**
+**[[questions/Q03 - Existing proactive searches for missed optimizations|Q03: What proactive searches for missed optimizations already take place, and how are they organized?]]**
 
 Related terminology research: [[questions/Q01 - Taxonomy of bug finding and performance search|Q01 — Taxonomy of bug finding and performance search]].
 
@@ -35,6 +35,6 @@ The difficulties vary by task. Reported examples include insufficient runnable e
 
 These observations describe the working environment. They do not establish a commitment for this project to solve those difficulties.
 
-**Q: What tools or processes already help engineers turn a slow case into a candidate compiler improvement?**
+**[[questions/Q04 - Tools and processes for investigating slow cases|Q04: What tools or processes already help engineers turn a slow case into a candidate compiler improvement?]]**
 
 ## TODO

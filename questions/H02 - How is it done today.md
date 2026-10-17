@@ -25,11 +25,11 @@ A possible implication for the proposal is recorded in [[research/Framework-gene
 
 Nightly regression testing provides another signal: performance has deteriorated relative to an existing baseline. A stable baseline can still contain missed optimization opportunities.
 
+**Q: What proactive searches for missed optimizations already take place, and how are they organized?**
+
 ## Investigating an optimization task
 
 A perf-like profiling tool is available, but its name and capabilities need clarification.
-
-**Q: Which profiling tool does the team use, and what information does it provide during an optimization investigation?**
 
 The difficulties vary by task. Reported examples include insufficient runnable examples for profiling, complex IR that is hard to inspect, uncertainty about a suitable optimization, and validation tools that require substantial manual reasoning. Occasionally, identifying where in the compiler to implement a fix is also difficult.
 

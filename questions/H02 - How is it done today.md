@@ -11,8 +11,6 @@ Working notes based on the project owner's observations. This is a partial accou
 - **Kernel-specific tasks:** some tasks ask engineers to make a particular kernel faster without prescribing an optimization. Investigation includes inspecting the generated code.
 - **Optimization epics:** broader tasks target improvements to a class of optimizations. Comparisons with other accelerators are a likely source of these epics, although this has not been confirmed.
 
-**[[questions/Q02 - Selection and prioritization of optimization tasks|Q02: How are kernel-specific optimization tasks and optimization epics selected and prioritized?]]**
-
 ## Identifying slow cases
 
 Comparing the same kernel across GPU/NPU platforms can reveal relatively slow cases and motivate optimization work. The working hypothesis is that comparisons against CUDA implementations motivate some kernel-specific tasks and optimization epics; their actual role in the team's workflow needs confirmation.
@@ -23,10 +21,6 @@ A possible implication for the proposal is recorded in [[research/Framework-gene
 
 Nightly regression testing provides another signal: performance has deteriorated relative to an existing baseline. A stable baseline can still contain missed optimization opportunities.
 
-**[[questions/Q03 - Existing proactive searches for missed optimizations|Q03: What proactive searches for missed optimizations already take place, and how are they organized?]]**
-
-Related terminology research: [[questions/Q01 - Taxonomy of bug finding and performance search|Q01 — Taxonomy of bug finding and performance search]].
-
 ## Investigating an optimization task
 
 A perf-like profiling tool is available, but its name and capabilities need clarification.
@@ -35,6 +29,11 @@ The difficulties vary by task. Reported examples include insufficient runnable e
 
 These observations describe the working environment. They do not establish a commitment for this project to solve those difficulties.
 
-**[[questions/Q04 - Tools and processes for investigating slow cases|Q04: What tools or processes already help engineers turn a slow case into a candidate compiler improvement?]]**
-
 ## TODO
+
+## Unanswered questions
+
+- Related terminology research: [[questions/Q01 - Taxonomy of bug finding and performance search|Q01 — Taxonomy of bug finding and performance search]].
+- **[[questions/Q02 - Selection and prioritization of optimization tasks|Q02: How are kernel-specific optimization tasks and optimization epics selected and prioritized?]]**
+- **[[questions/Q03 - Existing proactive searches for missed optimizations|Q03: What proactive searches for missed optimizations already take place, and how are they organized?]]**
+- **[[questions/Q04 - Tools and processes for investigating slow cases|Q04: What tools or processes already help engineers turn a slow case into a candidate compiler improvement?]]**

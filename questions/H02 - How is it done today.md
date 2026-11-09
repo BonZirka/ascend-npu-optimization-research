@@ -2,25 +2,9 @@
 
 [[Pitch Presentation]]
 
-## Draft pitch answer
-
-### How performance work starts
-
-Performance work in AscendNPU-IR includes nightly regression testing, investigation of reported performance issues, and targeted work on individual kernels or classes of optimizations. Nightly testing aims to keep regressions from reaching upstream. Comparisons with other accelerators are thought to motivate some optimization tasks; this remains unconfirmed.
-
-### How opportunities are investigated
-
-Investigations draw on generated code, profiling and validation tools. Depending on the task, engineers may need to prepare runnable examples, interpret complex IR, identify candidate transformations and reason about their correctness. The effort and available support vary by case.
-
-### What remains to be established
-
-Our description of the team's existing support for systematic discovery of missed optimizations remains incomplete. We also need to determine which parts of discovery and evaluation could usefully be offloaded to a framework. Any reduction in investigation effort remains to be tested.
-
-## Supporting notes
-
 Working notes based on the project owner's observations. This is a partial account of the **AscendNPU-IR** team's workflow; the uncertainties below still need investigation.
 
-### Current practices
+## Current practices
 
 - **Performance regression testing:** nightly testing aims to reduce the number of performance regressions that reach upstream. Reverting code changes is one response to detected regressions.
 - **Performance issue tickets:** newly discovered performance issues in already merged code are assigned to developers for investigation.
@@ -29,7 +13,7 @@ Working notes based on the project owner's observations. This is a partial accou
 
 **[[questions/Q02 - Selection and prioritization of optimization tasks|Q02: How are kernel-specific optimization tasks and optimization epics selected and prioritized?]]**
 
-### Identifying slow cases
+## Identifying slow cases
 
 Comparing the same kernel across GPU/NPU platforms can reveal relatively slow cases and motivate optimization work. The working hypothesis is that comparisons against CUDA implementations motivate some kernel-specific tasks and optimization epics; their actual role in the team's workflow needs confirmation.
 
@@ -43,7 +27,7 @@ Nightly regression testing provides another signal: performance has deteriorated
 
 Related terminology research: [[questions/Q01 - Taxonomy of bug finding and performance search|Q01 — Taxonomy of bug finding and performance search]].
 
-### Investigating an optimization task
+## Investigating an optimization task
 
 A perf-like profiling tool is available, but its name and capabilities need clarification.
 

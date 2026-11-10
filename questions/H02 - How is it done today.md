@@ -37,3 +37,4 @@ These observations describe the working environment. They do not establish a com
 - **[[questions/Q02 - Selection and prioritization of optimization tasks|Q02: How are kernel-specific optimization tasks and optimization epics selected and prioritized?]]**
 - **[[questions/Q03 - Existing proactive searches for missed optimizations|Q03: What proactive searches for missed optimizations already take place, and how are they organized?]]**
 - **[[questions/Q04 - Tools and processes for investigating slow cases|Q04: What tools or processes already help engineers turn a slow case into a candidate compiler improvement?]]**
+- [[questions/Q06 - Metrics for assessing LLVM IR and MLIR improvements|Q06 — Metrics for assessing LLVM IR and MLIR improvements]]

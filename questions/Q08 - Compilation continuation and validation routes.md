@@ -94,4 +94,4 @@ Produce:
 
 No matrix row is considered supported merely because its individual components exist. The combination must be investigated. Unknown combinations stay explicit; incompatible requests must not silently select a weaker check, pass a stopping boundary or move the metric to another stage.
 
-The outcome should identify feasible initial configurations and their limits. The detailed validation/evaluator contracts and framework evaluation remain subjects for further discussion in H03 and [[questions/H08 - How will we check success|H08]].
+The outcome should identify feasible initial configurations and their limits. H03 records the proposed compilation, validation and evaluator contracts; concrete Ascend integrations and their coverage remain to be established through this question. Framework evaluation remains a subject for [[questions/H08 - How will we check success|H08]].

@@ -19,7 +19,7 @@ Possible later work:
 
 ## 2. Search mechanism
 
-A proposed investigation follows the six steps below. Sections 2.1–2.3 describe the proposed input contract, context preparation and generation baseline. Section 2.4 defines the proposed compilation-runner contract and compatibility requirements; validation and evaluation details remain under discussion. Section 2.5 describes feedback, investigation history and recovery. Section 2.6 defines the runnable finding and replay requirements.
+A proposed investigation follows the six steps below. Sections 2.1–2.3 describe the proposed input contract, context preparation and generation baseline. Section 2.4 defines the proposed compilation, validation and evaluation contracts, result combination and compatibility requirements; concrete Ascend routes remain to be established. Section 2.5 describes feedback, investigation history and recovery. Section 2.6 defines the runnable finding and replay requirements.
 
 ### 2.1 Provide the input
 
@@ -213,7 +213,7 @@ The agent's expectation motivates a candidate. **2.4 Check and compare** produce
 
 Execute the configured compilation, validation and improvement-assessment routes, retaining their outcomes and evidence for each candidate.
 
-**Status: compilation-runner contract and compatibility requirements drafted.** Concrete AscendNPU-IR routes remain unestablished. The detailed validation and evaluator contracts are still to be discussed.
+**Status: compilation, validation, evaluator and result-combination contracts drafted.** Concrete AscendNPU-IR routes, validation profiles and metrics remain unestablished.
 
 #### Compilation-runner contract
 
@@ -261,6 +261,70 @@ The framework records a versioned execution recipe for the original/candidate co
 
 Store the recipe and the results of its initial execution with the candidate evidence. This makes the exported reproduction procedure an exercised part of evaluation. Replays use the saved original and candidate code and produce fresh results under the recorded conditions; they do not require the agent to rediscover the rewrite.
 
+#### Validation-runner contract
+
+Execute the selected checks and report the evidence obtained for the original/candidate comparison.
+
+##### Runner inputs
+
+| Input | Contents |
+| --- | --- |
+| Comparison artifacts | Original and candidate artifacts, their identifiers, compilation checkpoints and relevant context. |
+| Validation profile | Selected process, required checks, comparison rules, tolerances and declared assumptions. |
+| Case material | Inputs, harnesses, reference results and supporting information required by that process. |
+| Execution configuration | Runner, environment, hardware requirements, timeouts and resource limits. |
+
+A compilation-only policy can reference compilation evidence already produced.
+
+##### Runner outputs
+
+- **Per-check outcome:** passed, failed, inconclusive, unsupported, execution error or not performed.
+- **Evidence:** observed results, failing inputs or counterexamples where available, and artifact references.
+- **Coverage:** inputs, properties and conditions actually checked.
+- **Unresolved conditions:** additional assumptions or missing information.
+- **Execution record:** effective configuration, diagnostics and resource usage.
+
+An observed candidate mismatch is a failed check. An unavailable device or broken reference harness is an execution/setup problem. These outcomes remain distinguishable. **Passed means passed the selected checks under the recorded conditions.**
+
+#### Metric-evaluator contract
+
+Produce a comparable assessment of the original and candidate under the selected metric and protocol.
+
+##### Evaluator inputs
+
+| Input | Contents |
+| --- | --- |
+| Comparison artifacts | Original and candidate artifacts at the configured observation checkpoints. |
+| Evaluator profile | Metric implementation/version, parameters, unit and required target information. |
+| Assessment material | Workload, inputs, execution environment and measurement protocol where required. |
+| Comparison criterion | Direction of improvement, threshold and configured rules for interpreting repeated measurements. |
+| Execution limits | Applicable time and resource limits. |
+
+The evaluator may assess the versions separately or through a paired protocol, as specified by its profile.
+
+##### Evaluator outputs
+
+- **Assessment outcome:** completed, inconclusive, unsupported, execution error or not performed.
+- **Version-labelled values:** original/candidate values, units, samples and aggregation where applicable.
+- **Coverage and conditions:** observation checkpoints, supported operations, target assumptions and workload.
+- **Evidence:** raw measurements or analysis outputs.
+- **Execution record:** effective configuration, diagnostics and resource usage.
+
+The framework applies the recorded comparison criterion to these results. A numeric result outside the evaluator's supported conditions cannot establish improvement.
+
+#### Combining validation and assessment results
+
+| Validation | Assessment | Framework treatment |
+| --- | --- | --- |
+| Required checks passed | Improvement criterion met | Eligible for a finding, subject to the runnable-bundle requirements in 2.6. |
+| Required checks passed | Criterion not met | Retain the attempt and provide comparison feedback. |
+| Required check failed | Any outcome | Retain the failure evidence for repair or another proposal. |
+| Required evidence incomplete | Any outcome | Record an unresolved attempt and its cause. |
+
+**Validation and assessment remain independent records.** Their execution order follows the configured route; a cheap metric can screen candidates before expensive validation. Finding eligibility still requires all evidence demanded by the selected policy.
+
+Both runners use the persisted execution recipe. Results are linked to their investigation, candidate and operation identifiers and retained with their evidence for feedback, recovery and replay.
+
 #### Compatibility of compilation, validation and assessment
 
 The configuration must describe a **jointly supported route** from the starting checkpoint to all required artifacts. The framework checks the declared compatibility when resolving the request and records candidate-specific coverage failures encountered later.
@@ -283,7 +347,7 @@ The route may require multiple output checkpoints. Whether these can be collecte
 
 - [ ] **Route compatibility — [[questions/Q08 - Compilation continuation and validation routes|Q08]].** Establish supported start/stop checkpoints, state restoration, artifact production, validation-mode requirements and their compatibility with selected evaluator stages. Produce a matrix of investigated routes and supporting evidence.
 - [ ] **Metric applicability — [[questions/Q06 - Metrics for assessing LLVM IR and MLIR improvements|Q06]].** Establish which metrics are meaningful at which stages, their operation/target coverage, and what a stage-local improvement supports as a claim.
-- [ ] Discuss the validation-runner contract, evaluator contract, comparison record and ordering of checks. Preserve separate validation and improvement outcomes.
+- [ ] Implement concrete runner adapters and result schemas for the selected profiles. Establish route-specific ordering through Q08 while preserving the independent validation/assessment records and eligibility rules above.
 
 ### 2.5 Use feedback
 

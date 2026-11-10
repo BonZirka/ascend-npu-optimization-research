@@ -19,7 +19,7 @@ Possible later work:
 
 ## 2. Search mechanism
 
-A proposed investigation follows the six steps below. Sections 2.1–2.3 describe the proposed input contract, context preparation and generation baseline. Section 2.4 defines the proposed compilation-runner contract and compatibility requirements; validation and evaluation details remain under discussion. Sections 2.5–2.6 remain brainstorming stubs.
+A proposed investigation follows the six steps below. Sections 2.1–2.3 describe the proposed input contract, context preparation and generation baseline. Section 2.4 defines the proposed compilation-runner contract and compatibility requirements; validation and evaluation details remain under discussion. Section 2.5 describes feedback, investigation history and recovery. Section 2.6 remains a brainstorming stub.
 
 ### 2.1 Provide the input
 
@@ -251,6 +251,8 @@ A timeout or unavailable compiler remains distinguishable from a compiler reject
 3. Retain both sets of artifacts for the selected validation process and evaluator.
 4. Retain failures and diagnostics for the feedback stage.
 
+Persist completed operation results and artifacts using the recovery protocol in **2.5 Use feedback**, including progress within compilation, validation and assessment. A later framework failure should allow reuse of completed work under the same applicable configuration.
+
 The original's compiled artifacts can be reused across candidates while their relevant inputs and configuration remain unchanged. If the original cannot be compiled, record a baseline failure; successful candidate compilation alone cannot establish improvement over it.
 
 #### Compatibility of compilation, validation and assessment
@@ -279,15 +281,77 @@ The route may require multiple output checkpoints. Whether these can be collecte
 
 ### 2.5 Use feedback
 
-Make diagnostics, check results and comparison evidence available to guide subsequent attempts.
+Turn check results into information that guides subsequent attempts. Retain the investigation state durably so that the chain can continue after an internal framework failure, reusing completed work. Whether feedback reduces wasted attempts and expensive checks remains an experimental question.
 
-#### Possible designs
+#### 1. Construct useful feedback
 
-_TODO: discuss alternatives and describe how this step could work._
+Feedback identifies the original and candidate versions, the operations performed and the evidence behind each outcome.
 
-#### Research and development questions
+| Outcome | Feedback to provide |
+| --- | --- |
+| Compilation failed | Candidate identifier, compiler diagnostics and relevant artifact locations. |
+| Behavior mismatch | Failing input, expected/observed results and comparison conditions, where available. |
+| Selected checks passed; metric did not improve | Original/candidate values, metric definition, observation checkpoint and improvement threshold. |
+| Selected checks passed; metric improved | The same comparison evidence, linked to the retained successful candidate. |
+| Check unsupported or inconclusive | Coverage limitation, timeout, missing information or unresolved condition. |
+| Infrastructure failure | Unavailable resource or execution failure, distinguished from a problem in the proposed code. |
 
-_TODO: identify questions to investigate and decisions to resolve._
+The feedback record includes:
+
+- **Identity:** investigation, case, candidate and operation identifiers, with references to the original and any parent candidate.
+- **Outcomes:** separate compilation, validation and improvement-assessment results, including checks not performed and why.
+- **Comparison context:** resolved settings, relevant checkpoint, metric units, values and comparison conditions.
+- **Evidence:** references to retained code, diagnostics, failing cases, measurements and other produced artifacts.
+- **Resource state:** recorded usage and remaining configured limits.
+
+Summaries remain linked to the underlying evidence. A failed test, a compiler diagnostic and an unavailable NPU are distinct observations for the next action.
+
+#### 2. Preserve investigation history
+
+Retain the original reference, every submitted candidate, its parent/version relationship and corresponding evidence. Keep the best candidate satisfying the selected checking policy and objective identifiable independently of the agent's current working file. A failed later attempt must not overwrite it.
+
+The persistent record holds the framework-visible interaction history, tool calls/results and agent-provided notes. The portion presented to the agent is configurable: the latest result, conversation history or a compact history with access to complete records. Selection and summarization belong to [[questions/Q09 - Agent prompt construction and information delivery|Q09]].
+
+#### 3. Guide the next action
+
+After receiving feedback, the agent can repair the current candidate, try another transformation, request additional context or an available check, continue from a successful candidate, or report that it cannot proceed.
+
+The framework enforces the configured editing scope, checking requirements and resource limits. Search policy determines when to continue, change direction or stop. Infrastructure recovery is handled explicitly; an execution failure does not automatically become an instruction to change the IR.
+
+#### MVP feedback loop
+
+Continue the same agent conversation, supply structured results and artifact references, and let the agent edit its working copy again. Preserve each submitted version independently. Richer feedback, different history selection and more elaborate search policies can be compared against this baseline.
+
+#### Persistence and recovery
+
+**Persistence is a requirement across generation, compilation, checking, assessment and feedback delivery.** Durable state must outlive individual worker processes and temporary working directories. Results are checkpointed as operations complete, including partial progress within 2.4.
+
+| Persisted state | Contents needed to resume |
+| --- | --- |
+| Investigation definition | Original snapshots and supplied context, resolved configuration/profile versions, editing scope and resource limits. |
+| Candidate history | Submitted file versions, parent relationships, diffs, agent-provided notes and the reference to the best eligible candidate. |
+| Operation ledger | Stable operation identifiers, inputs/configuration, pending/running/completed/failed/interrupted state, available external job/session identifiers and result/artifact references. |
+| Agent and feedback state | Framework-visible messages, tool interactions, feedback records and delivery state, plus any resumable session information supplied by the selected harness. |
+| Budget and progress | Completed work, scheduled/reserved work, known resource consumption, remaining limits and the next pending action. |
+
+The recovery protocol is:
+
+1. **Record intent before execution.** Persist the operation identifier, inputs and configuration before launching a compiler/checker job, requesting model work or delivering feedback.
+2. **Publish results durably.** Save complete artifacts and evidence before marking an operation completed and advancing the checkpoint. Partial output remains distinguishable from a completed result.
+3. **Restore and reconcile.** On restart, load the latest durable checkpoint, verify referenced artifacts/configuration and reconcile running operations with available job status or completion records. Reuse completed results whose inputs and conditions remain applicable.
+4. **Recover the working session.** Restore the appropriate candidate working copy and resume the agent session where supported. Otherwise, reconstruct its context from the persisted case, conversation, feedback and artifact references.
+5. **Continue pending work.** Resume the next unfinished operation with the recorded budget state and preserve already retained findings. Usage accumulated before the failure is not reset.
+
+An external operation may have completed before the framework saved its result. Reconcile it using recorded identifiers or retrievable outputs where possible. If its outcome cannot be established, record it as interrupted/unknown and apply an explicit retry rule to that operation, accounting for possible resource use. Completed persisted stages remain reusable; recovery does not depend on reproducing an interrupted model response exactly.
+
+Persist feedback before delivery and record available delivery/session receipts so recovery can establish which results the agent has already received. The persistent record remains sufficient to reconstruct a continuation if a live session is lost.
+
+#### Further design and evaluation
+
+- [ ] Compare feedback detail and history-selection policies through Q09, including the context supplied when reconstructing a session after failure.
+- [ ] Define allocation, early stopping and retry policies within the configured limits. Distinguish candidate repair from infrastructure retries.
+- [ ] Verify persistence and recovery through interruption/restart experiments: preserve candidates and evidence, reuse completed compilation/checks, restore agent context, retain budget usage and handle uncertain in-flight work explicitly.
+- [ ] Evaluate feedback policies through useful findings and resource costs against the baseline. Measure persistence/recovery overhead and the completed work recovered after interruptions.
 
 ### 2.6 Produce a finding
 
@@ -301,7 +365,7 @@ _TODO: discuss alternatives and describe how this step could work._
 
 _TODO: identify questions to investigate and decisions to resolve._
 
-Further generation strategies, allocation of the configured budget across regions, early stopping rules and treatment of unsuccessful or inconclusive attempts remain to be designed in the later steps.
+Further generation strategies, allocation of the configured budget across regions, early stopping rules and detailed retry policies remain design questions. Sections 2.4–2.5 establish the required outcome distinctions and persistence/recovery behavior.
 
 ## 3. Framework responsibilities
 
@@ -322,6 +386,7 @@ The framework would coordinate code preparation, classifiers, LLM interaction, c
 - Keeping the **permitted editing range** distinct from the **available context for reasoning and checking**. Surrounding code may supply context without being eligible for modification.
 - Connecting original and modified code to supported compilation and checking routes, with the conditions needed for meaningful comparison.
 - Recording the relevant inputs, settings, artifacts, outcomes and reproduction steps behind a finding.
+- Persisting investigation progress, operation results, candidate/evidence history, agent context and budget state so that internal framework failures can be recovered without restarting completed stages. See section 2.5.
 
 Compilation continuation and runtime validation need explicit investigation: which IR checkpoints can be accepted, how modified regions are reinserted, what executable context is needed, and which checks require an NPU. Correctness execution and performance timing are separate activities. No particular continuation or device-free validation route has been established for our experiment; see [[questions/Q08 - Compilation continuation and validation routes|Q08]].
 

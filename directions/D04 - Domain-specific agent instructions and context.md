@@ -15,6 +15,6 @@ A source-based comparison, with annotated prompt examples and assembly paths whe
 
 For IR review, the study should produce candidate information requirements and ways to obtain them: supplied code, documentation, agent inspection, targeted queries or static-analysis results. No particular analysis becomes necessary simply because it appears useful in another system.
 
-The proposed MVP in [[questions/H03 - What is new in our approach|H03, section 2.2]] can begin with direct prompted review of supplied IR. This study can guide subsequent improvements without becoming a prerequisite for that baseline.
+The proposed MVP in [[questions/H03 - What is new in our approach|H03, sections 2.2–2.3]] can begin with direct prompted review of supplied IR. This study can guide subsequent improvements without becoming a prerequisite for that baseline.
 
 Detailed question, initial source map and comparison method: [[questions/Q09 - Agent prompt construction and information delivery|Q09]]. Related: [[questions/Q07 - Initial classifiers and code classification scheme|Q07]].

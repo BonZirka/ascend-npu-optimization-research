@@ -6,7 +6,7 @@
 
 ## Context
 
-[[questions/H03 - What is new in our approach|H03, section 2.2]] proposes direct agent review of supplied IR as a minimal MVP path. We need a reference-based understanding of how to make that interaction useful. [[directions/D04 - Domain-specific agent instructions and context|D04]] records this as a research direction with two parts: prompt construction and information delivery.
+Sections 2.2–2.3 of [[questions/H03 - What is new in our approach|H03]] describe context preparation and direct agent review of supplied IR as a minimal MVP path. We need a reference-based understanding of how to make that interaction useful. [[directions/D04 - Domain-specific agent instructions and context|D04]] records this as a research direction with two parts: prompt construction and information delivery.
 
 The comparison includes general coding agents such as Claude Code, OpenCode and Codex, plus specialist agents from any domain. We are interested in how a harness equips an agent for its task. We have not selected a harness, prompt template, context-selection method or additional static analysis.
 

@@ -177,6 +177,7 @@ In the MVP, case entries can reference the original IR and supplied metadata; th
 
 #### Further research and development
 
+- [ ] **Agent instructions and information delivery — [[directions/D04 - Domain-specific agent instructions and context|D04]] / [[questions/Q09 - Agent prompt construction and information delivery|Q09]].** Compare public prompt text and context assembly in coding agents and specialist harnesses from any domain; use the results to propose an IR-review prompt and candidate information sources.
 - [ ] Establish useful discovery instructions and code-category coverage for agent review; compare additional classifiers as they become available. See [[questions/Q07 - Initial classifiers and code classification scheme|Q07]].
 - [ ] Investigate context selection and additional file access for larger inputs, including how the agent obtains missing declarations or surrounding code.
 - [ ] Evaluate whether static analyses improve finding quality or reduce agent effort enough to justify their integration cost.

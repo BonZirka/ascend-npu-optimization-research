@@ -6,6 +6,8 @@
 
 H03 explains **what we propose to do differently, how it would work and why we expect it to help**. Connect the outcome in H01 to the comparison established in H02.
 
+**H03 is the main source of open research directions in this workflow.** Developing the mechanism exposes unresolved assumptions, competing designs and gaps in evidence. Identifying and structuring those directions is an explicit output of answering H03.
+
 The contribution may be a method, product, service, language feature or an adaptation of existing work. Establish what is different for the intended setting. Claim academic novelty only when the project requires it and the evidence supports it.
 
 ## 1. State the contribution and its boundary
@@ -69,7 +71,16 @@ Allow later requirements to revise earlier sections. Reproducible findings requi
 
 Keep different kinds of evidence distinct. Successful compilation, matching tested results and a better metric value support different claims. Record coverage and unresolved conditions rather than collapsing them into “works.”
 
-## 6. Explain confidence and preserve consequential unknowns
+## 6. Establish research directions and explain confidence
+
+Revisit each part of the mechanism for choices that warrant investigation. For each resulting direction, record:
+
+- What to investigate and why it matters to the proposal.
+- The open questions or decisions it addresses.
+- A possible investigation and the evidence it should produce.
+- Its role in the proposal and selection status: core feasibility, optional comparison or later extension; selected or unselected.
+
+A question identifies something to establish; a direction describes a line of work for investigating it. Not every unknown needs a separate direction, and recording one does not commit the project to pursuing it.
 
 For each supporting example or paper, identify:
 
@@ -90,6 +101,7 @@ H03 is sufficiently answered when a reader can explain:
 - The baseline behavior, responsibilities and important boundaries.
 - Why the benefit is plausible, and what evidence is still missing.
 - Which choices are settled for the proposal and which remain open.
+- Which research directions emerged, why they matter and whether they are selected.
 
 Keep the central explanation understandable without following every link. Retain detailed design notes as support; they need not all fit into the pitch.
 

@@ -57,6 +57,8 @@ The lesson for collaborators is to preserve uncertainty where it actually exists
 
 Each H question has a separate guidance note as its methods are developed. Project answers and reusable guidance have different roles and review statuses.
 
+**H03 is the main source of open research directions:** working through the proposed mechanism reveals choices and assumptions that need investigation. Its outputs include both a concrete proposal and linked directions whose selection remains explicit.
+
 | Question | Project answer | Guidance | Guidance status |
 | --- | --- | --- | --- |
 | H01 — What are we trying to do? | [[questions/H01 - What are we trying to do]] | [[workflow/H01 - Guidance draft]] | Extracted; audience-neutral revision pending. |

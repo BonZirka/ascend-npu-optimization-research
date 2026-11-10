@@ -19,7 +19,7 @@ Possible later work:
 
 ## 2. Search mechanism
 
-A proposed investigation follows the six steps below. Sections 2.1–2.3 describe the proposed input contract, context preparation and generation baseline. Section 2.4 defines the proposed compilation-runner contract and compatibility requirements; validation and evaluation details remain under discussion. Section 2.5 describes feedback, investigation history and recovery. Section 2.6 remains a brainstorming stub.
+A proposed investigation follows the six steps below. Sections 2.1–2.3 describe the proposed input contract, context preparation and generation baseline. Section 2.4 defines the proposed compilation-runner contract and compatibility requirements; validation and evaluation details remain under discussion. Section 2.5 describes feedback, investigation history and recovery. Section 2.6 defines the runnable finding and replay requirements.
 
 ### 2.1 Provide the input
 
@@ -255,6 +255,12 @@ Persist completed operation results and artifacts using the recovery protocol in
 
 The original's compiled artifacts can be reused across candidates while their relevant inputs and configuration remain unchanged. If the original cannot be compiled, record a baseline failure; successful candidate compilation alone cannot establish improvement over it.
 
+##### Shared execution recipe for evaluation and replay
+
+The framework records a versioned execution recipe for the original/candidate compilation, selected validation process and metric comparison, with the resolved settings, inputs and environment requirements. **The initial evaluation uses the same recipe and execution entry point later exported with the finding in section 2.6.** The recipe coordinates the individual runners; their invocation contracts remain unchanged.
+
+Store the recipe and the results of its initial execution with the candidate evidence. This makes the exported reproduction procedure an exercised part of evaluation. Replays use the saved original and candidate code and produce fresh results under the recorded conditions; they do not require the agent to rediscover the rewrite.
+
 #### Compatibility of compilation, validation and assessment
 
 The configuration must describe a **jointly supported route** from the starting checkpoint to all required artifacts. The framework checks the declared compatibility when resolving the request and records candidate-specific coverage failures encountered later.
@@ -355,17 +361,74 @@ Persist feedback before delivery and record available delivery/session receipts 
 
 ### 2.6 Produce a finding
 
-Retain reproducible candidate cases with their conditions and evidence for engineer review.
+The primary deliverable is a **runnable experiment**, with a readable report serving as its index. The most important acceptance criterion is that each finding is easily runnable and reproducible using its saved material and declared environment.
 
-#### Possible designs
+#### Acceptance and readiness
 
-_TODO: discuss alternatives and describe how this step could work._
+When a candidate meets the configured checking policy and improvement criterion, retain a finding linked to its exact original/candidate versions and evidence. It can be exported while the investigation continues.
 
-#### Research and development questions
+**Every ready finding provides one entry point that reruns the recorded compilation, validation and metric comparison for the saved original and candidate.** The procedure uses the same execution recipe exercised during the initial evaluation in 2.4.
 
-_TODO: identify questions to investigate and decisions to resolve._
+Before marking the finding ready, verify that its case material, resolved recipe, required artifact references and initial execution evidence are present and consistent. The recipe's original execution establishes that the procedure has been exercised in the recorded environment. The framework implementation must also verify that exported bundles remain runnable after relocation with the declared external bindings.
 
-Further generation strategies, allocation of the configured budget across regions, early stopping rules and detailed retry policies remain design questions. Sections 2.4–2.5 establish the required outcome distinctions and persistence/recovery behavior.
+#### Finding contents
+
+| Component | Contents |
+| --- | --- |
+| Identity | Stable finding, investigation, case and candidate identifiers, with links to the originating run and original evidence. |
+| Code | Original and rewritten artifacts, permitted editing scope and the framework-generated diff. |
+| Case material | Test inputs, expected results/reference behavior, harnesses and supporting context used by the selected process. Include supplied input-generation recipes, versions and seeds where those produced the recorded inputs. |
+| Resolved execution recipe | Compiler build, target, continuation pipeline, observation checkpoints, stopping boundaries, validation settings, metric configuration and comparison criteria. |
+| Environment requirements | Required framework/runner versions, dependencies, compiler/checker bindings and execution hardware/runtime settings. External resources have explicit identifiers/versions and access bindings. |
+| Original evidence | Compilation diagnostics, validation outcomes, metric values, observation conditions, proposed assumptions and unresolved limitations. |
+| Readable report | A concise account of the change and observed results, with links to code, evidence and the replay entry point. A brief agent-produced explanation remains optional; working notes remain accessible through the investigation record. |
+
+Package the available case material using bundle-local paths. Identify required external resources explicitly so the finding can be used independently of the original worker's temporary directories and live agent session.
+
+#### Replay interface and behavior
+
+Proposed interface shape; this is a framework requirement, not an implemented command:
+
+```sh
+framework replay ./finding-ID
+```
+
+A replay:
+
+1. Loads the manifest and recorded recipe, resolves environment bindings and checks required dependencies, artifacts and hardware before execution. Missing requirements produce actionable diagnostics.
+2. Uses the saved original and candidate versions and supplied case material to repeat the configured compilation, validation and assessment through the shared execution entry point.
+3. Creates a new replay identifier linked to the finding and originating investigation, storing diagnostics, effective configuration, observed environment, validation results, metric values and resource usage.
+4. Records whether the selected checking and improvement criteria held on that replay, with enough information to compare outcomes and measurement variation across executions.
+
+The original evidence is preserved alongside subsequent replay results. Divergent or unsuccessful replays remain visible. Reuse of compilation artifacts follows the recorded compatibility rules and is identified in the replay record. Validation and metric assessment requested by the replay are executed again, producing fresh results.
+
+#### Export and recovery
+
+A proposed bundle layout is:
+
+```text
+finding-ID/
+  report.md
+  manifest.json
+  original/
+  candidate/
+  changes.diff
+  evidence/
+  reproduce/
+  replays/
+```
+
+The manifest identifies the recipe, artifact versions and required environment bindings. The replay entry point consumes that manifest and the saved experiment material.
+
+Use a stable finding identifier and publish a complete bundle as a unit. Track pending/complete export state in the durable investigation record from 2.5. An interrupted export can be resumed or regenerated from persisted records without rerunning completed discovery, compilation or checks solely to rebuild the package. Successful findings remain available even if later search attempts or the framework process fail.
+
+#### Remaining implementation and evaluation work
+
+- [ ] Specify the manifest/recipe schema and concrete replay command while retaining the shared evaluation/replay execution path.
+- [ ] Verify replay in the declared environment from a relocated bundle, plus recovery from an interrupted export. Verify that missing dependencies are reported and that each replay preserves the original evidence.
+- [ ] Coordinate validation coverage, metric interpretation and measurement-repeatability criteria with [[questions/Q08 - Compilation continuation and validation routes|Q08]], [[questions/Q06 - Metrics for assessing LLVM IR and MLIR improvements|Q06]] and [[questions/H08 - How will we check success|H08]]. Concrete Ascend routes and tools remain to be established.
+
+Further generation strategies, allocation of the configured budget across regions, early stopping rules and detailed retry policies remain design questions. Sections 2.4–2.6 establish the required outcome distinctions, persistence/recovery behavior and runnable finding contract.
 
 ## 3. Framework responsibilities
 
@@ -386,6 +449,7 @@ The framework would coordinate code preparation, classifiers, LLM interaction, c
 - Keeping the **permitted editing range** distinct from the **available context for reasoning and checking**. Surrounding code may supply context without being eligible for modification.
 - Connecting original and modified code to supported compilation and checking routes, with the conditions needed for meaningful comparison.
 - Recording the relevant inputs, settings, artifacts, outcomes and reproduction steps behind a finding.
+- Exporting each ready finding as a runnable experiment that replays the saved original/candidate comparison through the same execution recipe used in its initial evaluation. See section 2.6.
 - Persisting investigation progress, operation results, candidate/evidence history, agent context and budget state so that internal framework failures can be recovered without restarting completed stages. See section 2.5.
 
 Compilation continuation and runtime validation need explicit investigation: which IR checkpoints can be accepted, how modified regions are reinserted, what executable context is needed, and which checks require an NPU. Correctness execution and performance timing are separate activities. No particular continuation or device-free validation route has been established for our experiment; see [[questions/Q08 - Compilation continuation and validation routes|Q08]].
@@ -407,6 +471,6 @@ The [[research/Framework-generated comparison references|framework-generated com
 - [ ] **Improvement indicators — [[questions/Q06 - Metrics for assessing LLVM IR and MLIR improvements|Q06]].** Establish what comparisons can support useful findings, with what assumptions and resource costs.
 - [ ] **Compilation and validation routes — [[questions/Q08 - Compilation continuation and validation routes|Q08]].** Establish supported start/stop checkpoints, required compiler state, context and harnesses, validation-mode coverage, hardware dependencies and compatibility with the selected metric checkpoint.
 - [ ] **Search policies.** Define how alternatives are generated, how feedback is used, how effort is allocated and when an investigation stops.
-- [ ] **Initial finding criteria.** Define the evidence required for a reported opportunity and what remains for an engineer to assess. Evaluation of the framework's usefulness and resource benefit belongs in [[questions/H08 - How will we check success|H08]].
+- [ ] **Finding evidence policy and evaluation.** Runnable replay is required by section 2.6. Establish the concrete validation evidence and metric comparison conditions for reported opportunities, and what remains for an engineer to assess. Evaluation of the framework's usefulness and resource benefit belongs in [[questions/H08 - How will we check success|H08]].
 
 ## TODO

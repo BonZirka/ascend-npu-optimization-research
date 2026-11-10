@@ -1,0 +1,7 @@
+[project]
+name = "ascend-optimization-finder"
+version = "0.0.0"
+description = "Experimental framework for finding potential missed optimizations in AscendNPU-IR"
+readme = "README.md"
+requires-python = ">=3.15"
+dependencies = []

@@ -2,7 +2,7 @@
 
 This is a living guide for colleagues developing research proposals through the Heilmeier questions. It records a working method learned from discussing and revising an actual proposal, including approaches that caused confusion and how we corrected them.
 
-**Current coverage:** the general working process is described here. H01 guidance has been extracted into [[workflow/H01 - Guidance draft]]; its broader audience revision is pending. [[workflow/H02 - Guidance draft]] is available for review. Guidance for H03–H08 will develop as we work through those questions. The status of a guidance draft is separate from acceptance of a project-specific answer.
+**Current coverage:** the general working process is described here. H01 guidance has been extracted into [[workflow/H01 - Guidance draft]]; its broader audience revision is pending. [[workflow/H02 - Guidance draft]] and [[workflow/H03 - Guidance draft]] are available for review. Guidance for H04–H08 will develop as we work through those questions. The status of a guidance draft is separate from acceptance of a project-specific answer.
 
 The purpose of the process is to turn an idea into an objective that other people can understand, challenge and eventually evaluate. A polished sentence is useful when it expresses an agreed idea. Polishing an unresolved idea can make disagreement harder to see.
 
@@ -61,7 +61,7 @@ Each H question has a separate guidance note as its methods are developed. Proje
 | --- | --- | --- | --- |
 | H01 — What are we trying to do? | [[questions/H01 - What are we trying to do]] | [[workflow/H01 - Guidance draft]] | Extracted; audience-neutral revision pending. |
 | H02 — How is it done today? | [[questions/H02 - How is it done today]] | [[workflow/H02 - Guidance draft]] | Draft for review. |
-| H03 — What is new in our approach? | [[questions/H03 - What is new in our approach]] | — | To be developed. |
+| H03 — What is new in our approach? | [[questions/H03 - What is new in our approach]] | [[workflow/H03 - Guidance draft]] | Draft for review. |
 | H04 — Who cares and what changes if we succeed? | [[questions/H04 - Who cares and what changes if we succeed]] | — | To be developed. |
 | H05 — What are the risks? | [[questions/H05 - What are the risks]] | — | To be developed. |
 | H06 — How much will it cost? | [[questions/H06 - How much will it cost]] | — | To be developed. |

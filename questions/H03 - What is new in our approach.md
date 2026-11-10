@@ -45,19 +45,65 @@ Discovery uses either the installation's configured default classifier set or an
 
 #### Configuration and supporting material
 
-The request selects the following configuration, directly or through named profiles:
+The request supplies the settings below directly or selects **named profiles** containing them. A profile is a reusable, versioned bundle of settings, such as a compilation pipeline or validation process. **Required** means present in the resolved configuration; the engineer does not need to repeat values already supplied by a profile.
 
-| Configuration | What it specifies |
-| --- | --- |
-| **Compilation and target** | The input representation and IR checkpoint, compiler build, continuation pipeline and target settings. |
-| **Checking policy** | The checks to perform, their comparison conditions and the evidence required to retain a candidate. |
-| **Improvement objective** | The metric or cost model and comparison settings used to assess alternatives. Runtime timing is one selectable objective. |
-| **Generation setup** | The model and generation profile used to propose alternatives. |
-| **Search budget** | The attempt limit and any additional time or resource limits. |
+##### Compilation and target
 
-Supporting material includes surrounding declarations, build dependencies, existing test harnesses, test inputs, expected outputs, baseline measurements and profiles. Each selected compilation or checking route declares which material it requires; the engineer supplies that material with the request. A fragment is not assumed to be independently compilable or executable.
+| Setting | What it specifies | Requirement |
+| --- | --- | --- |
+| Input representation | The code format or dialect and the IR checkpoint from which the supplied artifact originates. | Every input. |
+| Compiler build | The compiler executable or integration entry point, with its build identifier or revision. | Every investigation. |
+| Continuation pipeline | The pipeline to resume from the input checkpoint, its pass configuration and the output stage to produce for checking or assessment. | Every investigation. |
+| Build settings | Compiler flags, dependency paths and enclosing build context needed by that pipeline. | Required by the selected pipeline. |
+| Target configuration | The architecture/device configuration and target-specific options used to compile both the original and alternatives. | Required by the selected pipeline or evaluator. |
 
-Installation defaults are overridden by request settings, which are overridden by per-input settings. The framework resolves and records the effective configuration before searching. Required settings without a configured default must be supplied explicitly.
+##### Checking policy — validation process and acceptance rules
+
+| Setting | What it specifies | Requirement |
+| --- | --- | --- |
+| Validation process | The process/runner to invoke, its ordered checks and check-specific parameters. Supported processes declare whether they perform compilation checks, execution-based checks or another correctness check. | Every investigation. |
+| Reference and test material | The behavior reference—execution of the original or supplied expected results—and the harness, test inputs and assumptions required by the selected checks. | Required by the selected validation process. |
+| Result comparison | Which outputs or observable results are compared, using exact equality or explicitly configured numerical tolerances. | Comparing execution results. |
+| Execution environment | The execution runner, machine/device configuration and runtime settings used by the selected checks. | A check requires execution. |
+| Acceptance conditions | Which checks must pass before a candidate has the requested validation evidence. A failed required check rejects the candidate; a timeout, unsupported check or inconclusive result leaves it unvalidated. | Every investigation. |
+
+The checking policy selects and configures the validation process executed in **2.4 Check and compare**. Passing the selected checks records the evidence they provide; it does not imply a stronger correctness guarantee. A compilation-only policy and a policy requiring matching execution results therefore produce different evidence labels.
+
+##### Improvement objective
+
+| Setting | What it specifies | Requirement |
+| --- | --- | --- |
+| Evaluator | The metric or cost-model implementation, its parameters, the code stage it consumes and the quantity/unit it reports. | Every investigation. |
+| Comparison baseline | The original artifact evaluated under the same compilation, target and evaluator settings as the alternative. Reusing recorded baseline results requires matching those settings and relevant inputs. | Every comparison. |
+| Improvement criterion | Whether lower or higher values are better, and the minimum absolute or relative change required to retain an improvement claim. | Every investigation. |
+| Measurement protocol | The execution workload, runner, warm-up count, repetition count and aggregation rule. A static evaluator instead uses its declared analysis inputs and parameters. | The objective uses runtime measurements. |
+
+Validation and improvement are separate results: an alternative must satisfy the selected checking policy and the improvement criterion to be reported as a validated improvement under that policy. Static metrics do not by themselves establish a runtime speedup.
+
+##### Generation setup
+
+| Setting | What it specifies | Requirement |
+| --- | --- | --- |
+| Model backend | The model runner/provider and model identifier used to generate alternatives. | Every investigation. |
+| Generation profile | The versioned prompt templates, feedback instructions and response format used by the generation stage. | Every investigation. |
+| Model parameters | Backend-specific generation settings, including supported sampling parameters and response-length limits. Effective backend defaults are recorded where available. | Exposed by the selected backend. |
+
+##### Search budget
+
+| Setting | What it specifies | Requirement |
+| --- | --- | --- |
+| Candidate limit | Maximum number of generated alternatives per input, including candidates later rejected as invalid. | Every investigation. |
+| Collection limit | An additional cap on the total candidates across the request. Per-input settings cannot override this shared cap. | Optional for collections. |
+| Time limits | Request elapsed-time limit and timeouts for individual compilation, validation, evaluation and model operations. | Optional request limit; operation timeouts as required by the selected processes. |
+| Resource limits | Additional caps on model calls/tokens or execution jobs, including accelerator runs where used. | Optional. |
+
+When a budget is exhausted, the framework stops scheduling work that would exceed it and retains the evidence already collected.
+
+##### Supporting material and configuration resolution
+
+Code inputs reference supporting files explicitly: enclosing code and declarations, build dependencies, test harnesses, test inputs, expected outputs, baseline measurements and profiles. Each selected pipeline, validation process and evaluator declares which files and metadata it requires. A fragment is not assumed to be independently compilable or executable.
+
+Installation defaults are overridden by request settings, which are overridden by per-input settings. Shared request limits remain upper bounds. The framework resolves profile versions and records the effective configuration before searching. Required settings without a configured default must be supplied explicitly. Missing conditional settings or material are reported when the selected process requires them.
 
 #### Submission rules
 
@@ -131,7 +177,7 @@ _TODO: discuss alternatives and describe how this step could work._
 
 _TODO: identify questions to investigate and decisions to resolve._
 
-The generation strategy, search budget, stopping rules and treatment of unsuccessful or inconclusive attempts remain open.
+The generation strategy, allocation of the configured budget across regions, early stopping rules and treatment of unsuccessful or inconclusive attempts remain to be designed in the later steps.
 
 ## 3. Framework responsibilities
 

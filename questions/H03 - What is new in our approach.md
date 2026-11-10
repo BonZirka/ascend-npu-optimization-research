@@ -19,7 +19,7 @@ Possible later work:
 
 ## 2. Search mechanism
 
-A proposed investigation follows the six steps below. Sections 2.1 and 2.2 describe the proposed input contract and context preparation. Section 2.3 outlines agent review and generation; its detailed generation design needs discussion. Sections 2.4–2.6 remain brainstorming stubs.
+A proposed investigation follows the six steps below. Sections 2.1–2.3 describe the proposed input contract, context preparation and generation baseline. Sections 2.4–2.6 remain brainstorming stubs.
 
 ### 2.1 Provide the input
 
@@ -166,36 +166,48 @@ This is the minimum handoff for the direct-review MVP. Case entries can referenc
 
 ### 2.3 Generate an alternative
 
-Use the prepared case to review the code and propose a replacement within the permitted editing scope.
+Use the prepared case to review the code and produce a rewrite expected to improve the selected metric while preserving the required behavior.
 
-**Status: partial draft for discussion.** The MVP outline and agent responsibilities are described below; the detailed generation design remains open.
+#### Generation task and permitted transformations
 
-#### Proposed MVP path: direct agent review and generation
+The agent may propose **arbitrary transformations within the permitted editing scope**, including changes to control flow. One candidate is a complete alternative for that scope and can contain several coordinated edits. Supplied restrictions and the required behavior continue to apply.
 
-The MVP can supply the original IR and available context directly to an agent, together with the editing scope, target settings, improvement objective and checking policy. The prompt asks the agent to inspect the IR, identify relevant dependencies and constraints, and propose a potentially better alternative under the selected objective.
+The search leaves the compiler-side explanation open. An existing optimization might have failed to apply, encountered a bug or been deliberately restricted. A candidate records a potential improvement; determining why the original compiler output differs belongs to subsequent investigation.
 
-Inspection and alternative generation can happen in the same agent session. The step boundaries describe responsibilities and recorded artifacts; they do not require separate agents or model calls. Initial experiments can use IR and supplied context that fit within the selected model's context allowance.
-
-#### Review the code and replacement requirements
-
-During review, the agent can identify:
+During review, the agent can examine:
 
 | Information | What the agent examines |
 | --- | --- |
 | Inputs and externally used results | Referenced values, signatures, declarations and surrounding uses crossing the editing boundary. |
 | Control flow and dependencies | Enclosing control flow and dependencies visible in the supplied code and context. |
 | Observable effects | Relevant memory changes and other externally observable behavior that the replacement must preserve. |
-| Potential improvements | Changes that may improve the selected metric while respecting the supplied restrictions. |
+| Potential improvements | Changes expected to improve the selected metric under the supplied restrictions. |
 
-Dependency and effect descriptions produced by the agent are recorded as interpretations, with their source and uncertainty. Agent-proposed assumptions are retained for subsequent checking or review; they do not silently become conditions accepted by the engineer. Unestablished properties remain explicit uncertainties.
+Agent-produced dependency and effect descriptions are recorded as interpretations. Additional assumptions remain proposed conditions to establish through subsequent checking or review. For example, a rewrite that relies on two buffers not overlapping must identify that requirement; proposing it does not establish that it holds for the original case.
 
-The candidate code and its location, together with relevant observations, proposed conditions and unresolved questions, are passed to **2.4 Check and compare**. That step produces the selected compilation, correctness-checking and improvement evidence.
+#### MVP path: review and edit a working copy
 
-#### Generation design still to discuss
+The framework provides a working copy of the original file, the permitted editing scope, available context and resolved configuration. The prompt asks the agent to review the IR and edit that copy to produce a potentially better alternative. Surrounding material remains read-only where required by the case.
 
-_TODO: discuss how alternatives are requested and represented, which tools the agent can use during generation, and how generation effort is controlled within the configured budget._
+The baseline uses ordinary file reading and editing, the model's existing knowledge and supplied context. Whether that knowledge is sufficient for useful AscendNPU-IR rewrites is an experimental question. Additional domain-specific tools and constrained editors remain research topics.
 
-Prompt construction and the information available to the agent remain subjects of [[questions/Q09 - Agent prompt construction and information delivery|Q09]], including reference analysis of public agent instructions and specialist harnesses. The relocated responsibilities above do not settle the prompt template or generation strategy.
+Review and editing can happen in the same agent session. The logical steps do not require separate agents or model calls. Initial experiments can use IR and supplied context that fit within the selected model's context allowance. Generation operates within the configured candidate, time and resource limits; allocation and stopping policies will be developed with the later search stages.
+
+#### Candidate artifact and investigation record
+
+| Item | What the framework retains |
+| --- | --- |
+| Candidate artifact | A snapshot of the file edited by the agent, associated with the original artifact and permitted editing scope. |
+| Change record | A diff constructed and stored by the framework from the original and candidate versions. The agent operates through file edits. |
+| Optional description | A brief account of the change, if produced; it is not required for candidate submission. |
+| Agent working record | Agent-provided working notes, rationale, proposed assumptions and uncertainties, together with interaction history and tool calls/results made available by the selected harness. These are retained in the investigation record and need not be exposed in the initial user-facing report. |
+
+The agent's expectation motivates a candidate. **2.4 Check and compare** produces the selected compilation, correctness-checking and improvement evidence. The handoff includes the original and candidate versions, the change record, resolved configuration and available notes or proposed conditions.
+
+#### Further research and development
+
+- [ ] **Prompt construction and information delivery — [[questions/Q09 - Agent prompt construction and information delivery|Q09]] / [[directions/D04 - Domain-specific agent instructions and context|D04]].** Compare public instruction text and context assembly to improve the initial prompt and supplied information.
+- [ ] **Agent tools and editing constraints — [[questions/Q10 - Agent tools and editing constraints|Q10]] / [[directions/D05 - Agent tools and editing constraints|D05]].** Start by examining LPO's actual interaction and tool flow. Compare additional tools and restricted editing interfaces against the ordinary-file-editing baseline.
 
 ### 2.4 Check and compare
 
@@ -233,7 +245,7 @@ _TODO: discuss alternatives and describe how this step could work._
 
 _TODO: identify questions to investigate and decisions to resolve._
 
-The generation strategy, allocation of the configured budget across regions, early stopping rules and treatment of unsuccessful or inconclusive attempts remain to be designed in the later steps.
+Further generation strategies, allocation of the configured budget across regions, early stopping rules and treatment of unsuccessful or inconclusive attempts remain to be designed in the later steps.
 
 ## 3. Framework responsibilities
 

@@ -2,7 +2,7 @@
 
 [[Pitch Presentation]]
 
-**Status: working draft for review.** The sections separate the proposed capability, search flow, framework responsibilities, supporting evidence and open choices. The flow and responsibility split are proposals; unresolved design questions remain explicit.
+**Status: working draft for review.** The sections separate the proposed capability, search flow, framework responsibilities, supporting evidence and open research agenda. The flow and responsibility split are proposals; unresolved design questions remain explicit.
 
 ## 1. Proposed contribution
 
@@ -538,12 +538,24 @@ The expected saving comes from offloading variant construction, repeated checks 
 
 The [[research/Framework-generated comparison references|framework-generated comparison reference]] is a hypothesis for our experiment: an alternative evaluated for the same target could provide evidence of an opportunity without requiring another accelerator's implementation as the reference.
 
-## 5. Important open choices
+## 5. Open research agenda
 
-- [ ] **Classifier coverage and classification scheme — [[questions/Q07 - Initial classifiers and code classification scheme|Q07]].** Establish useful initial categories and classifiers. Sections 2.2–2.3 describe preparation and direct agent review as a minimal MVP path; category coverage and the value of additional static analyses or cost models remain open.
-- [ ] **Improvement indicators — [[questions/Q06 - Metrics for assessing LLVM IR and MLIR improvements|Q06]].** Establish what comparisons can support useful findings, with what assumptions and resource costs.
-- [ ] **Compilation and validation routes — [[questions/Q08 - Compilation continuation and validation routes|Q08]].** Establish supported start/stop checkpoints, required compiler state, context and harnesses, validation-mode coverage, hardware dependencies and compatibility with the selected metric checkpoint.
-- [ ] **Search policies.** Compare additional generation, feedback, budget-allocation and stopping strategies against the default in section 2.5.
-- [ ] **Finding evidence policy and evaluation.** Runnable replay is required by section 2.6. Establish the concrete validation evidence and metric comparison conditions for reported opportunities, and what remains for an engineer to assess. Evaluation of the framework's usefulness and resource benefit belongs in [[questions/H08 - How will we check success|H08]].
+Developing the mechanism above generates the following lines of investigation. This overview connects each to its question, proposed study and expected evidence. Detailed questions and local checklists remain linked from the relevant steps.
+
+**Status:** all investigations remain open. Core feasibility identifies what must be established for a usable route; it does not select a metric, checker or tool. Optional comparisons can improve the proposed baseline. No experiment plan or additional method is selected by this table.
+
+| Research direction | Question and links | Proposed investigation | Expected evidence | Role and selection status |
+| --- | --- | --- | --- | --- |
+| **Improvement metrics** | Which indicators provide useful comparisons at acceptable cost? [[questions/Q06 - Metrics for assessing LLVM IR and MLIR improvements\|Q06]] | Review candidate metrics and probe their stage/target coverage, interpretation and resource requirements. | Sourced comparison of applicability, limitations and cost; evidence supporting each improvement claim. | **Core feasibility.** Open; metric unselected. |
+| **Compilation and validation routes** | Which start/stop/check combinations can support the comparison? [[questions/Q08 - Compilation continuation and validation routes\|Q08]] | Inspect compiler entry points and test continuation/checking combinations jointly with Q06. | Checkpoint catalog, validation coverage and compatibility matrix supported by reproducible probes. | **Core feasibility.** Open; no concrete Ascend route established. |
+| **Region discovery and classification** | Which code categories and selection methods produce useful search cases? [[questions/Q07 - Initial classifiers and code classification scheme\|Q07]] | Investigate category coverage; compare prompted discovery with candidate static or cost-model classifiers. | Proposed category scheme and evidence on coverage, useful findings and selection cost. | **Discovery-mode capability.** Research deferred; classifier coverage unselected. Whole-input and specified-range modes bypass discovery. |
+| **Agent instructions and context** | What information should the agent receive, and how? [[directions/D04 - Domain-specific agent instructions and context\|D04]] / [[questions/Q09 - Agent prompt construction and information delivery\|Q09]] | Analyze public harnesses from different domains; compare instruction/context variants with direct review of supplied IR. | Annotated source comparison, proposed instruction/context profiles and comparative results. | **Optional refinement.** Proposed; initial source map exists, comparative analysis pending. |
+| **Agent tools and editing constraints** | When do additional tools or editing restrictions help? [[directions/D05 - Agent tools and editing constraints\|D05]] / [[questions/Q10 - Agent tools and editing constraints\|Q10]] | Trace LPO's model/harness interaction; compare ordinary file edits with added tools or constraints. | Comparisons of finding usefulness, validity, transformation coverage and resource cost. | **Optional refinement.** Proposed; reference analysis and experiments pending. Ordinary file editing is the proposed baseline. |
+| **Feedback and search policies** | Which feedback, history and budget policies improve search? Section 2.5; [[questions/Q09 - Agent prompt construction and information delivery\|Q09]] for information delivery. | Compare feedback detail, history selection, effort allocation and continuation strategies against the default under comparable budgets. | Retained attempt histories, useful findings, failed/inconclusive attempts and resource-cost comparisons. | **Optional comparisons.** Same-conversation feedback and first-qualifying-finding stopping are the proposed baseline; alternatives unselected. |
+| **Finding evidence and framework value** | What makes a finding useful, and does the framework save expert effort? [[questions/Q06 - Metrics for assessing LLVM IR and MLIR improvements\|Q06]], [[questions/Q08 - Compilation continuation and validation routes\|Q08]] and [[questions/H08 - How will we check success\|H08]]. | Establish candidate evidence requirements through Q06/Q08; develop a study of finding usefulness, replay and investigation effort in H08. | Explicit evidence coverage, replay outcomes and a comparison of finding quality, expert effort and execution/model costs. | **Core evaluation.** Study design remains open; resource benefit unestablished. |
+
+These dependencies are related: metric choice and validation must share a feasible route; prompts and tools affect one another; optional policies need a functioning baseline for comparison.
+
+Implementation and verification work remains in sections 2.4–2.6: concrete adapters/schemas, recovery after interruptions and replay from relocated bundles. Persistence and runnable findings are baseline requirements. Test-case generation and automatic pass implementation retain the tentative/later scope described in section 1.
 
 ## TODO

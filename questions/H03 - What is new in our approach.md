@@ -19,49 +19,57 @@ Possible later work:
 
 ## 2. Search mechanism
 
-A proposed investigation follows the six steps below. The subsections collect design possibilities and research questions; unresolved choices remain open, and the later subsections are still brainstorming stubs.
+A proposed investigation follows the six steps below. Section 2.1 defines the proposed input contract. Sections 2.2–2.6 remain brainstorming stubs for separate design discussions.
 
 ### 2.1 Provide the input
 
-An engineer provides a kernel or IR fragment, or a collection of existing code, together with any specified investigation range or classifier preferences.
+#### Input contract
 
-#### Possible designs
+An engineer submits an **investigation request** containing one or more code inputs, an investigation mode and a configuration. The same request structure supports a single kernel, an IR fragment and a collection of existing code.
 
-A possible submission consists of **code artifacts plus an investigation configuration**, with supporting material where available. The forms and settings below are candidates for discussion; required fields, supported formats and defaults remain to be established.
+Each code input identifies the original artifact and its representation, together with any enclosing code, dependencies and existing test or measurement material. The framework preserves a snapshot of the supplied artifacts. Selections, attempts and findings refer to that snapshot.
 
-**Possible inputs**
+#### Investigation modes
 
-| Input | What the engineer could provide |
+The engineer selects one of three modes. A request can apply a common mode to all inputs, with explicit overrides for individual inputs.
+
+| Mode | Required input | Framework task |
+| --- | --- | --- |
+| **Whole input** | A code artifact to investigate as a whole. | Generate alternatives within the supplied artifact. |
+| **Specified range** | A code artifact and an explicitly selected range within it. | Generate alternatives within that range; retain the surrounding code as context. |
+| **Discover regions** | One or more code artifacts and a classifier selection. | Run the selected classifiers, identify candidate regions and investigate them. |
+
+A specified range identifies its artifact and start/end positions in the original snapshot. Its boundaries must select complete statements or IR operations; invalid or unsupported selections are reported before search. Code outside that range and separately attached context are read-only. A small fragment can therefore be investigated in full while its enclosing function or module remains available for reasoning and checking.
+
+Discovery uses either the installation's configured default classifier set or an explicitly selected subset. The resolved selection is recorded. Whole-input and specified-range modes skip classifier-based discovery; the framework does not infer the mode from input size.
+
+#### Configuration and supporting material
+
+The request selects the following configuration, directly or through named profiles:
+
+| Configuration | What it specifies |
 | --- | --- |
-| One code artifact | A kernel, function, IR fragment or larger compilation unit in a supported representation. Which representations and IR checkpoints are accepted remains open. |
-| A collection of existing code | Multiple code artifacts to investigate. Packaging could use a file list, directory or manifest; no submission format is selected. |
-| Supporting context | Surrounding code, declarations, build information and compiler settings that are available for reasoning, compilation or checking. |
-| Existing test or measurement material | Test harnesses, inputs, expected outputs, baseline results or profiles, where available and relevant to the selected checking route. |
+| **Compilation and target** | The input representation and IR checkpoint, compiler build, continuation pipeline and target settings. |
+| **Checking policy** | The checks to perform, their comparison conditions and the evidence required to retain a candidate. |
+| **Improvement objective** | The metric or cost model and comparison settings used to assess alternatives. Runtime timing is one selectable objective. |
+| **Generation setup** | The model and generation profile used to propose alternatives. |
+| **Search budget** | The attempt limit and any additional time or resource limits. |
 
-Supplying a fragment does not establish that it can be compiled or executed independently. The required enclosing context and checking material depend on the routes investigated in [[questions/Q08 - Compilation continuation and validation routes|Q08]].
+Supporting material includes surrounding declarations, build dependencies, existing test harnesses, test inputs, expected outputs, baseline measurements and profiles. Each selected compilation or checking route declares which material it requires; the engineer supplies that material with the request. A fragment is not assumed to be independently compilable or executable.
 
-**Possible configuration**
+Installation defaults are overridden by request settings, which are overridden by per-input settings. The framework resolves and records the effective configuration before searching. Required settings without a configured default must be supplied explicitly.
 
-| Configuration area | Choices to investigate |
-| --- | --- |
-| Investigation scope | Investigate the whole supplied artifact, an explicitly specified range, or request discovery of promising regions. How ranges are identified remains open. |
-| Classifier selection | Use the configured default classifier set or a selected subset, with any supported classifier parameters. Coverage and classification scheme remain in [[questions/Q07 - Initial classifiers and code classification scheme|Q07]]. |
-| Compilation and target | Identify the input IR checkpoint, compiler/build configuration, continuation pipeline and target settings, where supported. Exact controls depend on Q08. |
-| Checking setup | Reference the intended checking route and available test material, including any explicit comparison conditions. The initial evidence policy remains open. |
-| Improvement objective | Reference the metric or cost-model configuration to use for comparisons. Candidate indicators and their applicability remain in [[questions/Q06 - Metrics for assessing LLVM IR and MLIR improvements|Q06]]. |
-| Generation setup | Reference a model or generation configuration. Which controls are useful to expose will be discussed in 2.3. |
-| Search limits | Possible limits on attempts, elapsed time or resource use. Supported limits and their enforcement remain design questions for the search policies. |
+#### Submission rules
 
-Step 2.1 records what is supplied and requested. Step 2.2 determines how to prepare the available material into a search context. The placement and execution of automatic region discovery still need to be designed.
+- Validate artifact references, selected ranges, configuration compatibility and the presence of required supporting material before search.
+- Report missing requirements or unsupported selections explicitly. Do not silently change the mode, target, objective or checking policy.
+- Keep original inputs and the effective configuration linked to every attempt and resulting finding.
 
-#### Research and development questions
+Step 2.1 establishes what the engineer supplies and authorizes. Step 2.2 prepares that material for reasoning, region discovery where requested, and checking.
 
-- [ ] Which code representations, artifact sizes and IR checkpoints should the initial version accept? How is the input checkpoint identified? See Q08.
-- [ ] How does an engineer identify a range, and distinguish editable code from context that may only be inspected?
-- [ ] Which metadata and supporting materials are required for each investigation mode and checking route? What happens when they are missing?
-- [ ] How are whole-artifact investigation, specified-range investigation and automatic discovery requested explicitly? Which defaults are appropriate?
-- [ ] What is the useful configuration boundary between an installation, a collection and an individual input? Are shared defaults and per-input overrides needed?
-- [ ] How are original inputs and supplied settings recorded so that later attempts and findings can be reproduced?
+#### MVP coverage
+
+The input contract above defines the proposed interface. **MVP coverage is a separate choice:** which representations and checkpoints, classifiers, compilation routes, checks and metrics are implemented first. Each implementation declares its supported capabilities and required material. Research on those capabilities remains in [[questions/Q06 - Metrics for assessing LLVM IR and MLIR improvements|Q06]], [[questions/Q07 - Initial classifiers and code classification scheme|Q07]] and [[questions/Q08 - Compilation continuation and validation routes|Q08]].
 
 ### 2.2 Prepare the search context
 

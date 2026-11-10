@@ -23,6 +23,19 @@ This investigation informs several proposal answers:
 
 An improved metric and preservation of program behavior are separate checks. A metric reduction alone does not establish a runtime gain or a confirmed missed optimization.
 
+## Stage applicability and compilation-route compatibility
+
+Coordinate these questions with [[questions/Q08 - Compilation continuation and validation routes|Q08]] and record the answers for each candidate metric:
+
+- At which precise checkpoints, dialects and established IR invariants is the metric defined? Are different parameterizations or models needed before and after particular lowering steps?
+- Does it cover all operations introduced by a candidate? How are unsupported operations and partial coverage reported, and can those cases support a comparison?
+- Which target information, shapes, layouts, precision, memory or execution assumptions does the evaluator need at that stage? Is the necessary information still available, or has it not yet been introduced?
+- Are original and candidate evaluated at corresponding checkpoints for the same amount of work, scope and conditions? Could moving work outside the assessed region or into unmodeled operations produce a misleading score?
+- What does an improvement at that stage support as a claim? Can later passes eliminate or reverse it, or make both versions equivalent under a later assessment? Which additional observations would be needed for the intended finding?
+- What artifact must compilation produce for the metric, and is that compatible with the selected validation mode and explicit stopping boundary? A static metric may consume intermediate IR while the selected validation still needs a later runnable artifact.
+
+A metric's implementation coverage and its usefulness as an improvement indicator are separate properties. Establish both rather than treating availability of a numeric result as sufficient.
+
 ## Expected outcome
 
 A sourced comparison of candidate methods, their requirements, costs, limitations and possible applicability. No metric, checking method or IR boundary is selected by recording this question.

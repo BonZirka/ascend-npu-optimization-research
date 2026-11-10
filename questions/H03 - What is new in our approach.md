@@ -19,7 +19,7 @@ Possible later work:
 
 ## 2. Search mechanism
 
-A proposed investigation follows the six steps below. Sections 2.1–2.3 describe the proposed input contract, context preparation and generation baseline. Sections 2.4–2.6 remain brainstorming stubs.
+A proposed investigation follows the six steps below. Sections 2.1–2.3 describe the proposed input contract, context preparation and generation baseline. Section 2.4 defines the proposed compilation-runner contract and compatibility requirements; validation and evaluation details remain under discussion. Sections 2.5–2.6 remain brainstorming stubs.
 
 ### 2.1 Provide the input
 
@@ -53,7 +53,7 @@ The request supplies the settings below directly or selects **named profiles** c
 | --- | --- | --- |
 | Input representation | The code format or dialect and the IR checkpoint from which the supplied artifact originates. | Every input. |
 | Compiler build | The compiler executable or integration entry point, with its build identifier or revision. | Every investigation. |
-| Continuation pipeline | The pipeline to resume from the input checkpoint, its pass configuration and the output stage to produce for checking or assessment. | Every investigation. |
+| Continuation pipeline | The pipeline to resume from the input checkpoint, its pass configuration, requested output checkpoints and any explicit stop-before/stop-after boundary. | Every investigation. |
 | Build settings | Compiler flags, dependency paths and enclosing build context needed by that pipeline. | Required by the selected pipeline. |
 | Target configuration | The architecture/device configuration and target-specific options used to compile both the original and alternatives. | Required by the selected pipeline or evaluator. |
 
@@ -211,15 +211,71 @@ The agent's expectation motivates a candidate. **2.4 Check and compare** produce
 
 ### 2.4 Check and compare
 
-Invoke the supported compilation, correctness-checking and improvement-assessment routes; record what evidence was obtained.
+Execute the configured compilation, validation and improvement-assessment routes, retaining their outcomes and evidence for each candidate.
 
-#### Possible designs
+**Status: compilation-runner contract and compatibility requirements drafted.** Concrete AscendNPU-IR routes remain unestablished. The detailed validation and evaluator contracts are still to be discussed.
 
-_TODO: discuss alternatives and describe how this step could work._
+#### Compilation-runner contract
 
-#### Research and development questions
+One runner invocation compiles **one code version**. The framework invokes it for the original and candidate using the same resolved compilation configuration and corresponding build context.
 
-_TODO: identify questions to investigate and decisions to resolve._
+##### Runner inputs
+
+| Input | Contents |
+| --- | --- |
+| Code snapshot | The original or candidate file, with an immutable version identifier. |
+| Compilation context | Enclosing module/build files, dependencies and supplied material needed to compile it. |
+| Starting checkpoint | The input representation, dialect and position in the configured pipeline. |
+| Compilation profile | Compiler build, continuation pipeline, pass configuration, flags and target settings. |
+| Requested artifacts and limits | Output artifacts/checkpoints required by validation and assessment, plus any explicit stop-before/stop-after boundary. |
+| Execution limits | Configured timeout and applicable resource limits. |
+
+Compilation operates on the supplied artifact and enclosing context. A selected region need not be an independently compilable program. Supporting a mid-pipeline starting point depends on whether the concrete compiler integration can restore the state and invariants required at that checkpoint.
+
+##### Runner outputs
+
+| Output | Contents |
+| --- | --- |
+| Status | Success, compilation failure, timeout, or runner/environment failure. Missing context and unsupported requests receive explicit diagnostics. |
+| Artifact manifest | Produced files, their kinds and compilation checkpoints, associated with the input version. |
+| Diagnostics | Compiler output, exit status and termination information where available. |
+| Execution record | Effective command or pipeline invocation, compiler identity, settings and relevant environment information. |
+| Resource usage | Elapsed time and other usage information available from the runner. |
+
+A timeout or unavailable compiler remains distinguishable from a compiler rejecting the candidate. Successful compilation records which requested outputs were produced; it does not establish preservation of behavior.
+
+##### Original/candidate orchestration
+
+1. Compile the original to establish a usable baseline.
+2. Compile the candidate using the same compiler, continuation pipeline, target and corresponding build context.
+3. Retain both sets of artifacts for the selected validation process and evaluator.
+4. Retain failures and diagnostics for the feedback stage.
+
+The original's compiled artifacts can be reused across candidates while their relevant inputs and configuration remain unchanged. If the original cannot be compiled, record a baseline failure; successful candidate compilation alone cannot establish improvement over it.
+
+#### Compatibility of compilation, validation and assessment
+
+The configuration must describe a **jointly supported route** from the starting checkpoint to all required artifacts. The framework checks the declared compatibility when resolving the request and records candidate-specific coverage failures encountered later.
+
+| Compatibility requirement | What must be established |
+| --- | --- |
+| Resume and stop support | The compiler can accept the starting checkpoint and produce the requested outputs while respecting explicit stopping boundaries. |
+| Validation inputs | The selected process accepts the produced representation, operations, semantics and required context. Execution-based validation of compiled code requires runnable artifacts and the necessary harness/environment. |
+| Metric applicability | The evaluator is defined for the selected checkpoint and operations, and the meaning of its result is appropriate to that representation and intended claim. |
+| Comparable versions | Original and candidate are assessed at corresponding checkpoints under comparable compilation, target, context and evaluator settings. |
+| Available resources | Required compiler, checker, harness and execution resources are available for the configured route. |
+
+**An observation checkpoint and a hard stopping boundary are distinct.** A metric can consume an intermediate IR snapshot while validation requires compilation to continue to a runnable artifact. That is compatible only if the configured route permits that continuation. If compilation must stop before a lowering stage required by the validator, the combination is incompatible.
+
+The framework reports incompatible or unsupported combinations explicitly. It must not silently compile past a stopping boundary, select weaker validation or move assessment to a different checkpoint. A candidate that introduces operations outside checker or evaluator coverage receives an unsupported/inconclusive outcome rather than an inferred correctness or improvement result.
+
+The route may require multiple output checkpoints. Whether these can be collected during one continuation or need separate invocations is part of the concrete integration research; no Ascend capability is assumed here.
+
+#### Research and remaining design
+
+- [ ] **Route compatibility — [[questions/Q08 - Compilation continuation and validation routes|Q08]].** Establish supported start/stop checkpoints, state restoration, artifact production, validation-mode requirements and their compatibility with selected evaluator stages. Produce a matrix of investigated routes and supporting evidence.
+- [ ] **Metric applicability — [[questions/Q06 - Metrics for assessing LLVM IR and MLIR improvements|Q06]].** Establish which metrics are meaningful at which stages, their operation/target coverage, and what a stage-local improvement supports as a claim.
+- [ ] Discuss the validation-runner contract, evaluator contract, comparison record and ordering of checks. Preserve separate validation and improvement outcomes.
 
 ### 2.5 Use feedback
 
@@ -284,7 +340,7 @@ The [[research/Framework-generated comparison references|framework-generated com
 
 - [ ] **Classifier coverage and classification scheme — [[questions/Q07 - Initial classifiers and code classification scheme|Q07]].** Establish useful initial categories and classifiers. Sections 2.2–2.3 describe preparation and direct agent review as a minimal MVP path; category coverage and the value of additional static analyses or cost models remain open.
 - [ ] **Improvement indicators — [[questions/Q06 - Metrics for assessing LLVM IR and MLIR improvements|Q06]].** Establish what comparisons can support useful findings, with what assumptions and resource costs.
-- [ ] **Compilation and validation routes — [[questions/Q08 - Compilation continuation and validation routes|Q08]].** Establish supported IR boundaries, required context and test harnesses, hardware dependencies, checking coverage and configurable choices.
+- [ ] **Compilation and validation routes — [[questions/Q08 - Compilation continuation and validation routes|Q08]].** Establish supported start/stop checkpoints, required compiler state, context and harnesses, validation-mode coverage, hardware dependencies and compatibility with the selected metric checkpoint.
 - [ ] **Search policies.** Define how alternatives are generated, how feedback is used, how effort is allocated and when an investigation stops.
 - [ ] **Initial finding criteria.** Define the evidence required for a reported opportunity and what remains for an engineer to assess. Evaluation of the framework's usefulness and resource benefit belongs in [[questions/H08 - How will we check success|H08]].
 

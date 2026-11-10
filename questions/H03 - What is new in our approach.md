@@ -191,7 +191,7 @@ The framework provides a working copy of the original file, the permitted editin
 
 The baseline uses ordinary file reading and editing, the model's existing knowledge and supplied context. Whether that knowledge is sufficient for useful AscendNPU-IR rewrites is an experimental question. Additional domain-specific tools and constrained editors remain research topics.
 
-Review and editing can happen in the same agent session. The logical steps do not require separate agents or model calls. Initial experiments can use IR and supplied context that fit within the selected model's context allowance. Generation operates within the configured candidate, time and resource limits; allocation and stopping policies will be developed with the later search stages.
+Review and editing can happen in the same agent session. The logical steps do not require separate agents or model calls. Initial experiments can use IR and supplied context that fit within the selected model's context allowance. Generation operates within the configured candidate, time and resource limits, following the default search policy in section 2.5.
 
 #### Candidate artifact and investigation record
 
@@ -384,13 +384,20 @@ The persistent record holds the framework-visible interaction history, tool call
 
 #### 3. Guide the next action
 
-After receiving feedback, the agent can repair the current candidate, try another transformation, request additional context or an available check, continue from a successful candidate, or report that it cannot proceed.
+After receiving feedback, the agent can repair the current candidate, try another transformation, request additional context or an available check, or report that it cannot proceed.
 
 The framework enforces the configured editing scope, checking requirements and resource limits. Search policy determines when to continue, change direction or stop. Infrastructure recovery is handled explicitly; an execution failure does not automatically become an instruction to change the IR.
 
 #### MVP feedback loop
 
 Continue the same agent conversation, supply structured results and artifact references, and let the agent edit its working copy again. Preserve each submitted version independently. Richer feedback, different history selection and more elaborate search policies can be compared against this baseline.
+
+#### Default search policy
+
+- Compare each candidate against the unchanged original under the same checking policy and objective.
+- Feed failures or insufficient improvements back to the same agent for another attempt within the configured limits.
+- Stop the case at the first candidate passing required checks and meeting the improvement threshold; retain it for export. Otherwise, stop when limits are reached or the agent cannot proceed.
+- For a collection, continue with the next case while the shared budget permits. Infrastructure interruptions follow the recovery protocol below.
 
 #### Persistence and recovery
 
@@ -419,7 +426,7 @@ Persist feedback before delivery and record available delivery/session receipts 
 #### Further design and evaluation
 
 - [ ] Compare feedback detail and history-selection policies through Q09, including the context supplied when reconstructing a session after failure.
-- [ ] Define allocation, early stopping and retry policies within the configured limits. Distinguish candidate repair from infrastructure retries.
+- [ ] Compare alternative search and budget-allocation policies against the default, including continuing from a successful candidate. Specify infrastructure retry rules separately from candidate repair.
 - [ ] Verify persistence and recovery through interruption/restart experiments: preserve candidates and evidence, reuse completed compilation/checks, restore agent context, retain budget usage and handle uncertain in-flight work explicitly.
 - [ ] Evaluate feedback policies through useful findings and resource costs against the baseline. Measure persistence/recovery overhead and the completed work recovered after interruptions.
 
@@ -492,7 +499,7 @@ Use a stable finding identifier and publish a complete bundle as a unit. Track p
 - [ ] Verify replay in the declared environment from a relocated bundle, plus recovery from an interrupted export. Verify that missing dependencies are reported and that each replay preserves the original evidence.
 - [ ] Coordinate validation coverage, metric interpretation and measurement-repeatability criteria with [[questions/Q08 - Compilation continuation and validation routes|Q08]], [[questions/Q06 - Metrics for assessing LLVM IR and MLIR improvements|Q06]] and [[questions/H08 - How will we check success|H08]]. Concrete Ascend routes and tools remain to be established.
 
-Further generation strategies, allocation of the configured budget across regions, early stopping rules and detailed retry policies remain design questions. Sections 2.4–2.6 establish the required outcome distinctions, persistence/recovery behavior and runnable finding contract.
+Alternative generation, budget-allocation and stopping strategies remain research choices beyond the default in section 2.5. Detailed infrastructure retry rules also remain open. Sections 2.4–2.6 establish outcome distinctions, persistence/recovery behavior and the runnable finding contract.
 
 ## 3. Framework responsibilities
 
@@ -527,6 +534,8 @@ Existing work motivates testing parts of this approach:
 
 These provide methods to examine and potentially adapt. They do not establish applicability to AscendNPU-IR or demonstrate the expert-time benefit proposed here.
 
+The expected saving comes from offloading variant construction, repeated checks and reproduction packaging, leaving engineers runnable comparisons to assess. This is useful only if finding quality and saved expert effort justify generation, execution and review costs. That hypothesis must be evaluated in [[questions/H08 - How will we check success|H08]].
+
 The [[research/Framework-generated comparison references|framework-generated comparison reference]] is a hypothesis for our experiment: an alternative evaluated for the same target could provide evidence of an opportunity without requiring another accelerator's implementation as the reference.
 
 ## 5. Important open choices
@@ -534,7 +543,7 @@ The [[research/Framework-generated comparison references|framework-generated com
 - [ ] **Classifier coverage and classification scheme — [[questions/Q07 - Initial classifiers and code classification scheme|Q07]].** Establish useful initial categories and classifiers. Sections 2.2–2.3 describe preparation and direct agent review as a minimal MVP path; category coverage and the value of additional static analyses or cost models remain open.
 - [ ] **Improvement indicators — [[questions/Q06 - Metrics for assessing LLVM IR and MLIR improvements|Q06]].** Establish what comparisons can support useful findings, with what assumptions and resource costs.
 - [ ] **Compilation and validation routes — [[questions/Q08 - Compilation continuation and validation routes|Q08]].** Establish supported start/stop checkpoints, required compiler state, context and harnesses, validation-mode coverage, hardware dependencies and compatibility with the selected metric checkpoint.
-- [ ] **Search policies.** Define how alternatives are generated, how feedback is used, how effort is allocated and when an investigation stops.
+- [ ] **Search policies.** Compare additional generation, feedback, budget-allocation and stopping strategies against the default in section 2.5.
 - [ ] **Finding evidence policy and evaluation.** Runnable replay is required by section 2.6. Establish the concrete validation evidence and metric comparison conditions for reported opportunities, and what remains for an engineer to assess. Evaluation of the framework's usefulness and resource benefit belongs in [[questions/H08 - How will we check success|H08]].
 
 ## TODO

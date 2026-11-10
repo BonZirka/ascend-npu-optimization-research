@@ -4,13 +4,16 @@
 
 **Status: draft for discussion.**
 
-## Why success matters
+## What changes if we succeed
 
-**For NPU customers**, the intended value is more consistent delivery of useful improvements to their workloads, supported by reducing the expert effort needed to establish optimization opportunities.
+Beyond individual findings, success could have four practical consequences:
 
-**For the AscendNPU-IR team**, obtaining useful findings with less investigation effort would free engineering capacity for assessing, implementing and integrating worthwhile improvements.
+- **More value from existing NPUs:** integrated improvements could help customers run affected workloads more efficiently on hardware they already own.
+- **More informed engineering decisions:** runnable comparisons could help the AscendNPU-IR team assess an opportunity before committing substantial implementation effort.
+- **A lower threshold for investigation:** smaller or uncertain opportunities may become worth examining when doing so consumes less expert time.
+- **Benefits beyond the original example:** a finding that leads to a general compiler improvement may help other kernels and workloads.
 
-Customer benefit depends on findings leading to integrated changes that improve relevant workloads.
+These are intended consequences. Their extent depends on finding quality, actual effort savings and successful implementation and integration.
 
 ## Open points for stakeholder discussion
 

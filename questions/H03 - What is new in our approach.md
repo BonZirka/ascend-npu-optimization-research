@@ -19,7 +19,7 @@ Possible later work:
 
 ## 2. Search mechanism
 
-A proposed investigation follows the six steps below. Each subsection is a brainstorming stub; detailed designs and research questions will be developed separately.
+A proposed investigation follows the six steps below. The subsections collect design possibilities and research questions; unresolved choices remain open, and the later subsections are still brainstorming stubs.
 
 ### 2.1 Provide the input
 
@@ -27,11 +27,41 @@ An engineer provides a kernel or IR fragment, or a collection of existing code, 
 
 #### Possible designs
 
-_TODO: discuss alternatives and describe how this step could work._
+A possible submission consists of **code artifacts plus an investigation configuration**, with supporting material where available. The forms and settings below are candidates for discussion; required fields, supported formats and defaults remain to be established.
+
+**Possible inputs**
+
+| Input | What the engineer could provide |
+| --- | --- |
+| One code artifact | A kernel, function, IR fragment or larger compilation unit in a supported representation. Which representations and IR checkpoints are accepted remains open. |
+| A collection of existing code | Multiple code artifacts to investigate. Packaging could use a file list, directory or manifest; no submission format is selected. |
+| Supporting context | Surrounding code, declarations, build information and compiler settings that are available for reasoning, compilation or checking. |
+| Existing test or measurement material | Test harnesses, inputs, expected outputs, baseline results or profiles, where available and relevant to the selected checking route. |
+
+Supplying a fragment does not establish that it can be compiled or executed independently. The required enclosing context and checking material depend on the routes investigated in [[questions/Q08 - Compilation continuation and validation routes|Q08]].
+
+**Possible configuration**
+
+| Configuration area | Choices to investigate |
+| --- | --- |
+| Investigation scope | Investigate the whole supplied artifact, an explicitly specified range, or request discovery of promising regions. How ranges are identified remains open. |
+| Classifier selection | Use the configured default classifier set or a selected subset, with any supported classifier parameters. Coverage and classification scheme remain in [[questions/Q07 - Initial classifiers and code classification scheme|Q07]]. |
+| Compilation and target | Identify the input IR checkpoint, compiler/build configuration, continuation pipeline and target settings, where supported. Exact controls depend on Q08. |
+| Checking setup | Reference the intended checking route and available test material, including any explicit comparison conditions. The initial evidence policy remains open. |
+| Improvement objective | Reference the metric or cost-model configuration to use for comparisons. Candidate indicators and their applicability remain in [[questions/Q06 - Metrics for assessing LLVM IR and MLIR improvements|Q06]]. |
+| Generation setup | Reference a model or generation configuration. Which controls are useful to expose will be discussed in 2.3. |
+| Search limits | Possible limits on attempts, elapsed time or resource use. Supported limits and their enforcement remain design questions for the search policies. |
+
+Step 2.1 records what is supplied and requested. Step 2.2 determines how to prepare the available material into a search context. The placement and execution of automatic region discovery still need to be designed.
 
 #### Research and development questions
 
-_TODO: identify questions to investigate and decisions to resolve._
+- [ ] Which code representations, artifact sizes and IR checkpoints should the initial version accept? How is the input checkpoint identified? See Q08.
+- [ ] How does an engineer identify a range, and distinguish editable code from context that may only be inspected?
+- [ ] Which metadata and supporting materials are required for each investigation mode and checking route? What happens when they are missing?
+- [ ] How are whole-artifact investigation, specified-range investigation and automatic discovery requested explicitly? Which defaults are appropriate?
+- [ ] What is the useful configuration boundary between an installation, a collection and an individual input? Are shared defaults and per-input overrides needed?
+- [ ] How are original inputs and supplied settings recorded so that later attempts and findings can be reproduced?
 
 ### 2.2 Prepare the search context
 

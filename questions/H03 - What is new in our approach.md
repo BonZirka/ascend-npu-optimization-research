@@ -19,16 +19,81 @@ Possible later work:
 
 ## 2. Search mechanism
 
-A proposed investigation would follow this flow:
+A proposed investigation follows the six steps below. Each subsection is a brainstorming stub; detailed designs and research questions will be developed separately.
 
-1. **Choose the region:** use an engineer-specified scope or obtain promising regions through classification.
-2. **Prepare the search context:** identify the original code, permitted editing range, surrounding information and improvement objective.
-3. **Generate an alternative:** ask the LLM to propose a change within the permitted scope.
-4. **Check and compare:** invoke the supported compilation, correctness-checking and improvement-assessment routes; record what evidence was obtained.
-5. **Use feedback:** make diagnostics, check results and comparison evidence available to guide subsequent attempts.
-6. **Produce a finding:** retain reproducible candidate cases with their conditions and evidence for engineer review.
+### 2.1 Choose the region
 
-The generation strategy, search budget, stopping rules and treatment of unsuccessful or inconclusive attempts remain open. This flow describes the intended investigation without selecting those policies.
+Use an engineer-specified scope or obtain promising regions through classification.
+
+#### Possible designs
+
+_TODO: discuss alternatives and describe how this step could work._
+
+#### Research and development questions
+
+_TODO: identify questions to investigate and decisions to resolve._
+
+### 2.2 Prepare the search context
+
+Identify the original code, permitted editing range, surrounding information and improvement objective.
+
+#### Possible designs
+
+_TODO: discuss alternatives and describe how this step could work._
+
+#### Research and development questions
+
+_TODO: identify questions to investigate and decisions to resolve._
+
+### 2.3 Generate an alternative
+
+Ask the LLM to propose a change within the permitted scope.
+
+#### Possible designs
+
+_TODO: discuss alternatives and describe how this step could work._
+
+#### Research and development questions
+
+_TODO: identify questions to investigate and decisions to resolve._
+
+### 2.4 Check and compare
+
+Invoke the supported compilation, correctness-checking and improvement-assessment routes; record what evidence was obtained.
+
+#### Possible designs
+
+_TODO: discuss alternatives and describe how this step could work._
+
+#### Research and development questions
+
+_TODO: identify questions to investigate and decisions to resolve._
+
+### 2.5 Use feedback
+
+Make diagnostics, check results and comparison evidence available to guide subsequent attempts.
+
+#### Possible designs
+
+_TODO: discuss alternatives and describe how this step could work._
+
+#### Research and development questions
+
+_TODO: identify questions to investigate and decisions to resolve._
+
+### 2.6 Produce a finding
+
+Retain reproducible candidate cases with their conditions and evidence for engineer review.
+
+#### Possible designs
+
+_TODO: discuss alternatives and describe how this step could work._
+
+#### Research and development questions
+
+_TODO: identify questions to investigate and decisions to resolve._
+
+The generation strategy, search budget, stopping rules and treatment of unsuccessful or inconclusive attempts remain open.
 
 ## 3. Framework responsibilities
 

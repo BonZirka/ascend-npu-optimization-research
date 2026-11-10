@@ -1,6 +1,6 @@
 # Draft guidance for answering H02
 
-**Status: proposed chapter for review.** Intended for [[how-to-0-to-1]]. The existing guide and the project-specific H02 answer remain unchanged.
+**Status: draft for review.** General workflow: [[how-to-0-to-1]]. The project-specific answer is separate: [[questions/H02 - How is it done today]].
 
 ## What H02 should establish
 

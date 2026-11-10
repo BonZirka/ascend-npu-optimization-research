@@ -21,9 +21,9 @@ Possible later work:
 
 A proposed investigation follows the six steps below. Each subsection is a brainstorming stub; detailed designs and research questions will be developed separately.
 
-### 2.1 Choose the region
+### 2.1 Provide the input
 
-Use an engineer-specified scope or obtain promising regions through classification.
+An engineer provides a kernel or IR fragment, or a collection of existing code, together with any specified investigation range or classifier preferences.
 
 #### Possible designs
 

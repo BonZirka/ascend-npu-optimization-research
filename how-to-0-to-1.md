@@ -2,7 +2,7 @@
 
 This is a living guide for colleagues developing research proposals through the Heilmeier questions. It records a working method learned from discussing and revising an actual proposal, including approaches that caused confusion and how we corrected them.
 
-**Current coverage:** the general working process is described here. H01 guidance has been extracted into [[workflow/H01 - Guidance draft]]; its broader audience revision is pending. Guidance drafts for H02–H07 are available for review through the index below. Guidance for H08 will develop as we work through that question. The status of a guidance draft is separate from acceptance of a project-specific answer.
+**Current coverage:** the general working process is described here. H01 guidance has been extracted into [[workflow/H01 - Guidance draft]]; its broader audience revision is pending. Guidance drafts for H02–H08 are available for review through the index below. The status of a guidance draft is separate from acceptance of a project-specific answer.
 
 The purpose of the process is to turn an idea into an objective that other people can understand, challenge and eventually evaluate. A polished sentence is useful when it expresses an agreed idea. Polishing an unresolved idea can make disagreement harder to see.
 
@@ -68,7 +68,7 @@ Each H question has a separate guidance note as its methods are developed. Proje
 | H05 — What are the risks? | [[questions/H05 - What are the risks]] | [[workflow/H05 - Guidance draft]] | Draft for review. |
 | H06 — How much will it cost? | [[questions/H06 - How much will it cost]] | [[workflow/H06 - Guidance draft]] | Draft for review; resource-outline stage. |
 | H07 — How long will it take? | [[questions/H07 - How long will it take]] | [[workflow/H07 - Guidance draft]] | Draft for review. |
-| H08 — How will we check success? | [[questions/H08 - How will we check success]] | — | To be developed. |
+| H08 — How will we check success? | [[questions/H08 - How will we check success]] | [[workflow/H08 - Guidance draft]] | Draft for review; evaluation design open. |
 
 ## 4. Maintain this guide as the workflow develops
 

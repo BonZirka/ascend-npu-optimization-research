@@ -19,7 +19,7 @@ Possible later work:
 
 ## 2. Search mechanism
 
-A proposed investigation follows the six steps below. Section 2.1 defines the proposed input contract. Sections 2.2–2.6 remain brainstorming stubs for separate design discussions.
+A proposed investigation follows the six steps below. Sections 2.1 and 2.2 describe the proposed input contract and context preparation. Sections 2.3–2.6 remain brainstorming stubs for separate design discussions.
 
 ### 2.1 Provide the input
 
@@ -119,15 +119,67 @@ The input contract above defines the proposed interface. **MVP coverage is a sep
 
 ### 2.2 Prepare the search context
 
-Identify the original code, permitted editing range, surrounding information and improvement objective.
+Turn the accepted submission into one or more **search cases**: the original code to investigate, its permitted editing scope, available context, replacement requirements and selected objective. Whole-input and specified-range modes produce a case for the supplied scope; discovery produces cases for the selected regions.
 
-#### Possible designs
+#### Proposed MVP path: direct agent review
 
-_TODO: discuss alternatives and describe how this step could work._
+The MVP can supply the original IR and available context directly to an agent, together with the editing scope, target settings, improvement objective and checking policy. The prompt asks the agent to inspect the IR, identify relevant dependencies and constraints, and investigate potential improvements. **Static analysis is an optional source of additional information.**
 
-#### Research and development questions
+In discovery mode, prompted agent review can also perform region selection: return locations in the original artifact and a reason for investigating each region, following the configured default or focused discovery instructions. A classifier therefore need not be a separate static-analysis component.
 
-_TODO: identify questions to investigate and decisions to resolve._
+Inspection and alternative generation can happen in the same agent session. The separation between 2.2 and 2.3 describes their responsibilities and recorded outputs; it does not require separate agents or model calls. Initial experiments can use IR and supplied context that fit within the selected model's context allowance.
+
+#### 1. Establish the investigation region
+
+| Mode | Preparation |
+| --- | --- |
+| Whole input | Use the supplied artifact as the editing scope. |
+| Specified range | Resolve the supplied selection against the original snapshot and retain its enclosing context. |
+| Discover regions | Run the selected discovery method, including agent review where configured; create cases for the returned regions and record the selection reason and any reported score. |
+
+Selections remain tied to the original snapshot. Overlapping regions are recorded as separate cases; each proposed replacement is checked in its own copy of the original context.
+
+#### 2. Collect the available context
+
+The preparation stage supplies the original region, its enclosing code and relevant supporting material from the submission. The agent can inspect:
+
+- Referenced values, declarations, types, shapes and constants present in the supplied material.
+- Enclosing control flow, surrounding uses of results and other visible dependencies.
+- Target settings, the improvement objective and the selected checking policy.
+- Engineer-supplied restrictions and assumptions.
+
+Dedicated analyses can later contribute dependency information, effect summaries or other annotations. They are not required to populate these fields in the MVP. The initial context consists of the supplied IR and material, with the agent recording its interpretations during review.
+
+Record the source of additional information: supplied code, engineer statement, analysis result or agent interpretation. Unestablished properties remain explicit uncertainties. Agent-proposed assumptions are recorded for subsequent checking or review; they do not silently become conditions accepted by the engineer.
+
+#### 3. Describe the replacement boundary
+
+| Boundary information | What the case records |
+| --- | --- |
+| Editable code | Original artifact and locations eligible for replacement; surrounding material remains read-only. |
+| Inputs and externally used results | Available signatures, declarations and surrounding uses, together with dependencies identified during review. |
+| Observable effects | Relevant memory changes and other externally observable behavior identified from the supplied material or during review. |
+| Explicit restrictions | Requirements supplied by the engineer or imposed by the selected compilation and validation routes. |
+
+The editing scope is established before generation. Dependency and effect descriptions may initially be agent interpretations, with their source and uncertainty recorded. Establishing that a proposed replacement preserves the required behavior belongs to **2.4 Check and compare**.
+
+#### 4. Assemble the prepared case
+
+Each case carries:
+
+- **Original code and location**, tied to the input snapshot.
+- **Context supplied to the agent**, including which artifacts or excerpts it received.
+- **Replacement requirements**, with established constraints and agent interpretations distinguished.
+- **Resolved objective and checking configuration**, plus references to complete compilation and validation material.
+- **Selection provenance and preparation diagnostics**, including missing information or context limitations.
+
+In the MVP, case entries can reference the original IR and supplied metadata; the agent's observations are recorded with its response. Complete artifacts remain available for compilation and checking. If supplied material exceeds the model's context allowance, report that limitation rather than silently presenting an incomplete excerpt as complete context.
+
+#### Further research and development
+
+- [ ] Establish useful discovery instructions and code-category coverage for agent review; compare additional classifiers as they become available. See [[questions/Q07 - Initial classifiers and code classification scheme|Q07]].
+- [ ] Investigate context selection and additional file access for larger inputs, including how the agent obtains missing declarations or surrounding code.
+- [ ] Evaluate whether static analyses improve finding quality or reduce agent effort enough to justify their integration cost.
 
 ### 2.3 Generate an alternative
 
@@ -214,7 +266,7 @@ The [[research/Framework-generated comparison references|framework-generated com
 
 ## 5. Important open choices
 
-- [ ] **Classifier coverage and classification scheme — [[questions/Q07 - Initial classifiers and code classification scheme|Q07]].** Establish useful initial categories and classifiers. Static algorithms, cost models and agentic analysis are possible approaches; none is selected.
+- [ ] **Classifier coverage and classification scheme — [[questions/Q07 - Initial classifiers and code classification scheme|Q07]].** Establish useful initial categories and classifiers. Section 2.2 proposes direct agent review as a minimal MVP path; category coverage and the value of additional static analyses or cost models remain open.
 - [ ] **Improvement indicators — [[questions/Q06 - Metrics for assessing LLVM IR and MLIR improvements|Q06]].** Establish what comparisons can support useful findings, with what assumptions and resource costs.
 - [ ] **Compilation and validation routes — [[questions/Q08 - Compilation continuation and validation routes|Q08]].** Establish supported IR boundaries, required context and test harnesses, hardware dependencies, checking coverage and configurable choices.
 - [ ] **Search policies.** Define how alternatives are generated, how feedback is used, how effort is allocated and when an investigation stops.

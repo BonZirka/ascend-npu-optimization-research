@@ -8,7 +8,7 @@
 
 [[questions/H03 - What is new in our approach|H03]] includes selecting promising code regions for investigation. Default search would use a configured set of classifiers; focused search would use a selected subset. Engineer-specified regions can bypass discovery.
 
-Choosing classifiers does not resolve which useful coverage the framework should deliver or whether a common classification scheme is needed. Static algorithms, cost models and agentic analysis are possible implementation approaches; none is selected here.
+Choosing classifiers does not resolve which useful coverage the framework should deliver or whether a common classification scheme is needed. H03 section 2.2 proposes prompted agent review of supplied IR as a minimal MVP path, without prerequisite static analysis. Useful category coverage, a shared classification scheme and the value of additional static algorithms or cost models remain open.
 
 ## What to investigate
 

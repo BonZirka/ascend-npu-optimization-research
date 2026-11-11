@@ -1,10 +1,12 @@
-## Presentation draft
+## Technical presentation draft
 
-[Editable PowerPoint](output/ascend-optimization-pitch/ascend-optimization-pitch.pptx) · [PDF export](output/ascend-optimization-pitch/ascend-optimization-pitch.pdf)
+[Editable PowerPoint](output/ascend-optimization-pitch/ascend-optimization-technical.pptx) · [PDF export](output/ascend-optimization-pitch/ascend-optimization-technical.pdf)
 
-[[output/ascend-optimization-pitch/outline|Approved 12-slide structure]]
+[[output/ascend-optimization-pitch/technical-outline|19-slide technical outline and research/source map]]
 
-English content and visual storyboard prepared with codex-ppt. Sequence: problem → existing approaches → investigation gap → proposed framework → goals → approach → constraints → MVP → risks → success evaluation. The approved deck style is A · Technical schematic. [Style specimen](output/ascend-optimization-pitch/visual-directions.html).
+The technical revision expands the approach with the established H03 research agenda, dialect-context delivery, compilation/checking routes, metric tradeoffs, typed feedback, crash recovery and finding replay. Diagrams are editable reconstructions and adaptations of LPO/PRAGMA workflows, with explicit paper attribution and open Ascend integration questions. The primary target remains AscendNPU-IR. The problem-first narrative and A · Technical schematic visual direction are retained.
+
+The original draft is preserved: [12-slide PowerPoint](output/ascend-optimization-pitch/ascend-optimization-pitch.pptx) · [PDF](output/ascend-optimization-pitch/ascend-optimization-pitch.pdf) · [[output/ascend-optimization-pitch/outline|original approved structure]]. [Style specimen](output/ascend-optimization-pitch/visual-directions.html).
 
 - [[questions/H01 - What are we trying to do]]
 - [[questions/H02 - How is it done today]]

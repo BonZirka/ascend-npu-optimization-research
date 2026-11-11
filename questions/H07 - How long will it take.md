@@ -18,7 +18,7 @@
 
 ## MVP and subsequent work
 
-The MVP supports engineer-supplied code, one compilation route, one checking policy and one improvement metric, with reproducible findings.
+The MVP supports engineer-supplied code, one compilation route, one checking policy and one improvement metric, with reproducible findings. It must also provide the agent with versioned AscendNPU-IR dialect references for the supported scope and exercise that delivery path during acceptance (ASC-43).
 
 The refinement's scope is selected from evaluation results and remaining capacity. Candidate areas include context preparation, agent tools, region discovery and feedback/search policies. These remain optional research choices in [[questions/H03 - What is new in our approach|H03]].
 

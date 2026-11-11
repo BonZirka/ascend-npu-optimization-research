@@ -189,7 +189,7 @@ Agent-produced dependency and effect descriptions are recorded as interpretation
 
 The framework provides a working copy of the original file, the permitted editing scope, available context and resolved configuration. The prompt asks the agent to review the IR and edit that copy to produce a potentially better alternative. Surrounding material remains read-only where required by the case.
 
-The baseline uses ordinary file reading and editing, the model's existing knowledge and supplied context. Whether that knowledge is sufficient for useful AscendNPU-IR rewrites is an experimental question. Additional domain-specific tools and constrained editors remain research topics.
+The baseline uses ordinary file reading and editing, the model's existing knowledge and supplied context. **MVP requirement:** deliver source-grounded, versioned AscendNPU-IR dialect knowledge through instructions and context or readable reference files. Cover the selected checkpoint and operation subset, retain what the agent receives or retrieves, and test rewrites through the selected checks. [ASC-43](https://linear.app/ascendoptimizationfinder/issue/ASC-43/deliver-ascendnpu-ir-dialect-knowledge-to-the-agent-for-the-mvp) tracks implementation; comparative context improvements remain separate research. Whether that knowledge is sufficient for useful AscendNPU-IR rewrites is an experimental question. Additional domain-specific tools and constrained editors remain research topics.
 
 Review and editing can happen in the same agent session. The logical steps do not require separate agents or model calls. Initial experiments can use IR and supplied context that fit within the selected model's context allowance. Generation operates within the configured candidate, time and resource limits, following the default search policy in section 2.5.
 
@@ -559,3 +559,7 @@ These dependencies are related: metric choice and validation must share a feasib
 Implementation and verification work remains in sections 2.4–2.6: concrete adapters/schemas, recovery after interruptions and replay from relocated bundles. Persistence and runnable findings are baseline requirements. Test-case generation and automatic pass implementation retain the tentative/later scope described in section 1.
 
 ## TODO
+
+## Candidate transformation families
+
+[[research/Candidate optimization families]] records an initial, source-linked search catalog and MLIR illustration. These families are not confirmed Ascend gaps. Transformation scoping in ASC-44 is separate from comparing region selectors.

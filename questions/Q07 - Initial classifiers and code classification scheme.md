@@ -1,6 +1,6 @@
 # Q07 — Initial classifiers and code classification scheme
 
-**Status: open; research deferred.**
+**Status: open; provisional transformation families recorded. Ascend coverage is unconfirmed; comparative classifier research remains deferred.**
 
 **Question:** Which code categories or patterns should the first version recognize, which classifiers could deliver that coverage, and what shared classification scheme is needed to organize and describe them?
 
@@ -17,3 +17,7 @@ Choosing classifiers does not resolve which useful coverage the framework should
 - Feasible initial coverage, possible default and optional classifiers, and the evidence needed to support those choices.
 
 This question can remain open while the H03 structure and other topics are developed.
+
+## Initial transformation scope
+
+[[research/Candidate optimization families]] records the provisional families and provenance. [ASC-44](https://linear.app/ascendoptimizationfinder/issue/ASC-44/classify-candidate-missed-optimizations-and-select-representative-mlir) establishes the transformation catalog and representative MLIR examples before selector comparisons in ASC-36. Classifying what transformations to seek is distinct from choosing the mechanism that selects regions.

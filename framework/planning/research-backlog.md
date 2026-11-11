@@ -2,7 +2,7 @@
 
 [Linear project](https://linear.app/ascendoptimizationfinder/project/ascend-optimization-finder-22c80a5e428f/issues)
 
-All 17 issues carry **Research**, plus **Paper review**, **Experiment** or **Evaluation study**. Filter the project by Research to see this work separately from implementation.
+All 18 issues carry **Research**, plus **Paper review**, **Experiment** or **Evaluation study**. Filter the project by Research to see this work separately from implementation.
 
 **Status:** issues published in Backlog, unassigned and unscheduled. Recording an optional direction does not select it or establish a result. Pitch work is outside this backlog.
 
@@ -90,6 +90,26 @@ Completion criteria:
 
 Sources: questions/Q09 - Agent prompt construction and information delivery.md; directions/D04 - Domain-specific agent instructions and context.md.
 
+### R18 — Classify candidate missed optimizations and select representative MLIR examples
+
+**Linear:** [ASC-44](https://linear.app/ascendoptimizationfinder/issue/ASC-44/classify-candidate-missed-optimizations-and-select-representative-mlir)
+
+**Selection status:** Required scoping study; candidate classes are not confirmed AscendNPU-IR gaps.
+
+Which transformation families should the search target, and which source-backed MLIR examples can explain them in the pitch?
+
+Completion criteria:
+
+- Build a provisional catalog from LPO case studies and PRAGMA's reported optimization traces. Separate demonstrated LLVM missed optimizations, kernel tuning examples, our proposed adaptations and engineer-reported Ascend behavior; cite exact source sections.
+- For each family record the original/candidate pattern, applicability conditions, relevant checkpoint/dialects, required semantic and cost knowledge, feasible validation/metric route and current Ascend status. Classify transformation families separately from suspected reasons the compiler missed them.
+- Prepare compact MLIR or pseudocode-plus-MLIR examples with clear provenance and no invented Ascend results. Treat simple loop fusion as explanatory only: the project owner expects it to work in Ascend. Shortlist target families with engineers and test whether differences survive the configured pipeline before calling them missed optimizations.
+
+**Research prerequisites:** [ASC-26](https://linear.app/ascendoptimizationfinder/issue/ASC-26/review-lpos-discovery-validation-and-feedback-pipeline) (R01), [ASC-27](https://linear.app/ascendoptimizationfinder/issue/ASC-27/review-pragmas-profiling-feedback-and-evaluation-evidence) (R02).
+
+**Related implementation:** ASC-43, ASC-18.
+
+Sources: research/Candidate optimization families.md; papers/LPO.md; papers/PRAGMA.md; questions/Q07 - Initial classifiers and code classification scheme.md.
+
 ## Experiment
 
 ### R07 — Test useful-finding feasibility with direct agent rewriting
@@ -166,7 +186,7 @@ Completion criteria:
 - Compare prompted discovery with a bounded static or cost-model selector where feasible, including default versus focused category selection.
 - Measure selection coverage, downstream useful findings, missed/irrelevant regions and total search cost; preserve engineer-specified regions as a bypass.
 
-**Research prerequisites:** [ASC-32](https://linear.app/ascendoptimizationfinder/issue/ASC-32/test-useful-finding-feasibility-with-direct-agent-rewriting) (R07), [ASC-33](https://linear.app/ascendoptimizationfinder/issue/ASC-33/define-the-evaluation-corpus-usefulness-criteria-and-study-protocol) (R13).
+**Research prerequisites:** [ASC-32](https://linear.app/ascendoptimizationfinder/issue/ASC-32/test-useful-finding-feasibility-with-direct-agent-rewriting) (R07), [ASC-33](https://linear.app/ascendoptimizationfinder/issue/ASC-33/define-the-evaluation-corpus-usefulness-criteria-and-study-protocol) (R13), [ASC-44](https://linear.app/ascendoptimizationfinder/issue/ASC-44/classify-candidate-missed-optimizations-and-select-representative-mlir) (R18).
 
 **Related implementation:** ASC-12.
 

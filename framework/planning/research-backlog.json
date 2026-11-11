@@ -320,7 +320,8 @@
       ],
       "depends_on": [
         "R07",
-        "R13"
+        "R13",
+        "R18"
       ],
       "related_implementation": [
         "ASC-12"
@@ -334,7 +335,7 @@
         "identifier": "ASC-36",
         "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-36/compare-region-discovery-methods-and-code-category-coverage"
       },
-      "description": "Local research task: R10\n\n**Selection status:** Deferred discovery capability; not selected. Creating this issue records work to investigate; it does not select the proposed method or assert a result.\n\n## Question\n\nWhich region selectors and code categories provide useful cases for investigation?\n\n## Completion criteria\n\n- Propose candidate categories and a shared description of classifier outputs, including original-artifact locations, selection reasons and optional scores.\n- Compare prompted discovery with a bounded static or cost-model selector where feasible, including default versus focused category selection.\n- Measure selection coverage, downstream useful findings, missed/irrelevant regions and total search cost; preserve engineer-specified regions as a bypass.\n\n## Source notes\n\n- questions/Q07 - Initial classifiers and code classification scheme.md\n- questions/H03 - What is new in our approach.md §2.2, §5\n\n## Connections\n\nResearch prerequisites: ASC-32, ASC-33.\nRelated implementation: ASC-12.\n\nPreserve sources, experiment configuration, unsuccessful outcomes and limitations in the vault. Implementation work remains in the linked engineering issues."
+      "description": "Local research task: R10\n\n**Selection status:** Deferred discovery capability; not selected. Creating this issue records work to investigate; it does not select the proposed method or assert a result.\n\n## Question\n\nWhich region selectors and code categories provide useful cases for investigation?\n\n## Completion criteria\n\n- Propose candidate categories and a shared description of classifier outputs, including original-artifact locations, selection reasons and optional scores.\n- Compare prompted discovery with a bounded static or cost-model selector where feasible, including default versus focused category selection.\n- Measure selection coverage, downstream useful findings, missed/irrelevant regions and total search cost; preserve engineer-specified regions as a bypass.\n\n## Source notes\n\n- questions/Q07 - Initial classifiers and code classification scheme.md\n- questions/H03 - What is new in our approach.md §2.2, §5\n\n## Connections\n\nResearch prerequisites: ASC-32, ASC-33.\nRelated implementation: ASC-12.\n\nPreserve sources, experiment configuration, unsuccessful outcomes and limitations in the vault. Implementation work remains in the linked engineering issues.\n\nTransformation-family scoping is tracked separately in ASC-44. Use that catalog to define category coverage before comparing selectors; compiler-missed opportunities, kernel tuning examples and unconfirmed Ascend candidates must remain distinguishable."
     },
     {
       "key": "R11",
@@ -564,6 +565,42 @@
         "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-42/study-replay-of-optimization-opportunities-across-compiler-revisions"
       },
       "description": "Local research task: R17\n\n**Selection status:** Candidate future direction; not selected. Creating this issue records work to investigate; it does not select the proposed method or assert a result.\n\n## Question\n\nCan saved findings reveal when opportunities disappear, reappear or change across compiler versions?\n\n## Completion criteria\n\n- Choose a small finding corpus and accessible revisions; define comparable routes, target settings and treatment of representation changes.\n- Replay saved comparisons and distinguish real outcome changes from unsupported routes, invalidated assumptions and measurement variation.\n- Record provenance, replay results and remaining comparability gaps; estimate maintenance cost before proposing a maintained regression corpus.\n\n## Source notes\n\n- directions/D03 - Tracking opportunities across compiler revisions.md\n- papers/LPO.md\n- papers/PRAGMA.md\n\n## Connections\n\nResearch prerequisites: ASC-32.\nRelated implementation: ASC-21, ASC-23.\n\nPreserve sources, experiment configuration, unsuccessful outcomes and limitations in the vault. Implementation work remains in the linked engineering issues."
+    },
+    {
+      "key": "R18",
+      "category": "Paper review",
+      "title": "Classify candidate missed optimizations and select representative MLIR examples",
+      "selection": "Required scoping study; candidate classes are not confirmed AscendNPU-IR gaps",
+      "question": "Which transformation families should the search target, and which source-backed MLIR examples can explain them in the pitch?",
+      "acceptance": [
+        "Build a provisional catalog from LPO case studies and PRAGMA's reported optimization traces. Separate demonstrated LLVM missed optimizations, kernel tuning examples, our proposed adaptations and engineer-reported Ascend behavior; cite exact source sections.",
+        "For each family record the original/candidate pattern, applicability conditions, relevant checkpoint/dialects, required semantic and cost knowledge, feasible validation/metric route and current Ascend status. Classify transformation families separately from suspected reasons the compiler missed them.",
+        "Prepare compact MLIR or pseudocode-plus-MLIR examples with clear provenance and no invented Ascend results. Treat simple loop fusion as explanatory only: the project owner expects it to work in Ascend. Shortlist target families with engineers and test whether differences survive the configured pipeline before calling them missed optimizations."
+      ],
+      "sources": [
+        "research/Candidate optimization families.md",
+        "papers/LPO.md",
+        "papers/PRAGMA.md",
+        "questions/Q07 - Initial classifiers and code classification scheme.md"
+      ],
+      "depends_on": [
+        "R01",
+        "R02"
+      ],
+      "related_implementation": [
+        "ASC-43",
+        "ASC-18"
+      ],
+      "labels": [
+        "Research",
+        "Paper review"
+      ],
+      "linear": {
+        "id": "ASC-44",
+        "identifier": "ASC-44",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-44/classify-candidate-missed-optimizations-and-select-representative-mlir"
+      },
+      "description": "Local research task: R18\n\n**Selection status:** Required scoping study; candidate classes are not confirmed AscendNPU-IR gaps.\n\n## Question\n\nWhich transformation families should the search target, and which source-backed MLIR examples can explain them in the pitch?\n\n## Completion criteria\n\n- Build a provisional catalog from LPO case studies and PRAGMA's reported optimization traces. Separate demonstrated LLVM missed optimizations, kernel tuning examples, our proposed adaptations and engineer-reported Ascend behavior; cite exact source sections.\n- For each family record the original/candidate pattern, applicability conditions, relevant checkpoint/dialects, required semantic and cost knowledge, feasible validation/metric route and current Ascend status. Classify transformation families separately from suspected reasons the compiler missed them.\n- Prepare compact MLIR or pseudocode-plus-MLIR examples with clear provenance and no invented Ascend results. Treat simple loop fusion as explanatory only: the project owner expects it to work in Ascend. Shortlist target families with engineers and test whether differences survive the configured pipeline before calling them missed optimizations.\n\n## Sources\n\n- research/Candidate optimization families.md\n- papers/LPO.md\n- papers/PRAGMA.md\n- questions/Q07 - Initial classifiers and code classification scheme.md\n\nResearch prerequisites: ASC-26, ASC-27. This scoping review can begin from existing paper notes; full selector experiments in ASC-36 follow later.\nRelated implementation: ASC-43, ASC-18."
     }
   ]
 }

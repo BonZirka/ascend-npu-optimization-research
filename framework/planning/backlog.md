@@ -2,9 +2,9 @@
 
 **Scope:** technical setup, implementation and engineering verification. Research issues are tracked in [a separate backlog](research-backlog.md) and carry the Research label in Linear. Pitch work remains in the research vault.
 
-[Open the Linear board](https://linear.app/ascendoptimizationfinder/project/ascend-optimization-finder-22c80a5e428f/issues) — this technical backlog contains 21 issues, grouped into three implementation milestones. The shared project also contains separately labeled research issues.
+[Open the Linear board](https://linear.app/ascendoptimizationfinder/project/ascend-optimization-finder-22c80a5e428f/issues) — this technical backlog contains 22 issues, grouped into three implementation milestones. The shared project also contains separately labeled research issues.
 
-Each issue contains completion criteria, prerequisite references and source sections. Dependencies are recorded in issue descriptions; native blocking relationships have not been configured.
+Each issue contains completion criteria, prerequisite references and source sections. Dependencies are recorded in issue descriptions; F14 also has native blocker F22; F22 has native blocker F05. Other native blocking relationships have not been configured.
 
 All tasks begin in Backlog, without assignees or calendar deadlines. Month labels follow the agreed relative plan; no start date is assumed.
 
@@ -202,9 +202,9 @@ Sources: questions/H03 - What is new in our approach.md §2.4, §2.6.
 
 ### F14 — Implement the agent session and working-copy adapter
 
-**Linear:** [ASC-18](https://linear.app/ascendoptimizationfinder/issue/ASC-18/implement-the-agent-session-and-working-copy-adapter) · **Type:** implementation. **Dependencies:** [ASC-9](https://linear.app/ascendoptimizationfinder/issue/ASC-9/verify-the-agent-harness-can-read-and-edit-an-ascendnpu-ir-working) (F05), [ASC-12](https://linear.app/ascendoptimizationfinder/issue/ASC-12/implement-immutable-input-snapshots-and-editing-scope-enforcement) (F08), [ASC-13](https://linear.app/ascendoptimizationfinder/issue/ASC-13/implement-durable-investigation-artifact-and-operation-storage) (F09).
+**Linear:** [ASC-18](https://linear.app/ascendoptimizationfinder/issue/ASC-18/implement-the-agent-session-and-working-copy-adapter) · **Type:** implementation. **Dependencies:** [ASC-9](https://linear.app/ascendoptimizationfinder/issue/ASC-9/verify-the-agent-harness-can-read-and-edit-an-ascendnpu-ir-working) (F05), [ASC-12](https://linear.app/ascendoptimizationfinder/issue/ASC-12/implement-immutable-input-snapshots-and-editing-scope-enforcement) (F08), [ASC-13](https://linear.app/ascendoptimizationfinder/issue/ASC-13/implement-durable-investigation-artifact-and-operation-storage) (F09), [ASC-43](https://linear.app/ascendoptimizationfinder/issue/ASC-43/deliver-ascendnpu-ir-dialect-knowledge-to-the-agent-for-the-mvp) (F22).
 
-Integrate the backend exercised in F05. Provide prepared code/context and ordinary file editing through the selected harness.
+Integrate the backend exercised in F05. Provide prepared code/context and ordinary file editing through the selected harness. Integrate the versioned dialect reference pack and knowledge-delivery path from F22; record supplied/retrieved semantics and context limitations.
 
 Completion criteria:
 
@@ -241,6 +241,20 @@ Completion criteria:
 - Document an executable example using the chosen route and configuration.
 
 Sources: questions/H03 - What is new in our approach.md §2.1–2.5.
+
+### F22 — Deliver AscendNPU-IR dialect knowledge to the agent for the MVP
+
+**Linear:** [ASC-43](https://linear.app/ascendoptimizationfinder/issue/ASC-43/deliver-ascendnpu-ir-dialect-knowledge-to-the-agent-for-the-mvp) · **Type:** integration. **Dependencies:** [ASC-9](https://linear.app/ascendoptimizationfinder/issue/ASC-9/verify-the-agent-harness-can-read-and-edit-an-ascendnpu-ir-working) (F05).
+
+Make the selected AscendNPU-IR representation usable by the agent through versioned, source-grounded instructions, reference material and file access. Dialect coverage and a working knowledge-delivery path are MVP requirements; comparative prompt/retrieval optimization remains separate research.
+
+Completion criteria:
+
+- Define the supported checkpoint/dialect/operation subset and curate a versioned reference pack from authoritative specifications, compiler definitions and engineer-reviewed examples. Include types, attributes, operation semantics/effects, target constraints and known unsupported or undocumented behavior.
+- Implement one knowledge-delivery path: concise entry instructions plus relevant reference material in context or readable files through the selected harness. Record what was supplied or retrieved, source versions and context limitations; expose unresolved semantics rather than inventing facts.
+- Exercise the full path on representative AscendNPU-IR fixtures: capture the model-visible material and rewritten MLIR, run available verification/compilation and selected checks, and have an engineer review semantic assumptions. Make the supported scope and remaining gaps explicit in MVP acceptance.
+
+Sources: questions/H03 - What is new in our approach.md §2.2–2.3; questions/Q09 - Agent prompt construction and information delivery.md.
 
 ## 03 MVP — Month 4
 
@@ -313,5 +327,6 @@ Completion criteria:
 - Run input preparation, agent editing, compilation, checks, metric comparison and feedback under configured limits.
 - Export and replay an eligible comparison; use a known qualifying fixture if the search produces none, clearly recording its provenance.
 - Interrupt and resume an investigation, then document executable setup/run/replay/resume instructions and remaining integration limitations.
+- Exercise F22 (ASC-43): record the versioned dialect knowledge supplied or retrieved by the agent, supported operation coverage and unresolved semantic assumptions.
 
 Sources: questions/H07 - How long will it take.md; questions/H08 - How will we check success.md.

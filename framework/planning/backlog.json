@@ -24,7 +24,7 @@
       "id": "530b101e-ba03-44e0-8283-fd709354eaa4",
       "url": "https://linear.app/ascendoptimizationfinder/project/ascend-optimization-finder-22c80a5e428f/issues"
     },
-    "dependency_representation": "Issue descriptions contain prerequisite references; no native blocker links configured."
+    "dependency_representation": "Prerequisites are recorded in descriptions. F14 additionally has native blocker F22 (ASC-43); F22 has native blocker F05 (ASC-9). Other native blocker relationships have not been configured."
   },
   "schedule": {
     "mvp": "End of month 4",
@@ -376,7 +376,7 @@
       "milestone": "M2",
       "type": "implementation",
       "title": "Implement the agent session and working-copy adapter",
-      "scope": "Integrate the backend exercised in F05. Provide prepared code/context and ordinary file editing through the selected harness.",
+      "scope": "Integrate the backend exercised in F05. Provide prepared code/context and ordinary file editing through the selected harness. Integrate the versioned dialect reference pack and knowledge-delivery path from F22; record supplied/retrieved semantics and context limitations.",
       "acceptance": [
         "Version prompts and record effective model/backend settings.",
         "Persist framework-visible conversation, tool results, candidate versions and optional agent notes.",
@@ -385,7 +385,8 @@
       "depends_on": [
         "F05",
         "F08",
-        "F09"
+        "F09",
+        "F22"
       ],
       "sources": [
         "questions/H03 - What is new in our approach.md §2.2–2.3"
@@ -556,7 +557,8 @@
       "acceptance": [
         "Run input preparation, agent editing, compilation, checks, metric comparison and feedback under configured limits.",
         "Export and replay an eligible comparison; use a known qualifying fixture if the search produces none, clearly recording its provenance.",
-        "Interrupt and resume an investigation, then document executable setup/run/replay/resume instructions and remaining integration limitations."
+        "Interrupt and resume an investigation, then document executable setup/run/replay/resume instructions and remaining integration limitations.",
+        "Exercise F22 (ASC-43): record the versioned dialect knowledge supplied or retrieved by the agent, supported operation coverage and unresolved semantic assumptions."
       ],
       "depends_on": [
         "F05",
@@ -572,7 +574,42 @@
         "identifier": "ASC-25",
         "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-25/verify-the-complete-mvp-workflow-on-an-ascendnpu-ir-case"
       }
+    },
+    {
+      "key": "F22",
+      "milestone": "M2",
+      "type": "integration",
+      "title": "Deliver AscendNPU-IR dialect knowledge to the agent for the MVP",
+      "scope": "Make the selected AscendNPU-IR representation usable by the agent through versioned, source-grounded instructions, reference material and file access. Dialect coverage and a working knowledge-delivery path are MVP requirements; comparative prompt/retrieval optimization remains separate research.",
+      "acceptance": [
+        "Define the supported checkpoint/dialect/operation subset and curate a versioned reference pack from authoritative specifications, compiler definitions and engineer-reviewed examples. Include types, attributes, operation semantics/effects, target constraints and known unsupported or undocumented behavior.",
+        "Implement one knowledge-delivery path: concise entry instructions plus relevant reference material in context or readable files through the selected harness. Record what was supplied or retrieved, source versions and context limitations; expose unresolved semantics rather than inventing facts.",
+        "Exercise the full path on representative AscendNPU-IR fixtures: capture the model-visible material and rewritten MLIR, run available verification/compilation and selected checks, and have an engineer review semantic assumptions. Make the supported scope and remaining gaps explicit in MVP acceptance."
+      ],
+      "depends_on": [
+        "F05"
+      ],
+      "sources": [
+        "questions/H03 - What is new in our approach.md §2.2–2.3",
+        "questions/Q09 - Agent prompt construction and information delivery.md"
+      ],
+      "priority": "high",
+      "status": "planned",
+      "linear": {
+        "identifier": "ASC-43",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-43/deliver-ascendnpu-ir-dialect-knowledge-to-the-agent-for-the-mvp"
+      }
     }
   ],
-  "scope": "Technical setup, implementation and engineering verification only. Research studies and pitch work are outside this backlog."
+  "scope": "Technical setup, implementation and engineering verification only. Research studies and pitch work are outside this backlog.",
+  "native_blocking_relationships": [
+    {
+      "issue": "ASC-18",
+      "blocked_by": "ASC-43"
+    },
+    {
+      "issue": "ASC-43",
+      "blocked_by": "ASC-9"
+    }
+  ]
 }

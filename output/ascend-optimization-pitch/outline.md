@@ -1,6 +1,6 @@
 # Ascend Optimization Finder — presentation outline
 
-**Status** — The 12-slide structure is approved. Visual direction is under review.
+**Status** — The 12-slide structure and A · Technical schematic are approved.
 **Language:** English. **Format:** 16:9. **Length:** 12 slides.
 **Audience:** AscendNPU-IR compiler stakeholders, technical leads and potential internal collaborators.
 **Purpose:** establish the performance problem, current practice and investigation gap before proposing a framework; then explain its goals, approach, constraints, MVP, risks and evaluation.
@@ -12,15 +12,17 @@ This is a content and visual storyboard. Bullet text is proposed on-slide copy; 
 ## Progress
 
 - [x] User approved the 12-slide structure.
-- [ ] **Active** — Choose the visual direction. [Compare two designs](visual-directions.html)
-- [ ] Confirm the image backend.
+- [x] User selected A · Technical schematic. [Approved style specimen](visual-directions.html)
+- [ ] **Active** — Confirm the built-in image generator for the slide 8 sample.
 - [ ] Generate and approve one representative sample slide.
 - [ ] Prepare slide jobs and recorded state.
 - [ ] Dispatch remaining slide-generation workers.
 - [ ] Record and inspect generated slide results.
 - [ ] Finish QA, presenter notes and PPTX assembly.
 
-Proposed sample: slide 8. Its MLIR tests code legibility and makes an incorrect glyph or line break easy to spot.
+## Approved visual direction
+
+Use the near-white background (#FCFDFF), navy text (#203248) and blue diagram paths (#245994) from specimen A. Use amber (#85530B) on pale amber (#FFF0CF) to mark the operations discussed in the MLIR example. Set headings in a sans serif and code in a monospace face. On slide 6, connect both code versions to the same compiler and target. On slide 8, align the original and candidate code panels and highlight the two removed operations. Check every MLIR glyph against the outline when reviewing the sample.
 
 ## Narrative and Heilmeier mapping
 
@@ -290,4 +292,4 @@ These motivate the approach and examples. They do not establish Ascend finding y
 - All proposed visualizations are explanatory compositions built from the source content. No measured chart is proposed.
 - The code on slide 8 is an exact content constraint, not an image input.
 - No images have been generated and no PPTX has been assembled.
-- Awaiting the visual direction choice, followed by image backend confirmation and review of one sample slide.
+- The proposed image backend is the built-in image generator. Backend confirmation precedes generation of the slide 8 sample.

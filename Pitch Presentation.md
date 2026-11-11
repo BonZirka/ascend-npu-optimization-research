@@ -2,9 +2,9 @@
 
 [Editable PowerPoint](output/ascend-optimization-pitch/ascend-optimization-technical.pptx) · [PDF export](output/ascend-optimization-pitch/ascend-optimization-technical.pdf)
 
-[[output/ascend-optimization-pitch/technical-outline|19-slide technical outline and research/source map]]
+[[output/ascend-optimization-pitch/technical-outline|20-slide technical outline and research/source map]]
 
-The technical revision expands the approach with the established H03 research agenda, dialect-context delivery, compilation/checking routes, metric tradeoffs, typed feedback, crash recovery and finding replay. Diagrams are editable reconstructions and adaptations of LPO/PRAGMA workflows, with explicit paper attribution and open Ascend integration questions. The primary target remains AscendNPU-IR. The problem-first narrative and A · Technical schematic visual direction are retained.
+The technical revision states why compiler optimizations can be missed and distinguishes problem-triggered optimization epics from routine discovery. Research subjects include named starting points for agent harnesses, LLVM/MLIR validators and performance indicators, alongside dialect context, compilation routes, feedback, recovery and replay. Diagrams are editable reconstructions and adaptations of LPO/PRAGMA workflows, with explicit paper attribution and open Ascend integration questions. The primary target remains AscendNPU-IR. The problem-first narrative and A · Technical schematic visual direction are retained.
 
 The original draft is preserved: [12-slide PowerPoint](output/ascend-optimization-pitch/ascend-optimization-pitch.pptx) · [PDF](output/ascend-optimization-pitch/ascend-optimization-pitch.pdf) · [[output/ascend-optimization-pitch/outline|original approved structure]]. [Style specimen](output/ascend-optimization-pitch/visual-directions.html).
 

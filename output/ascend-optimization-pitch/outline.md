@@ -1,6 +1,6 @@
 # Ascend Optimization Finder — presentation outline
 
-**Later revision:** the [19-slide technical deck and research/source map](technical-outline.md) expand this original structure for compiler experts. This file and the original 12-slide artifacts are retained for comparison.
+**Later revision:** the [20-slide technical deck and research/source map](technical-outline.md) expand this original structure for compiler experts. This file and the original 12-slide artifacts are retained for comparison.
 
 **Status** — The 12-slide structure and A · Technical schematic are approved.
 **Language:** English. **Format:** 16:9. **Length:** 12 slides.

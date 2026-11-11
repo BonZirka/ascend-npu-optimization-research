@@ -47,9 +47,8 @@ The narrative follows the user's requested pitch sequence. The problem, existing
 - Successful compilation and enabled optimizations do not guarantee efficient generated code.
 - Avoidable operations, memory traffic or unsuitable execution patterns can remain.
 - Finding a worthwhile improvement requires identifying the opportunity and establishing that an alternative helps.
-- NPU customers ultimately experience the efficiency of the kernels they run.
 
-**Visual:** a kernel-execution schematic with three potential sources of inefficiency: computation, data movement and execution organization. Show the workload/customer consequence, without performance numbers. No framework, LLM, candidate-generation loop or proposed solution appears on this slide.
+**Visual:** a kernel-execution schematic with three potential sources of inefficiency: computation, data movement and execution organization. Show how these inefficiencies contribute to kernel execution cost, without performance numbers. No framework, LLM, candidate-generation loop or proposed solution appears on this slide.
 **Evidence boundary:** this states the problem class. It does not attribute every kernel bottleneck to the compiler or claim a measured Ascend defect.
 **Sources:** H01; candidate-family catalog; LPO and PRAGMA problem statements.
 **Required source images:** none.

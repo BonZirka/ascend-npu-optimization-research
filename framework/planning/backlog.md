@@ -1,8 +1,8 @@
 # Implementation backlog
 
-**Scope:** technical setup, implementation and engineering verification. Research studies and pitch work remain in the research vault.
+**Scope:** technical setup, implementation and engineering verification. Research issues are tracked in [a separate backlog](research-backlog.md) and carry the Research label in Linear. Pitch work remains in the research vault.
 
-[Open the Linear board](https://linear.app/ascendoptimizationfinder/project/ascend-optimization-finder-22c80a5e428f/issues) — 21 issues, grouped into three implementation milestones.
+[Open the Linear board](https://linear.app/ascendoptimizationfinder/project/ascend-optimization-finder-22c80a5e428f/issues) — this technical backlog contains 21 issues, grouped into three implementation milestones. The shared project also contains separately labeled research issues.
 
 Each issue contains completion criteria, prerequisite references and source sections. Dependencies are recorded in issue descriptions; native blocking relationships have not been configured.
 

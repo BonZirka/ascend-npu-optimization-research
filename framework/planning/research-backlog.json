@@ -1,0 +1,569 @@
+{
+  "schema_version": 1,
+  "created_on": "2026-11-11",
+  "scope": "Research experiments, reference reviews and evaluation studies derived from existing vault notes. Issue creation does not select optional methods or establish findings.",
+  "publication_status": "published",
+  "project_url": "https://linear.app/ascendoptimizationfinder/project/ascend-optimization-finder-22c80a5e428f/issues",
+  "labels": [
+    "Research",
+    "Paper review",
+    "Experiment",
+    "Evaluation study"
+  ],
+  "milestone": null,
+  "tasks": [
+    {
+      "key": "R01",
+      "category": "Paper review",
+      "title": "Review LPO's discovery, validation and feedback pipeline",
+      "selection": "Foundational review",
+      "question": "Which parts of LPO can inform AscendNPU-IR optimization discovery, and which rely on LLVM-specific support?",
+      "acceptance": [
+        "Trace code extraction, replacement generation, optimization, metric screening and Alive2 checking using the pinned paper and available artifact; record source locations and actual model/framework responsibilities.",
+        "Separate rediscovery, accepted reports, fixes and measured runtime effects; examine validity coverage, report acceptance and human work still required.",
+        "Produce a reuse/applicability table with unknowns and proposed checks. Initial vault notes are a starting point, not a completed artifact review."
+      ],
+      "sources": [
+        "papers/LPO.md",
+        "questions/Q10 - Agent tools and editing constraints.md"
+      ],
+      "depends_on": [],
+      "related_implementation": [
+        "ASC-7",
+        "ASC-18"
+      ],
+      "labels": [
+        "Research",
+        "Paper review"
+      ],
+      "linear": {
+        "id": "ASC-26",
+        "identifier": "ASC-26",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-26/review-lpos-discovery-validation-and-feedback-pipeline"
+      },
+      "description": "Local research task: R01\n\n**Selection status:** Foundational review. Creating this issue records work to investigate; it does not select the proposed method or assert a result.\n\n## Question\n\nWhich parts of LPO can inform AscendNPU-IR optimization discovery, and which rely on LLVM-specific support?\n\n## Completion criteria\n\n- Trace code extraction, replacement generation, optimization, metric screening and Alive2 checking using the pinned paper and available artifact; record source locations and actual model/framework responsibilities.\n- Separate rediscovery, accepted reports, fixes and measured runtime effects; examine validity coverage, report acceptance and human work still required.\n- Produce a reuse/applicability table with unknowns and proposed checks. Initial vault notes are a starting point, not a completed artifact review.\n\n## Source notes\n\n- papers/LPO.md\n- questions/Q10 - Agent tools and editing constraints.md\n\n## Connections\n\nResearch prerequisites: None.\nRelated implementation: ASC-7, ASC-18.\n\nPreserve sources, experiment configuration, unsuccessful outcomes and limitations in the vault. Implementation work remains in the linked engineering issues."
+    },
+    {
+      "key": "R02",
+      "category": "Paper review",
+      "title": "Review PRAGMA's profiling feedback and evaluation evidence",
+      "selection": "Foundational review",
+      "question": "What does profiling contribute in PRAGMA, and what would transferring that guidance to AscendNPU-IR require?",
+      "acceptance": [
+        "Trace generation, verification, profiling, feedback and retained variant history in the pinned paper; check public artifact availability without assuming an implementation exists.",
+        "Examine baselines, ablations, aggregation, failed generations and reported resource costs; distinguish kernel acceleration from compiler-opportunity discovery.",
+        "Document reusable mechanisms, hardware/tool assumptions, unsupported transfer claims and an experiment for testing whether profiling justifies its cost."
+      ],
+      "sources": [
+        "papers/PRAGMA.md"
+      ],
+      "depends_on": [],
+      "related_implementation": [
+        "ASC-16",
+        "ASC-19"
+      ],
+      "labels": [
+        "Research",
+        "Paper review"
+      ],
+      "linear": {
+        "id": "ASC-27",
+        "identifier": "ASC-27",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-27/review-pragmas-profiling-feedback-and-evaluation-evidence"
+      },
+      "description": "Local research task: R02\n\n**Selection status:** Foundational review. Creating this issue records work to investigate; it does not select the proposed method or assert a result.\n\n## Question\n\nWhat does profiling contribute in PRAGMA, and what would transferring that guidance to AscendNPU-IR require?\n\n## Completion criteria\n\n- Trace generation, verification, profiling, feedback and retained variant history in the pinned paper; check public artifact availability without assuming an implementation exists.\n- Examine baselines, ablations, aggregation, failed generations and reported resource costs; distinguish kernel acceleration from compiler-opportunity discovery.\n- Document reusable mechanisms, hardware/tool assumptions, unsupported transfer claims and an experiment for testing whether profiling justifies its cost.\n\n## Source notes\n\n- papers/PRAGMA.md\n\n## Connections\n\nResearch prerequisites: None.\nRelated implementation: ASC-16, ASC-19.\n\nPreserve sources, experiment configuration, unsuccessful outcomes and limitations in the vault. Implementation work remains in the linked engineering issues."
+    },
+    {
+      "key": "R03",
+      "category": "Paper review",
+      "title": "Survey methods and terminology for discovering missed optimizations",
+      "selection": "Deferred reference study",
+      "question": "Which published methods and classifications can inform our search and checking design?",
+      "acceptance": [
+        "Collect a bounded, sourced comparison of compiler optimization discovery and performance-search methods; define inclusion criteria and pin inspected references.",
+        "Compare candidate selection, references/oracles, correctness checks, improvement indicators and resource requirements; distinguish regression detection from searching for new opportunities.",
+        "Propose reusable terminology and relevant adaptations, recording gaps and limitations. Do not assume proactive/reactive is an established taxonomy."
+      ],
+      "sources": [
+        "questions/Q01 - Taxonomy of bug finding and performance search.md",
+        "questions/Q05 - Proactive optimization discovery in literature and other compiler projects.md"
+      ],
+      "depends_on": [],
+      "related_implementation": [],
+      "labels": [
+        "Research",
+        "Paper review"
+      ],
+      "linear": {
+        "id": "ASC-28",
+        "identifier": "ASC-28",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-28/survey-methods-and-terminology-for-discovering-missed-optimizations"
+      },
+      "description": "Local research task: R03\n\n**Selection status:** Deferred reference study. Creating this issue records work to investigate; it does not select the proposed method or assert a result.\n\n## Question\n\nWhich published methods and classifications can inform our search and checking design?\n\n## Completion criteria\n\n- Collect a bounded, sourced comparison of compiler optimization discovery and performance-search methods; define inclusion criteria and pin inspected references.\n- Compare candidate selection, references/oracles, correctness checks, improvement indicators and resource requirements; distinguish regression detection from searching for new opportunities.\n- Propose reusable terminology and relevant adaptations, recording gaps and limitations. Do not assume proactive/reactive is an established taxonomy.\n\n## Source notes\n\n- questions/Q01 - Taxonomy of bug finding and performance search.md\n- questions/Q05 - Proactive optimization discovery in literature and other compiler projects.md\n\n## Connections\n\nResearch prerequisites: None.\nRelated implementation: None.\n\nPreserve sources, experiment configuration, unsuccessful outcomes and limitations in the vault. Implementation work remains in the linked engineering issues."
+    },
+    {
+      "key": "R04",
+      "category": "Paper review",
+      "title": "Review how agent harnesses construct prompts and deliver domain context",
+      "selection": "Optional refinement; reference analysis",
+      "question": "How do public coding and specialist harnesses assemble instructions, tools, task data and feedback?",
+      "acceptance": [
+        "Inspect a bounded sample from Q09, including general coding and non-compiler domain harnesses; pin public source versions and distinguish examples from reconstructed runtime requests.",
+        "Record actual instruction layers, assembly paths, initial and retrieved information, context reduction and treatment of uncertainty.",
+        "Produce an information requirement → delivery method → experiment map for IR review, with source-backed observations separated from proposed adaptations."
+      ],
+      "sources": [
+        "questions/Q09 - Agent prompt construction and information delivery.md",
+        "directions/D04 - Domain-specific agent instructions and context.md"
+      ],
+      "depends_on": [],
+      "related_implementation": [
+        "ASC-18"
+      ],
+      "labels": [
+        "Research",
+        "Paper review"
+      ],
+      "linear": {
+        "id": "ASC-29",
+        "identifier": "ASC-29",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-29/review-how-agent-harnesses-construct-prompts-and-deliver-domain"
+      },
+      "description": "Local research task: R04\n\n**Selection status:** Optional refinement; reference analysis. Creating this issue records work to investigate; it does not select the proposed method or assert a result.\n\n## Question\n\nHow do public coding and specialist harnesses assemble instructions, tools, task data and feedback?\n\n## Completion criteria\n\n- Inspect a bounded sample from Q09, including general coding and non-compiler domain harnesses; pin public source versions and distinguish examples from reconstructed runtime requests.\n- Record actual instruction layers, assembly paths, initial and retrieved information, context reduction and treatment of uncertainty.\n- Produce an information requirement → delivery method → experiment map for IR review, with source-backed observations separated from proposed adaptations.\n\n## Source notes\n\n- questions/Q09 - Agent prompt construction and information delivery.md\n- directions/D04 - Domain-specific agent instructions and context.md\n\n## Connections\n\nResearch prerequisites: None.\nRelated implementation: ASC-18.\n\nPreserve sources, experiment configuration, unsuccessful outcomes and limitations in the vault. Implementation work remains in the linked engineering issues."
+    },
+    {
+      "key": "R05",
+      "category": "Evaluation study",
+      "title": "Assess candidate improvement metrics for LLVM IR, MLIR and AscendNPU-IR",
+      "selection": "Core feasibility; metric unselected",
+      "question": "Which indicators provide meaningful original/candidate comparisons at acceptable resource cost?",
+      "acceptance": [
+        "Compare candidate measurements, estimates and structural indicators by checkpoint, operation coverage, target assumptions, units and hardware requirements.",
+        "Probe applicable methods on recorded original/alternative cases; examine unsupported operations, moving work outside the measured region and changes after later passes.",
+        "Document supported claims and collection costs, distinguishing computability from usefulness and static improvement from runtime speedup; coordinate a compatible route with R06."
+      ],
+      "sources": [
+        "questions/Q06 - Metrics for assessing LLVM IR and MLIR improvements.md",
+        "questions/H03 - What is new in our approach.md §2.4"
+      ],
+      "depends_on": [
+        "R01"
+      ],
+      "related_implementation": [
+        "ASC-7",
+        "ASC-16"
+      ],
+      "labels": [
+        "Research",
+        "Evaluation study"
+      ],
+      "linear": {
+        "id": "ASC-30",
+        "identifier": "ASC-30",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-30/assess-candidate-improvement-metrics-for-llvm-ir-mlir-and-ascendnpu-ir"
+      },
+      "description": "Local research task: R05\n\n**Selection status:** Core feasibility; metric unselected. Creating this issue records work to investigate; it does not select the proposed method or assert a result.\n\n## Question\n\nWhich indicators provide meaningful original/candidate comparisons at acceptable resource cost?\n\n## Completion criteria\n\n- Compare candidate measurements, estimates and structural indicators by checkpoint, operation coverage, target assumptions, units and hardware requirements.\n- Probe applicable methods on recorded original/alternative cases; examine unsupported operations, moving work outside the measured region and changes after later passes.\n- Document supported claims and collection costs, distinguishing computability from usefulness and static improvement from runtime speedup; coordinate a compatible route with R06.\n\n## Source notes\n\n- questions/Q06 - Metrics for assessing LLVM IR and MLIR improvements.md\n- questions/H03 - What is new in our approach.md §2.4\n\n## Connections\n\nResearch prerequisites: ASC-26.\nRelated implementation: ASC-7, ASC-16.\n\nPreserve sources, experiment configuration, unsuccessful outcomes and limitations in the vault. Implementation work remains in the linked engineering issues."
+    },
+    {
+      "key": "R06",
+      "category": "Evaluation study",
+      "title": "Assess compilation and validation route coverage for AscendNPU-IR",
+      "selection": "Core feasibility; no route assumed",
+      "question": "Which compilation checkpoints, correctness checks and metric stages can form a supported route?",
+      "acceptance": [
+        "Use existing compiler probes to catalog accepted start states, resumption requirements, output checkpoints, observation points and hard stop boundaries; reference ASC-6 evidence rather than duplicating its integration work.",
+        "Assess parsing/compilation checks, execution comparisons and semantic or alternative execution routes where available; record assumptions, FP/memory coverage, harness needs and host/NPU requirements.",
+        "Produce a compatibility matrix with demonstrated, incompatible, unsupported and unknown outcomes. Identify evidence gaps, including proposed rewrite assumptions; do not infer an Ascend checker from Alive2's LLVM support."
+      ],
+      "sources": [
+        "questions/Q08 - Compilation continuation and validation routes.md",
+        "questions/H03 - What is new in our approach.md §2.4"
+      ],
+      "depends_on": [
+        "R01"
+      ],
+      "related_implementation": [
+        "ASC-6",
+        "ASC-7",
+        "ASC-15"
+      ],
+      "labels": [
+        "Research",
+        "Evaluation study"
+      ],
+      "linear": {
+        "id": "ASC-31",
+        "identifier": "ASC-31",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-31/assess-compilation-and-validation-route-coverage-for-ascendnpu-ir"
+      },
+      "description": "Local research task: R06\n\n**Selection status:** Core feasibility; no route assumed. Creating this issue records work to investigate; it does not select the proposed method or assert a result.\n\n## Question\n\nWhich compilation checkpoints, correctness checks and metric stages can form a supported route?\n\n## Completion criteria\n\n- Use existing compiler probes to catalog accepted start states, resumption requirements, output checkpoints, observation points and hard stop boundaries; reference ASC-6 evidence rather than duplicating its integration work.\n- Assess parsing/compilation checks, execution comparisons and semantic or alternative execution routes where available; record assumptions, FP/memory coverage, harness needs and host/NPU requirements.\n- Produce a compatibility matrix with demonstrated, incompatible, unsupported and unknown outcomes. Identify evidence gaps, including proposed rewrite assumptions; do not infer an Ascend checker from Alive2's LLVM support.\n\n## Source notes\n\n- questions/Q08 - Compilation continuation and validation routes.md\n- questions/H03 - What is new in our approach.md §2.4\n\n## Connections\n\nResearch prerequisites: ASC-26.\nRelated implementation: ASC-6, ASC-7, ASC-15.\n\nPreserve sources, experiment configuration, unsuccessful outcomes and limitations in the vault. Implementation work remains in the linked engineering issues."
+    },
+    {
+      "key": "R07",
+      "category": "Experiment",
+      "title": "Test useful-finding feasibility with direct agent rewriting",
+      "selection": "Initial feasibility experiment",
+      "question": "Can ordinary agent file editing of supplied AscendNPU-IR produce a useful, reproducible comparison under declared checks?",
+      "acceptance": [
+        "Select development cases and one demonstrated comparison route; record model, supplied context, prompts, limits and attempted versions.",
+        "Preserve successful, invalid, non-improving and inconclusive attempts, check coverage, comparison evidence, replay and resource use.",
+        "Obtain engineer review of any proposed findings and record a feasibility conclusion with limitations. Integration success or a seeded fixture is not evidence of an agent-discovered useful finding."
+      ],
+      "sources": [
+        "questions/H03 - What is new in our approach.md §2.2–2.6",
+        "questions/H08 - How will we check success.md",
+        "directions/D01 - Automated testing for missed optimizations.md"
+      ],
+      "depends_on": [
+        "R05",
+        "R06"
+      ],
+      "related_implementation": [
+        "ASC-8",
+        "ASC-9",
+        "ASC-25"
+      ],
+      "labels": [
+        "Research",
+        "Experiment"
+      ],
+      "linear": {
+        "id": "ASC-32",
+        "identifier": "ASC-32",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-32/test-useful-finding-feasibility-with-direct-agent-rewriting"
+      },
+      "description": "Local research task: R07\n\n**Selection status:** Initial feasibility experiment. Creating this issue records work to investigate; it does not select the proposed method or assert a result.\n\n## Question\n\nCan ordinary agent file editing of supplied AscendNPU-IR produce a useful, reproducible comparison under declared checks?\n\n## Completion criteria\n\n- Select development cases and one demonstrated comparison route; record model, supplied context, prompts, limits and attempted versions.\n- Preserve successful, invalid, non-improving and inconclusive attempts, check coverage, comparison evidence, replay and resource use.\n- Obtain engineer review of any proposed findings and record a feasibility conclusion with limitations. Integration success or a seeded fixture is not evidence of an agent-discovered useful finding.\n\n## Source notes\n\n- questions/H03 - What is new in our approach.md §2.2–2.6\n- questions/H08 - How will we check success.md\n- directions/D01 - Automated testing for missed optimizations.md\n\n## Connections\n\nResearch prerequisites: ASC-30, ASC-31.\nRelated implementation: ASC-8, ASC-9, ASC-25.\n\nPreserve sources, experiment configuration, unsuccessful outcomes and limitations in the vault. Implementation work remains in the linked engineering issues."
+    },
+    {
+      "key": "R08",
+      "category": "Experiment",
+      "title": "Compare instruction and context variants against direct IR review",
+      "selection": "Optional refinement; not selected",
+      "question": "Which added information or instruction changes improve finding quality enough to justify their cost?",
+      "acceptance": [
+        "Select one bounded instruction/context change motivated by R04; specify supplied facts, provenance and delivery method.",
+        "Compare with direct-IR review using comparable model, cases, checking policy, metric and budgets; predefine repeats and handling of context limitations.",
+        "Report useful findings, invalid/inconclusive outcomes, expert effort and model/tool/compilation/device costs; keep baseline artifacts and all attempt histories."
+      ],
+      "sources": [
+        "questions/Q09 - Agent prompt construction and information delivery.md",
+        "directions/D04 - Domain-specific agent instructions and context.md"
+      ],
+      "depends_on": [
+        "R04",
+        "R07",
+        "R13"
+      ],
+      "related_implementation": [
+        "ASC-18"
+      ],
+      "labels": [
+        "Research",
+        "Experiment"
+      ],
+      "linear": {
+        "id": "ASC-34",
+        "identifier": "ASC-34",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-34/compare-instruction-and-context-variants-against-direct-ir-review"
+      },
+      "description": "Local research task: R08\n\n**Selection status:** Optional refinement; not selected. Creating this issue records work to investigate; it does not select the proposed method or assert a result.\n\n## Question\n\nWhich added information or instruction changes improve finding quality enough to justify their cost?\n\n## Completion criteria\n\n- Select one bounded instruction/context change motivated by R04; specify supplied facts, provenance and delivery method.\n- Compare with direct-IR review using comparable model, cases, checking policy, metric and budgets; predefine repeats and handling of context limitations.\n- Report useful findings, invalid/inconclusive outcomes, expert effort and model/tool/compilation/device costs; keep baseline artifacts and all attempt histories.\n\n## Source notes\n\n- questions/Q09 - Agent prompt construction and information delivery.md\n- directions/D04 - Domain-specific agent instructions and context.md\n\n## Connections\n\nResearch prerequisites: ASC-29, ASC-32, ASC-33.\nRelated implementation: ASC-18.\n\nPreserve sources, experiment configuration, unsuccessful outcomes and limitations in the vault. Implementation work remains in the linked engineering issues."
+    },
+    {
+      "key": "R09",
+      "category": "Experiment",
+      "title": "Compare agent tools and editing constraints with ordinary file editing",
+      "selection": "Optional refinement; not selected",
+      "question": "When do additional tools or enforced editing restrictions improve usefulness, validity or resource cost?",
+      "acceptance": [
+        "Use R01 to establish LPO's actual model/tool interface; choose one bounded tool or constraint and specify its inputs, outputs, allowed effects and failures.",
+        "Compare ordinary editing with the selected addition under comparable conditions, distinguishing enforced restrictions from prompt instructions.",
+        "Record useful findings, invalid proposals, lost transformation coverage, unresolved cases and total resource/review costs; do not assume structured editing is beneficial."
+      ],
+      "sources": [
+        "questions/Q10 - Agent tools and editing constraints.md",
+        "directions/D05 - Agent tools and editing constraints.md"
+      ],
+      "depends_on": [
+        "R01",
+        "R07",
+        "R13"
+      ],
+      "related_implementation": [
+        "ASC-12",
+        "ASC-18"
+      ],
+      "labels": [
+        "Research",
+        "Experiment"
+      ],
+      "linear": {
+        "id": "ASC-35",
+        "identifier": "ASC-35",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-35/compare-agent-tools-and-editing-constraints-with-ordinary-file-editing"
+      },
+      "description": "Local research task: R09\n\n**Selection status:** Optional refinement; not selected. Creating this issue records work to investigate; it does not select the proposed method or assert a result.\n\n## Question\n\nWhen do additional tools or enforced editing restrictions improve usefulness, validity or resource cost?\n\n## Completion criteria\n\n- Use R01 to establish LPO's actual model/tool interface; choose one bounded tool or constraint and specify its inputs, outputs, allowed effects and failures.\n- Compare ordinary editing with the selected addition under comparable conditions, distinguishing enforced restrictions from prompt instructions.\n- Record useful findings, invalid proposals, lost transformation coverage, unresolved cases and total resource/review costs; do not assume structured editing is beneficial.\n\n## Source notes\n\n- questions/Q10 - Agent tools and editing constraints.md\n- directions/D05 - Agent tools and editing constraints.md\n\n## Connections\n\nResearch prerequisites: ASC-26, ASC-32, ASC-33.\nRelated implementation: ASC-12, ASC-18.\n\nPreserve sources, experiment configuration, unsuccessful outcomes and limitations in the vault. Implementation work remains in the linked engineering issues."
+    },
+    {
+      "key": "R10",
+      "category": "Experiment",
+      "title": "Compare region discovery methods and code-category coverage",
+      "selection": "Deferred discovery capability; not selected",
+      "question": "Which region selectors and code categories provide useful cases for investigation?",
+      "acceptance": [
+        "Propose candidate categories and a shared description of classifier outputs, including original-artifact locations, selection reasons and optional scores.",
+        "Compare prompted discovery with a bounded static or cost-model selector where feasible, including default versus focused category selection.",
+        "Measure selection coverage, downstream useful findings, missed/irrelevant regions and total search cost; preserve engineer-specified regions as a bypass."
+      ],
+      "sources": [
+        "questions/Q07 - Initial classifiers and code classification scheme.md",
+        "questions/H03 - What is new in our approach.md §2.2, §5"
+      ],
+      "depends_on": [
+        "R07",
+        "R13"
+      ],
+      "related_implementation": [
+        "ASC-12"
+      ],
+      "labels": [
+        "Research",
+        "Experiment"
+      ],
+      "linear": {
+        "id": "ASC-36",
+        "identifier": "ASC-36",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-36/compare-region-discovery-methods-and-code-category-coverage"
+      },
+      "description": "Local research task: R10\n\n**Selection status:** Deferred discovery capability; not selected. Creating this issue records work to investigate; it does not select the proposed method or assert a result.\n\n## Question\n\nWhich region selectors and code categories provide useful cases for investigation?\n\n## Completion criteria\n\n- Propose candidate categories and a shared description of classifier outputs, including original-artifact locations, selection reasons and optional scores.\n- Compare prompted discovery with a bounded static or cost-model selector where feasible, including default versus focused category selection.\n- Measure selection coverage, downstream useful findings, missed/irrelevant regions and total search cost; preserve engineer-specified regions as a bypass.\n\n## Source notes\n\n- questions/Q07 - Initial classifiers and code classification scheme.md\n- questions/H03 - What is new in our approach.md §2.2, §5\n\n## Connections\n\nResearch prerequisites: ASC-32, ASC-33.\nRelated implementation: ASC-12.\n\nPreserve sources, experiment configuration, unsuccessful outcomes and limitations in the vault. Implementation work remains in the linked engineering issues."
+    },
+    {
+      "key": "R11",
+      "category": "Experiment",
+      "title": "Compare feedback, history and search-budget policies",
+      "selection": "Optional refinement; not selected",
+      "question": "Which feedback and stopping policies reduce wasted search while preserving useful findings?",
+      "acceptance": [
+        "Keep the same-conversation, unchanged-original and first-qualifying-finding policy as the baseline; select one feedback/history/allocation/stopping change.",
+        "Use comparable cases, model, checks, metric and total budgets; predefine repeats and separate candidate repair from infrastructure retry.",
+        "Preserve complete attempt and resource histories; compare useful findings, unsuccessful/inconclusive attempts, expensive checks and costs, including reconstruction after session loss where studied."
+      ],
+      "sources": [
+        "questions/H03 - What is new in our approach.md §2.5",
+        "questions/Q09 - Agent prompt construction and information delivery.md"
+      ],
+      "depends_on": [
+        "R07",
+        "R13"
+      ],
+      "related_implementation": [
+        "ASC-19",
+        "ASC-22"
+      ],
+      "labels": [
+        "Research",
+        "Experiment"
+      ],
+      "linear": {
+        "id": "ASC-37",
+        "identifier": "ASC-37",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-37/compare-feedback-history-and-search-budget-policies"
+      },
+      "description": "Local research task: R11\n\n**Selection status:** Optional refinement; not selected. Creating this issue records work to investigate; it does not select the proposed method or assert a result.\n\n## Question\n\nWhich feedback and stopping policies reduce wasted search while preserving useful findings?\n\n## Completion criteria\n\n- Keep the same-conversation, unchanged-original and first-qualifying-finding policy as the baseline; select one feedback/history/allocation/stopping change.\n- Use comparable cases, model, checks, metric and total budgets; predefine repeats and separate candidate repair from infrastructure retry.\n- Preserve complete attempt and resource histories; compare useful findings, unsuccessful/inconclusive attempts, expensive checks and costs, including reconstruction after session loss where studied.\n\n## Source notes\n\n- questions/H03 - What is new in our approach.md §2.5\n- questions/Q09 - Agent prompt construction and information delivery.md\n\n## Connections\n\nResearch prerequisites: ASC-32, ASC-33.\nRelated implementation: ASC-19, ASC-22.\n\nPreserve sources, experiment configuration, unsuccessful outcomes and limitations in the vault. Implementation work remains in the linked engineering issues."
+    },
+    {
+      "key": "R12",
+      "category": "Experiment",
+      "title": "Test whether profiling feedback justifies its collection cost",
+      "selection": "Optional refinement; not selected",
+      "question": "Does detailed profiling guidance yield enough useful compiler findings to justify additional target runs?",
+      "acceptance": [
+        "Use R02 to choose one profiling signal available for our target; document its meaning, collection route and hardware requirements.",
+        "Compare basic check/metric feedback with added profiling under a declared comparable budget and repeat protocol; account for every profiling and validation run.",
+        "Report useful reproducible findings, invalid/inconclusive outcomes, expert effort and total resource cost. Reduced run count alone does not establish lower overall cost."
+      ],
+      "sources": [
+        "papers/PRAGMA.md",
+        "questions/H03 - What is new in our approach.md §5",
+        "questions/H08 - How will we check success.md"
+      ],
+      "depends_on": [
+        "R02",
+        "R07",
+        "R13"
+      ],
+      "related_implementation": [
+        "ASC-16",
+        "ASC-19"
+      ],
+      "labels": [
+        "Research",
+        "Experiment"
+      ],
+      "linear": {
+        "id": "ASC-38",
+        "identifier": "ASC-38",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-38/test-whether-profiling-feedback-justifies-its-collection-cost"
+      },
+      "description": "Local research task: R12\n\n**Selection status:** Optional refinement; not selected. Creating this issue records work to investigate; it does not select the proposed method or assert a result.\n\n## Question\n\nDoes detailed profiling guidance yield enough useful compiler findings to justify additional target runs?\n\n## Completion criteria\n\n- Use R02 to choose one profiling signal available for our target; document its meaning, collection route and hardware requirements.\n- Compare basic check/metric feedback with added profiling under a declared comparable budget and repeat protocol; account for every profiling and validation run.\n- Report useful reproducible findings, invalid/inconclusive outcomes, expert effort and total resource cost. Reduced run count alone does not establish lower overall cost.\n\n## Source notes\n\n- papers/PRAGMA.md\n- questions/H03 - What is new in our approach.md §5\n- questions/H08 - How will we check success.md\n\n## Connections\n\nResearch prerequisites: ASC-27, ASC-32, ASC-33.\nRelated implementation: ASC-16, ASC-19.\n\nPreserve sources, experiment configuration, unsuccessful outcomes and limitations in the vault. Implementation work remains in the linked engineering issues."
+    },
+    {
+      "key": "R13",
+      "category": "Evaluation study",
+      "title": "Define the evaluation corpus, usefulness criteria and study protocol",
+      "selection": "Core evaluation design; unresolved choices",
+      "question": "How will we assess useful findings and cost without reporting only successful cases?",
+      "acceptance": [
+        "Agree on representative evaluation cases distinct from development/tuning cases and record selection/exclusion criteria.",
+        "Define engineer-review criteria, duplicate handling, validation/metric evidence requirements, replay outcomes and reporting of rejected, unsupported and inconclusive cases.",
+        "Freeze relevant budgets, model/compiler/profile versions, repetitions and effort/resource recording before main evaluation; state which claims require an additional reference workflow."
+      ],
+      "sources": [
+        "questions/H08 - How will we check success.md"
+      ],
+      "depends_on": [],
+      "related_implementation": [
+        "ASC-25"
+      ],
+      "labels": [
+        "Research",
+        "Evaluation study"
+      ],
+      "linear": {
+        "id": "ASC-33",
+        "identifier": "ASC-33",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-33/define-the-evaluation-corpus-usefulness-criteria-and-study-protocol"
+      },
+      "description": "Local research task: R13\n\n**Selection status:** Core evaluation design; unresolved choices. Creating this issue records work to investigate; it does not select the proposed method or assert a result.\n\n## Question\n\nHow will we assess useful findings and cost without reporting only successful cases?\n\n## Completion criteria\n\n- Agree on representative evaluation cases distinct from development/tuning cases and record selection/exclusion criteria.\n- Define engineer-review criteria, duplicate handling, validation/metric evidence requirements, replay outcomes and reporting of rejected, unsupported and inconclusive cases.\n- Freeze relevant budgets, model/compiler/profile versions, repetitions and effort/resource recording before main evaluation; state which claims require an additional reference workflow.\n\n## Source notes\n\n- questions/H08 - How will we check success.md\n\n## Connections\n\nResearch prerequisites: None.\nRelated implementation: ASC-25.\n\nPreserve sources, experiment configuration, unsuccessful outcomes and limitations in the vault. Implementation work remains in the linked engineering issues."
+    },
+    {
+      "key": "R14",
+      "category": "Evaluation study",
+      "title": "Evaluate MVP finding usefulness, reproducibility and resource cost",
+      "selection": "Core evaluation; after MVP and protocol",
+      "question": "What useful findings does the MVP produce on the fixed evaluation collection, and at what cost?",
+      "acceptance": [
+        "Run the fixed R13 protocol and preserve every selected case, attempt and outcome with effective versions and budgets.",
+        "Obtain engineer review and replay reported findings; keep validation coverage, metric changes and observed workload effects separate.",
+        "Report useful, duplicate, rejected and inconclusive results together with preparation/review effort, model use and host/device costs; document limitations and no-finding outcomes."
+      ],
+      "sources": [
+        "questions/H08 - How will we check success.md",
+        "questions/H06 - How much will it cost.md"
+      ],
+      "depends_on": [
+        "R13"
+      ],
+      "related_implementation": [
+        "ASC-25"
+      ],
+      "labels": [
+        "Research",
+        "Evaluation study"
+      ],
+      "linear": {
+        "id": "ASC-39",
+        "identifier": "ASC-39",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-39/evaluate-mvp-finding-usefulness-reproducibility-and-resource-cost"
+      },
+      "description": "Local research task: R14\n\n**Selection status:** Core evaluation; after MVP and protocol. Creating this issue records work to investigate; it does not select the proposed method or assert a result.\n\n## Question\n\nWhat useful findings does the MVP produce on the fixed evaluation collection, and at what cost?\n\n## Completion criteria\n\n- Run the fixed R13 protocol and preserve every selected case, attempt and outcome with effective versions and budgets.\n- Obtain engineer review and replay reported findings; keep validation coverage, metric changes and observed workload effects separate.\n- Report useful, duplicate, rejected and inconclusive results together with preparation/review effort, model use and host/device costs; document limitations and no-finding outcomes.\n\n## Source notes\n\n- questions/H08 - How will we check success.md\n- questions/H06 - How much will it cost.md\n\n## Connections\n\nResearch prerequisites: ASC-33.\nRelated implementation: ASC-25.\n\nPreserve sources, experiment configuration, unsuccessful outcomes and limitations in the vault. Implementation work remains in the linked engineering issues."
+    },
+    {
+      "key": "R15",
+      "category": "Evaluation study",
+      "title": "Assess expert-effort savings against a comparable investigation workflow",
+      "selection": "Additional outcome; reference workflow unselected",
+      "question": "Does the framework reduce expert effort per useful finding after preparation and review are counted?",
+      "acceptance": [
+        "Define a realistic engineer workflow, comparable cases and usable effort-recording procedure before collecting comparison data; account for prior case knowledge.",
+        "Record setup, context preparation, investigation, checking and review effort alongside useful output and model/compute costs.",
+        "Report the comparison and uncertainty; distinguish effort savings from elapsed time and run count. If no defensible reference exists, report observed effort without claiming savings."
+      ],
+      "sources": [
+        "questions/H08 - How will we check success.md",
+        "questions/H01 - What are we trying to do.md"
+      ],
+      "depends_on": [
+        "R13"
+      ],
+      "related_implementation": [
+        "ASC-25"
+      ],
+      "labels": [
+        "Research",
+        "Evaluation study"
+      ],
+      "linear": {
+        "id": "ASC-40",
+        "identifier": "ASC-40",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-40/assess-expert-effort-savings-against-a-comparable-investigation"
+      },
+      "description": "Local research task: R15\n\n**Selection status:** Additional outcome; reference workflow unselected. Creating this issue records work to investigate; it does not select the proposed method or assert a result.\n\n## Question\n\nDoes the framework reduce expert effort per useful finding after preparation and review are counted?\n\n## Completion criteria\n\n- Define a realistic engineer workflow, comparable cases and usable effort-recording procedure before collecting comparison data; account for prior case knowledge.\n- Record setup, context preparation, investigation, checking and review effort alongside useful output and model/compute costs.\n- Report the comparison and uncertainty; distinguish effort savings from elapsed time and run count. If no defensible reference exists, report observed effort without claiming savings.\n\n## Source notes\n\n- questions/H08 - How will we check success.md\n- questions/H01 - What are we trying to do.md\n\n## Connections\n\nResearch prerequisites: ASC-33.\nRelated implementation: ASC-25.\n\nPreserve sources, experiment configuration, unsuccessful outcomes and limitations in the vault. Implementation work remains in the linked engineering issues."
+    },
+    {
+      "key": "R16",
+      "category": "Experiment",
+      "title": "Study transformation applicability across shapes, types and compiler settings",
+      "selection": "Candidate future direction; not selected",
+      "question": "Under which conditions does one promising transformation remain valid and beneficial?",
+      "acceptance": [
+        "Choose a retained transformation and a bounded set of relevant shape/type/layout/compiler-setting variations; record assumptions and affordable coverage.",
+        "Repeat the selected checks and metric comparison for each case, preserving failures, unsupported combinations and reproducible artifacts.",
+        "Produce an empirical applicability map with untested regions and limitations; tested examples do not establish universal validity."
+      ],
+      "sources": [
+        "directions/D02 - Systematic investigation of applicability.md",
+        "papers/LPO.md"
+      ],
+      "depends_on": [
+        "R07"
+      ],
+      "related_implementation": [
+        "ASC-21"
+      ],
+      "labels": [
+        "Research",
+        "Experiment"
+      ],
+      "linear": {
+        "id": "ASC-41",
+        "identifier": "ASC-41",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-41/study-transformation-applicability-across-shapes-types-and-compiler"
+      },
+      "description": "Local research task: R16\n\n**Selection status:** Candidate future direction; not selected. Creating this issue records work to investigate; it does not select the proposed method or assert a result.\n\n## Question\n\nUnder which conditions does one promising transformation remain valid and beneficial?\n\n## Completion criteria\n\n- Choose a retained transformation and a bounded set of relevant shape/type/layout/compiler-setting variations; record assumptions and affordable coverage.\n- Repeat the selected checks and metric comparison for each case, preserving failures, unsupported combinations and reproducible artifacts.\n- Produce an empirical applicability map with untested regions and limitations; tested examples do not establish universal validity.\n\n## Source notes\n\n- directions/D02 - Systematic investigation of applicability.md\n- papers/LPO.md\n\n## Connections\n\nResearch prerequisites: ASC-32.\nRelated implementation: ASC-21.\n\nPreserve sources, experiment configuration, unsuccessful outcomes and limitations in the vault. Implementation work remains in the linked engineering issues."
+    },
+    {
+      "key": "R17",
+      "category": "Experiment",
+      "title": "Study replay of optimization opportunities across compiler revisions",
+      "selection": "Candidate future direction; not selected",
+      "question": "Can saved findings reveal when opportunities disappear, reappear or change across compiler versions?",
+      "acceptance": [
+        "Choose a small finding corpus and accessible revisions; define comparable routes, target settings and treatment of representation changes.",
+        "Replay saved comparisons and distinguish real outcome changes from unsupported routes, invalidated assumptions and measurement variation.",
+        "Record provenance, replay results and remaining comparability gaps; estimate maintenance cost before proposing a maintained regression corpus."
+      ],
+      "sources": [
+        "directions/D03 - Tracking opportunities across compiler revisions.md",
+        "papers/LPO.md",
+        "papers/PRAGMA.md"
+      ],
+      "depends_on": [
+        "R07"
+      ],
+      "related_implementation": [
+        "ASC-21",
+        "ASC-23"
+      ],
+      "labels": [
+        "Research",
+        "Experiment"
+      ],
+      "linear": {
+        "id": "ASC-42",
+        "identifier": "ASC-42",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-42/study-replay-of-optimization-opportunities-across-compiler-revisions"
+      },
+      "description": "Local research task: R17\n\n**Selection status:** Candidate future direction; not selected. Creating this issue records work to investigate; it does not select the proposed method or assert a result.\n\n## Question\n\nCan saved findings reveal when opportunities disappear, reappear or change across compiler versions?\n\n## Completion criteria\n\n- Choose a small finding corpus and accessible revisions; define comparable routes, target settings and treatment of representation changes.\n- Replay saved comparisons and distinguish real outcome changes from unsupported routes, invalidated assumptions and measurement variation.\n- Record provenance, replay results and remaining comparability gaps; estimate maintenance cost before proposing a maintained regression corpus.\n\n## Source notes\n\n- directions/D03 - Tracking opportunities across compiler revisions.md\n- papers/LPO.md\n- papers/PRAGMA.md\n\n## Connections\n\nResearch prerequisites: ASC-32.\nRelated implementation: ASC-21, ASC-23.\n\nPreserve sources, experiment configuration, unsuccessful outcomes and limitations in the vault. Implementation work remains in the linked engineering issues."
+    }
+  ]
+}

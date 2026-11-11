@@ -12,8 +12,9 @@ Use Python **3.15 or newer**. `.python-version` pins **3.15.2**, the latest stab
 
 - [Implementation tasks](planning/backlog.md)
 - [Machine-readable backlog](planning/backlog.json)
+- [Research issues](planning/research-backlog.md) — 17 reviews, experiments and evaluation studies, labeled separately in Linear.
 
-[Linear implementation board](https://linear.app/ascendoptimizationfinder/project/ascend-optimization-finder-22c80a5e428f/issues) in **AscendOptimizationFinder** contains 21 technical issues across integration setup, baseline implementation and MVP verification. Each issue has completion criteria, prerequisite references and source sections. The local backlog records their identifiers and links. Research studies and pitch work are outside this board.
+[Linear implementation board](https://linear.app/ascendoptimizationfinder/project/ascend-optimization-finder-22c80a5e428f/issues) in **AscendOptimizationFinder** contains 21 technical issues across integration setup, baseline implementation and MVP verification, plus 17 issues labeled Research. Each issue has completion criteria, prerequisite references and source sections. The local backlog records their identifiers and links. Research issues also carry a category label: Paper review, Experiment or Evaluation study. Optional research directions remain unscheduled candidates. Pitch work is outside this board.
 
 The planning target is an MVP by the end of month 4 within a six-month overall horizon. The MVP uses engineer-supplied code, one demonstrated compilation route, one checking policy and one metric. Metric, checker, checkpoint and agent-backend choices remain open prerequisites; the corresponding integrations require those selections before completion.
 

@@ -11,10 +11,20 @@
     "source": "https://www.python.org/downloads/release/python-3152/"
   },
   "linear": {
-    "publication_status": "awaiting_workspace_creation_and_access",
-    "workspace_url": null,
-    "team": null,
-    "project": null
+    "publication_status": "published",
+    "published_on": "2026-11-11",
+    "workspace_url": "https://linear.app/ascendoptimizationfinder",
+    "team": {
+      "name": "AscendOptimizationFinder",
+      "key": "ASC",
+      "id": "bba0f6ab-da07-4a2d-97a7-92b5428b0007"
+    },
+    "project": {
+      "name": "Ascend Optimization Finder",
+      "id": "530b101e-ba03-44e0-8283-fd709354eaa4",
+      "url": "https://linear.app/ascendoptimizationfinder/project/ascend-optimization-finder-22c80a5e428f/issues"
+    },
+    "dependency_representation": "Issue descriptions contain prerequisite references; no native blocker links configured."
   },
   "schedule": {
     "mvp": "End of month 4",
@@ -24,9 +34,9 @@
   "milestones": [
     {
       "key": "M1",
-      "name": "01 Feasibility — Month 1",
+      "name": "01 Integration setup — Month 1",
       "period": "Month 1",
-      "description": "Establish a supported original/candidate comparison route and test direct agent rewriting on supplied AscendNPU-IR cases. Concrete checkpoints, metric, validation policy and hardware requirements remain to be selected from evidence."
+      "description": "Prepare development inputs, exercise compiler continuation, configure one supported comparison route and verify the selected agent harness."
     },
     {
       "key": "M2",
@@ -38,52 +48,42 @@
       "key": "M3",
       "name": "03 MVP — Month 4",
       "period": "Month 4",
-      "description": "Complete runnable finding bundles, replay, recovery and engineer pilot acceptance. Proposed initial target: at least one useful reproducible finding on a real case under declared checks."
-    },
-    {
-      "key": "M4",
-      "name": "04 Evaluation — Month 5",
-      "period": "Month 5",
-      "description": "Fix evaluation cases, review criteria and budgets before the main evaluation; report useful, rejected, duplicate and inconclusive outcomes with expert effort and resource costs."
-    },
-    {
-      "key": "M5",
-      "name": "05 Selected refinement — Month 6",
-      "period": "Month 6",
-      "description": "Select one refinement from evaluation results and available capacity, then implement and compare it with the MVP baseline. No classifier, tool, prompt or search-policy extension is preselected."
+      "description": "Complete runnable finding bundles, replay, recovery and end-to-end MVP acceptance."
     }
   ],
   "tasks": [
     {
       "key": "F01",
       "milestone": "M1",
-      "type": "discovery",
-      "title": "Collect representative AscendNPU-IR cases and required execution assets",
-      "scope": "Identify existing engineer-supplied kernels or IR fragments usable for feasibility experiments. Preserve provenance and restrictions; test-case generation is outside this task.",
+      "type": "integration",
+      "title": "Prepare AscendNPU-IR development fixtures and execution assets",
+      "scope": "Package existing engineer-supplied kernels or IR fragments for integration development and smoke tests.",
       "acceptance": [
-        "Document available code, enclosing context, inputs, reference results and harnesses.",
-        "Record missing assets, target configuration and hardware access.",
-        "Identify development cases; keep later evaluation cases distinct."
+        "Record original code, enclosing context, inputs, reference results and harness commands.",
+        "Record compiler/target versions, required access and missing execution assets.",
+        "Provide one documented fixture layout with reproducible setup instructions."
       ],
       "depends_on": [],
       "sources": [
-        "questions/H03 - What is new in our approach.md §2.1–2.2",
-        "questions/H08 - How will we check success.md"
+        "questions/H03 - What is new in our approach.md §2.1–2.2"
       ],
       "priority": "normal",
       "status": "planned",
-      "linear": null
+      "linear": {
+        "identifier": "ASC-5",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-5/prepare-ascendnpu-ir-development-fixtures-and-execution-assets"
+      }
     },
     {
       "key": "F02",
       "milestone": "M1",
-      "type": "discovery",
-      "title": "Investigate AscendNPU-IR compilation checkpoints and continuation",
-      "scope": "Establish which saved artifacts can actually re-enter compilation and what state and context are required. Inspect the compiler and perform reproducible probes.",
+      "type": "integration",
+      "title": "Verify AscendNPU-IR compilation entry and stopping points",
+      "scope": "Exercise the intended saved-IR input and continuation commands on a development fixture; document the integration contract.",
       "acceptance": [
-        "Record supported and unsupported entry/stop points with evidence.",
-        "Distinguish metric observation points from hard stopping boundaries.",
-        "Document required metadata, compiler version, target, harness and execution resources."
+        "Demonstrate the intended compiler entry point and required input state.",
+        "Record output checkpoints and hard stop boundaries with commands and diagnostics.",
+        "Record required metadata, compiler version, target and execution resources; report unsupported configurations."
       ],
       "depends_on": [
         "F01"
@@ -93,29 +93,36 @@
       ],
       "priority": "high",
       "status": "planned",
-      "linear": null
+      "linear": {
+        "identifier": "ASC-6",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-6/verify-ascendnpu-ir-compilation-entry-and-stopping-points"
+      }
     },
     {
       "key": "F03",
       "milestone": "M1",
-      "type": "discovery",
-      "title": "Select one compatible metric and checking route for the MVP",
-      "scope": "Investigate candidate metrics and correctness checks jointly with compilation feasibility. This task produces a documented selection; it does not assume LLVM tools apply to AscendNPU-IR.",
+      "type": "integration",
+      "title": "Configure the MVP compilation, validation and metric route",
+      "scope": "Encode the selected MVP compiler, checking process and metric as an executable configuration. Tool and metric selection remain external prerequisites until resolved; this task does not perform a comparative research study.",
       "acceptance": [
-        "Compare applicability, coverage, cost and supported claims of candidate metrics/checks.",
-        "Select one demonstrated start/outputs/check/metric configuration with its assumptions.",
-        "Record unsupported combinations and the hardware requirements; keep correctness and improvement evidence separate."
+        "Record the selected start/output checkpoints, checks, evaluator and their versions.",
+        "Provide commands, required inputs, environment bindings and hardware requirements for the route.",
+        "Verify joint compatibility and preserve separate correctness and improvement results; report unresolved selections as blockers."
       ],
       "depends_on": [
         "F02"
       ],
       "sources": [
+        "questions/H03 - What is new in our approach.md §2.4",
         "questions/Q06 - Metrics for assessing LLVM IR and MLIR improvements.md",
         "questions/Q08 - Compilation continuation and validation routes.md"
       ],
       "priority": "high",
       "status": "planned",
-      "linear": null
+      "linear": {
+        "identifier": "ASC-7",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-7/configure-the-mvp-compilation-validation-and-metric-route"
+      }
     },
     {
       "key": "F04",
@@ -136,30 +143,34 @@
       ],
       "priority": "high",
       "status": "planned",
-      "linear": null
+      "linear": {
+        "identifier": "ASC-8",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-8/demonstrate-a-reproducible-originalcandidate-comparison"
+      }
     },
     {
       "key": "F05",
       "milestone": "M1",
-      "type": "experiment",
-      "title": "Probe direct agent rewriting on real AscendNPU-IR examples",
-      "scope": "Try the minimal baseline: supplied IR/context, ordinary file reading/editing and independent comparison. Use results to assess useful-finding feasibility and bound MVP scope.",
+      "type": "integration",
+      "title": "Verify the agent harness can read and edit an AscendNPU-IR working copy",
+      "scope": "Exercise the selected agent backend with ordinary file reading/editing against one development fixture before implementing durable orchestration.",
       "acceptance": [
-        "Record the agent backend/profile and all submitted versions, including unsuccessful attempts.",
-        "Evaluate proposals through the F04 route and obtain engineer feedback on usefulness.",
-        "Document outcomes and a scope recommendation; no useful finding is assumed in advance."
+        "Document backend setup and record prompt/profile and model configuration.",
+        "Capture the edited file, framework-visible messages and tool results through the harness.",
+        "Submit the captured version to the F04 comparison route and document interface errors or unsupported capabilities."
       ],
       "depends_on": [
         "F04"
       ],
       "sources": [
-        "questions/H03 - What is new in our approach.md §2.2–2.3",
-        "questions/Q09 - Agent prompt construction and information delivery.md",
-        "questions/Q10 - Agent tools and editing constraints.md"
+        "questions/H03 - What is new in our approach.md §2.2–2.3"
       ],
       "priority": "high",
       "status": "planned",
-      "linear": null
+      "linear": {
+        "identifier": "ASC-9",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-9/verify-the-agent-harness-can-read-and-edit-an-ascendnpu-ir-working"
+      }
     },
     {
       "key": "F06",
@@ -178,7 +189,10 @@
       ],
       "priority": "normal",
       "status": "planned",
-      "linear": null
+      "linear": {
+        "identifier": "ASC-10",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-10/configure-python-315-development-tooling-and-package-setup"
+      }
     },
     {
       "key": "F07",
@@ -200,7 +214,10 @@
       ],
       "priority": "normal",
       "status": "planned",
-      "linear": null
+      "linear": {
+        "identifier": "ASC-11",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-11/implement-request-profile-and-outcome-data-contracts"
+      }
     },
     {
       "key": "F08",
@@ -221,7 +238,10 @@
       ],
       "priority": "normal",
       "status": "planned",
-      "linear": null
+      "linear": {
+        "identifier": "ASC-12",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-12/implement-immutable-input-snapshots-and-editing-scope-enforcement"
+      }
     },
     {
       "key": "F09",
@@ -242,7 +262,10 @@
       ],
       "priority": "normal",
       "status": "planned",
-      "linear": null
+      "linear": {
+        "identifier": "ASC-13",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-13/implement-durable-investigation-artifact-and-operation-storage"
+      }
     },
     {
       "key": "F10",
@@ -265,14 +288,17 @@
       ],
       "priority": "normal",
       "status": "planned",
-      "linear": null
+      "linear": {
+        "identifier": "ASC-14",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-14/implement-the-selected-compilation-runner"
+      }
     },
     {
       "key": "F11",
       "milestone": "M2",
       "type": "implementation",
       "title": "Implement the selected validation adapter",
-      "scope": "Execute the MVP checking policy and record exactly the behavior or invariants covered. Additional semantic checkers remain optional research unless selected through F03.",
+      "scope": "Execute the selected MVP checking policy and record the behavior or invariants covered.",
       "acceptance": [
         "Handle references, test material, tolerances, assumptions and environment requirements.",
         "Represent passed/failed/inconclusive/unsupported/error/not-performed outcomes independently.",
@@ -288,14 +314,17 @@
       ],
       "priority": "normal",
       "status": "planned",
-      "linear": null
+      "linear": {
+        "identifier": "ASC-15",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-15/implement-the-selected-validation-adapter"
+      }
     },
     {
       "key": "F12",
       "milestone": "M2",
       "type": "implementation",
       "title": "Implement the selected metric evaluator and comparison criterion",
-      "scope": "Assess corresponding original/candidate artifacts through the metric chosen in F03. Preserve its stage, coverage and interpretation.",
+      "scope": "Assess corresponding original/candidate artifacts through the metric configured in F03. Preserve its stage, coverage and interpretation.",
       "acceptance": [
         "Record evaluator version, units, raw values, conditions and any measurement protocol.",
         "Apply configured improvement direction and threshold.",
@@ -311,7 +340,10 @@
       ],
       "priority": "normal",
       "status": "planned",
-      "linear": null
+      "linear": {
+        "identifier": "ASC-16",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-16/implement-the-selected-metric-evaluator-and-comparison-criterion"
+      }
     },
     {
       "key": "F13",
@@ -334,14 +366,17 @@
       ],
       "priority": "normal",
       "status": "planned",
-      "linear": null
+      "linear": {
+        "identifier": "ASC-17",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-17/implement-the-shared-comparison-recipe-for-evaluation-and-replay"
+      }
     },
     {
       "key": "F14",
       "milestone": "M2",
       "type": "implementation",
       "title": "Implement the agent session and working-copy adapter",
-      "scope": "Integrate the backend selected through the feasibility experiment. Provide code/context and ordinary file editing without requiring a multi-agent architecture.",
+      "scope": "Integrate the backend exercised in F05. Provide prepared code/context and ordinary file editing through the selected harness.",
       "acceptance": [
         "Version prompts and record effective model/backend settings.",
         "Persist framework-visible conversation, tool results, candidate versions and optional agent notes.",
@@ -357,7 +392,10 @@
       ],
       "priority": "normal",
       "status": "planned",
-      "linear": null
+      "linear": {
+        "identifier": "ASC-18",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-18/implement-the-agent-session-and-working-copy-adapter"
+      }
     },
     {
       "key": "F15",
@@ -379,7 +417,10 @@
       ],
       "priority": "normal",
       "status": "planned",
-      "linear": null
+      "linear": {
+        "identifier": "ASC-19",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-19/implement-feedback-budget-enforcement-and-default-stopping"
+      }
     },
     {
       "key": "F16",
@@ -400,7 +441,10 @@
       ],
       "priority": "normal",
       "status": "planned",
-      "linear": null
+      "linear": {
+        "identifier": "ASC-20",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-20/expose-the-baseline-investigation-through-a-cli"
+      }
     },
     {
       "key": "F17",
@@ -422,7 +466,10 @@
       ],
       "priority": "high",
       "status": "planned",
-      "linear": null
+      "linear": {
+        "identifier": "ASC-21",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-21/export-runnable-finding-bundles-and-a-replay-command"
+      }
     },
     {
       "key": "F18",
@@ -444,7 +491,10 @@
       ],
       "priority": "high",
       "status": "planned",
-      "linear": null
+      "linear": {
+        "identifier": "ASC-22",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-22/implement-investigation-resume-and-interrupted-operation"
+      }
     },
     {
       "key": "F19",
@@ -466,7 +516,10 @@
       ],
       "priority": "high",
       "status": "planned",
-      "linear": null
+      "linear": {
+        "identifier": "ASC-23",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-23/verify-finding-replay-after-relocation"
+      }
     },
     {
       "key": "F20",
@@ -489,18 +542,21 @@
       ],
       "priority": "normal",
       "status": "planned",
-      "linear": null
+      "linear": {
+        "identifier": "ASC-24",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-24/verify-end-to-end-failure-handling-recovery-and-evidence-boundaries"
+      }
     },
     {
       "key": "F21",
       "milestone": "M3",
-      "type": "pilot",
-      "title": "Run the MVP engineer pilot and review a reproducible finding",
-      "scope": "Exercise the supported workflow on real AscendNPU-IR cases with an engineer. Useful findings are the primary outcome.",
+      "type": "verification",
+      "title": "Verify the complete MVP workflow on an AscendNPU-IR case",
+      "scope": "Run the supported engineer-supplied-input workflow using real development material and verify its technical acceptance requirements.",
       "acceptance": [
-        "Demonstrate a complete budgeted investigation, replay and resume.",
-        "Seek at least one finding an engineer considers worth investigating; record rejected/inconclusive outcomes as well.",
-        "Document the acceptance decision and remaining limitations without equating selected checks with a general proof."
+        "Run input preparation, agent editing, compilation, checks, metric comparison and feedback under configured limits.",
+        "Export and replay an eligible comparison; use a known qualifying fixture if the search produces none, clearly recording its provenance.",
+        "Interrupt and resume an investigation, then document executable setup/run/replay/resume instructions and remaining integration limitations."
       ],
       "depends_on": [
         "F05",
@@ -512,136 +568,11 @@
       ],
       "priority": "high",
       "status": "planned",
-      "linear": null
-    },
-    {
-      "key": "F22",
-      "milestone": "M4",
-      "type": "evaluation",
-      "title": "Finalize the evaluation corpus, review criteria and resource budgets",
-      "scope": "Resolve the open H08 choices before the main evaluation. Coordinate with relevant engineers and preserve separation from development/tuning cases.",
-      "acceptance": [
-        "Freeze evaluation cases, usefulness-review criteria, relevant limits and repeat protocol.",
-        "Define handling of duplicate, rejected, unsupported and inconclusive results.",
-        "Choose a comparable reference workflow if making expert-time-saving claims; otherwise retain that claim as unestablished."
-      ],
-      "depends_on": [
-        "F21"
-      ],
-      "sources": [
-        "questions/H08 - How will we check success.md"
-      ],
-      "priority": "normal",
-      "status": "planned",
-      "linear": null
-    },
-    {
-      "key": "F23",
-      "milestone": "M4",
-      "type": "evaluation",
-      "title": "Run and preserve the MVP baseline evaluation",
-      "scope": "Evaluate the fixed case collection under the F22 protocol, preserving all outcomes rather than only findings.",
-      "acceptance": [
-        "Record engineer-reviewed findings, correctness evidence, metric comparisons and replay outcomes.",
-        "Retain preparation/review effort, model use and host/device resource use.",
-        "Archive model/profile/compiler/evaluator versions and repeated-run results."
-      ],
-      "depends_on": [
-        "F22"
-      ],
-      "sources": [
-        "questions/H08 - How will we check success.md"
-      ],
-      "priority": "normal",
-      "status": "planned",
-      "linear": null
-    },
-    {
-      "key": "F24",
-      "milestone": "M4",
-      "type": "evaluation",
-      "title": "Report baseline finding usefulness, limitations and resource costs",
-      "scope": "Summarize the complete evaluation to support the decision about continued development.",
-      "acceptance": [
-        "Report useful output and rejected/duplicate/inconclusive outcomes across all selected cases.",
-        "Separate supported metric gains, engineer-assessed usefulness and demonstrated workload benefits.",
-        "Report expert effort and resource costs; any savings claim identifies its reference and evidence."
-      ],
-      "depends_on": [
-        "F23"
-      ],
-      "sources": [
-        "questions/H08 - How will we check success.md",
-        "questions/H06 - How much will it cost.md"
-      ],
-      "priority": "normal",
-      "status": "planned",
-      "linear": null
-    },
-    {
-      "key": "F25",
-      "milestone": "M5",
-      "type": "decision",
-      "title": "Select one evidence-led refinement and bound its scope",
-      "scope": "Use evaluation results and remaining capacity to choose one follow-on investigation. Candidate directions are not automatically selected by this backlog.",
-      "acceptance": [
-        "Record the observed limitation, proposed change and expected benefit.",
-        "Select one bounded area such as context, agent tools, discovery or feedback/search policy.",
-        "State required evidence and a comparison protocol against the unchanged MVP."
-      ],
-      "depends_on": [
-        "F24"
-      ],
-      "sources": [
-        "questions/H03 - What is new in our approach.md §5",
-        "questions/H07 - How long will it take.md"
-      ],
-      "priority": "normal",
-      "status": "planned",
-      "linear": null
-    },
-    {
-      "key": "F26",
-      "milestone": "M5",
-      "type": "implementation",
-      "title": "Implement the selected refinement",
-      "scope": "Implement only the refinement chosen in F25 while preserving the baseline for comparison.",
-      "acceptance": [
-        "Keep the changed feature identifiable and retain baseline configuration/artifacts.",
-        "Integrate with existing evidence, persistence and replay contracts.",
-        "Document any changed coverage, assumptions and added resource requirements."
-      ],
-      "depends_on": [
-        "F25"
-      ],
-      "sources": [
-        "questions/H07 - How long will it take.md"
-      ],
-      "priority": "low",
-      "status": "planned",
-      "linear": null
-    },
-    {
-      "key": "F27",
-      "milestone": "M5",
-      "type": "evaluation",
-      "title": "Compare the refinement with the MVP and recommend next steps",
-      "scope": "Run the agreed controlled comparison and report both gains and limitations.",
-      "acceptance": [
-        "Use the same evaluation cases with comparable model, checking, objective and resource settings except the studied change.",
-        "Repeat searches according to the agreed protocol and preserve all outcomes.",
-        "Report usefulness, coverage, cost and effort differences, then recommend whether and how to continue."
-      ],
-      "depends_on": [
-        "F23",
-        "F26"
-      ],
-      "sources": [
-        "questions/H08 - How will we check success.md"
-      ],
-      "priority": "normal",
-      "status": "planned",
-      "linear": null
+      "linear": {
+        "identifier": "ASC-25",
+        "url": "https://linear.app/ascendoptimizationfinder/issue/ASC-25/verify-the-complete-mvp-workflow-on-an-ascendnpu-ir-case"
+      }
     }
-  ]
+  ],
+  "scope": "Technical setup, implementation and engineering verification only. Research studies and pitch work are outside this backlog."
 }

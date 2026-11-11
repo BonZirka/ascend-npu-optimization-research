@@ -13,9 +13,9 @@ Use Python **3.15 or newer**. `.python-version` pins **3.15.2**, the latest stab
 - [Implementation tasks](planning/backlog.md)
 - [Machine-readable backlog](planning/backlog.json)
 
-The requested Linear workspace is **AscendOptimizationFinder**. Workspace creation and publication are pending authenticated access. No issues have been published to the unrelated connected workspace.
+[Linear implementation board](https://linear.app/ascendoptimizationfinder/project/ascend-optimization-finder-22c80a5e428f/issues) in **AscendOptimizationFinder** contains 21 technical issues across integration setup, baseline implementation and MVP verification. Each issue has completion criteria, prerequisite references and source sections. The local backlog records their identifiers and links. Research studies and pitch work are outside this board.
 
-The planning target is an MVP by the end of month 4 within a six-month overall horizon. The MVP uses engineer-supplied code, one demonstrated compilation route, one checking policy and one metric. Metric, checker, checkpoint and agent-backend choices remain open until the feasibility tasks establish them.
+The planning target is an MVP by the end of month 4 within a six-month overall horizon. The MVP uses engineer-supplied code, one demonstrated compilation route, one checking policy and one metric. Metric, checker, checkpoint and agent-backend choices remain open prerequisites; the corresponding integrations require those selections before completion.
 
 ## Research references
 

@@ -1,6 +1,6 @@
 # Technical deck authoring
 
-`technical-deck.mjs` builds the 20-slide technical revision with native PowerPoint text, shapes, connectors and tables through the Codex Artifact Tool. It retains speaker notes and source references. This is the source for `../ascend-optimization-technical.pptx`.
+`technical-deck.mjs` builds the 23-slide technical revision with native PowerPoint text, shapes, connectors and tables through the Codex Artifact Tool. It retains speaker notes and source references. This is the source for `../ascend-optimization-technical.pptx`.
 
 ## Dependencies
 

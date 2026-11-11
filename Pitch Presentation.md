@@ -2,9 +2,9 @@
 
 [Editable PowerPoint](output/ascend-optimization-pitch/ascend-optimization-technical.pptx) · [PDF export](output/ascend-optimization-pitch/ascend-optimization-technical.pdf)
 
-[[output/ascend-optimization-pitch/technical-outline|20-slide technical outline and research/source map]]
+[[output/ascend-optimization-pitch/technical-outline|23-slide technical outline and research/source map]]
 
-The technical revision states why compiler optimizations can be missed and distinguishes problem-triggered optimization epics from routine discovery. Research subjects include named starting points for agent harnesses, LLVM/MLIR validators and performance indicators, alongside dialect context, compilation routes, feedback, recovery and replay. Diagrams are editable reconstructions and adaptations of LPO/PRAGMA workflows, with explicit paper attribution and open Ascend integration questions. The primary target remains AscendNPU-IR. The problem-first narrative and A · Technical schematic visual direction are retained.
+The revision combines new optimization opportunities with pass placement / ordering experiments. It includes range and precision tracking, cross-pass semantic limits, named research starting points and a shared format for kernel/pipeline variants, evidence and LLM-produced reports. [Experiment records and continuation design](framework/planning/experiment-contract.md) specifies how unfinished work can continue in another compatible environment. These are proposed contracts with concrete integration and coverage still to establish. The primary target remains AscendNPU-IR and the problem-first narrative is retained.
 
 The original draft is preserved: [12-slide PowerPoint](output/ascend-optimization-pitch/ascend-optimization-pitch.pptx) · [PDF](output/ascend-optimization-pitch/ascend-optimization-pitch.pdf) · [[output/ascend-optimization-pitch/outline|original approved structure]]. [Style specimen](output/ascend-optimization-pitch/visual-directions.html).
 

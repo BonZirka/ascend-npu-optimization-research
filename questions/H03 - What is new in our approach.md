@@ -4,9 +4,11 @@
 
 **Status: working draft for review.** The sections separate the proposed capability, search flow, framework responsibilities, supporting evidence and open research agenda. The flow and responsibility split are proposals; unresolved design questions remain explicit.
 
+**Extension recorded 2026-11-11:** [[framework/planning/experiment-contract|Kernel/pipeline variants, common experiment records and continuation in another environment]] adds requirements from project-owner feedback. Schemas, supported pass edits and concrete environment bindings remain proposed.
+
 ## 1. Proposed contribution
 
-We propose an **LLM-assisted framework for investigating potential missed optimizations in AscendNPU-IR**. It would generate alternatives for selected code, coordinate checks and improvement comparisons, and use their results as feedback for further search.
+We propose an **LLM-assisted framework for investigating potential missed optimizations in AscendNPU-IR**. It would investigate alternatives for selected code and permitted pass-pipeline variants, coordinate checks and improvement comparisons, and use their results as feedback for further search.
 
 Compiler engineers could supply a kernel or IR fragment, specify a region to investigate, or ask the framework to identify promising regions in supplied code or a collection. Region discovery would support a configured default classifier set or a selected subset. Initial classifier coverage remains to be researched.
 
@@ -74,7 +76,7 @@ The checking policy selects and configures the validation process executed in **
 | Setting | What it specifies | Requirement |
 | --- | --- | --- |
 | Evaluator | The metric or cost-model implementation, its parameters, the code stage it consumes and the quantity/unit it reports. | Every investigation. |
-| Comparison baseline | The original artifact evaluated under the same compilation, target and evaluator settings as the alternative. Reusing recorded baseline results requires matching those settings and relevant inputs. | Every comparison. |
+| Comparison baseline | A fixed original kernel/pipeline combination with comparable target, workload, checks and evaluator settings. A pipeline study records its deliberate pass-sequence difference. Reuse requires compatible inputs, settings and environment conditions. | Every comparison. |
 | Improvement criterion | Whether lower or higher values are better, and the minimum absolute or relative change required to retain an improvement claim. | Every investigation. |
 | Measurement protocol | The execution workload, runner, warm-up count, repetition count and aggregation rule. A static evaluator instead uses its declared analysis inputs and parameters. | The objective uses runtime measurements. |
 
@@ -217,7 +219,7 @@ Execute the configured compilation, validation and improvement-assessment routes
 
 #### Compilation-runner contract
 
-One runner invocation compiles **one code version**. The framework invokes it for the original and candidate using the same resolved compilation configuration and corresponding build context.
+One runner invocation compiles **one code version with one recorded pipeline variant**. The default IR-only comparison uses the same resolved compilation configuration. In a pipeline study, baseline and candidate use their explicitly recorded pipeline variants with otherwise comparable compiler, target, workload and checking conditions. See [[framework/planning/experiment-contract|the experiment record and pipeline contract]].
 
 ##### Runner inputs
 
@@ -247,7 +249,7 @@ A timeout or unavailable compiler remains distinguishable from a compiler reject
 ##### Original/candidate orchestration
 
 1. Compile the original to establish a usable baseline.
-2. Compile the candidate using the same compiler, continuation pipeline, target and corresponding build context.
+2. Compile the candidate using its recorded pipeline variant. Hold the compiler, target and comparison context fixed unless a separately identified experiment deliberately changes them; record any intended pass-sequence difference.
 3. Retain both sets of artifacts for the selected validation process and evaluator.
 4. Retain failures and diagnostics for the feedback stage.
 
@@ -257,7 +259,7 @@ The original's compiled artifacts can be reused across candidates while their re
 
 ##### Shared execution recipe for evaluation and replay
 
-The framework records a versioned execution recipe for the original/candidate compilation, selected validation process and metric comparison, with the resolved settings, inputs and environment requirements. **The initial evaluation uses the same recipe and execution entry point later exported with the finding in section 2.6.** The recipe coordinates the individual runners; their invocation contracts remain unchanged.
+The framework records a versioned comparison recipe for the baseline and candidate kernel/pipeline combinations, selected validation process and metric comparison, with resolved settings, inputs and environment requirements. **The initial evaluation uses the same recipe and execution entry point later exported with the finding in section 2.6.** The recipe coordinates the individual runners; their invocation contracts remain unchanged.
 
 Store the recipe and the results of its initial execution with the candidate evidence. This makes the exported reproduction procedure an exercised part of evaluation. Replays use the saved original and candidate code and produce fresh results under the recorded conditions; they do not require the agent to rediscover the rewrite.
 
@@ -406,7 +408,7 @@ Continue the same agent conversation, supply structured results and artifact ref
 | Persisted state | Contents needed to resume |
 | --- | --- |
 | Investigation definition | Original snapshots and supplied context, resolved configuration/profile versions, editing scope and resource limits. |
-| Candidate history | Submitted file versions, parent relationships, diffs, agent-provided notes and the reference to the best eligible candidate. |
+| Candidate history | Kernel and pipeline variant IDs, submitted file versions, case/configuration IDs, parent relationships, diffs, agent-produced reports and the best eligible candidate. |
 | Operation ledger | Stable operation identifiers, inputs/configuration, pending/running/completed/failed/interrupted state, available external job/session identifiers and result/artifact references. |
 | Agent and feedback state | Framework-visible messages, tool interactions, feedback records and delivery state, plus any resumable session information supplied by the selected harness. |
 | Budget and progress | Completed work, scheduled/reserved work, known resource consumption, remaining limits and the next pending action. |
@@ -422,6 +424,10 @@ The recovery protocol is:
 An external operation may have completed before the framework saved its result. Reconcile it using recorded identifiers or retrievable outputs where possible. If its outcome cannot be established, record it as interrupted/unknown and apply an explicit retry rule to that operation, accounting for possible resource use. Completed persisted stages remain reusable; recovery does not depend on reproducing an interrupted model response exactly.
 
 Persist feedback before delivery and record available delivery/session receipts so recovery can establish which results the agent has already received. The persistent record remains sufficient to reconstruct a continuation if a live session is lost.
+
+#### Continuation across environments
+
+The persisted record must also support continuing an unfinished experiment in a different compatible testing environment. Resolve capabilities and external bindings, retain pending work, variant/trial identities, evidence, agent reports and spent/reserved budgets, then resume compatible operations automatically. Reuse requires explicit compatibility checks. Append new environment-specific results, and rerun paired measurements when hardware or measurement conditions differ. The common format and proposed interface are in [[framework/planning/experiment-contract|the experiment record and continuation design]]. This extends recovery beyond restarting on the original worker; it does not establish any concrete Ascend route.
 
 #### Further design and evaluation
 
@@ -446,7 +452,7 @@ Before marking the finding ready, verify that its case material, resolved recipe
 
 | Component | Contents |
 | --- | --- |
-| Identity | Stable finding, investigation, case and candidate identifiers, with links to the originating run and original evidence. |
+| Identity | Stable finding, experiment, trial, kernel/pipeline variant and case identifiers, linked to the originating execution, evidence and agent reports. |
 | Code | Original and rewritten artifacts, permitted editing scope and the framework-generated diff. |
 | Case material | Test inputs, expected results/reference behavior, harnesses and supporting context used by the selected process. Include supplied input-generation recipes, versions and seeds where those produced the recorded inputs. |
 | Resolved execution recipe | Compiler build, target, continuation pipeline, observation checkpoints, stopping boundaries, validation settings, metric configuration and comparison criteria. |

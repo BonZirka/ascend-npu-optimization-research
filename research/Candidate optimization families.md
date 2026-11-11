@@ -6,12 +6,13 @@
 
 | ID | Family | Concrete opportunity to investigate | Evidence and Ascend status |
 | --- | --- | --- | --- |
-| O01 | Arithmetic and clamp simplification | Remove a clamp whose effect is subsumed by later operations; simplify equivalent arithmetic/bitwise expressions. | LPO §4.3, case 2 provides a LLVM example. Ascend applicability untested. |
+| O01 | Value ranges and precision through conversions | Track ranges and precision after casts to expose simplifications and narrower representations; investigate when the facts are available to consuming passes. | Range/precision framing follows project-owner feedback. LPO §4.3, case 2 supplies an arithmetic example, not an Ascend diagnosis. |
 | O02 | Redundant predicates and selections | Remove explicit NaN sanitization before an ordered comparison when it cannot change that comparison's result. | LPO §4.3, case 3. Ascend applicability untested; exact comparison semantics matter. |
-| O03 | Memory-access combination | Replace adjacent narrow loads and value reconstruction with a legal wider load. | LPO §4.3, case 1. Requires bounds, alignment, endianness, memory-space and access-semantics checks. Ascend status unknown. |
+| O03 | Memory transformations and cross-pass definedness | Investigate access combination or movement only with covered bounds, alignment, effects and definedness assumptions through lowering and later passes. | LPO §4.3, case 1 motivates an example. Project-owner feedback flags the cross-pass UB complexity. Later scope until semantic coverage is established; no general UB planner is promised. |
 | O04 | Vectorization and instruction-form selection | Restructure a conditional vector path or expose a suitable target instruction. | PRAGMA §IV-D.2 reports a convolution trace involving vectorization and FMA. Kernel tuning evidence; an Ascend compiler gap is unestablished. FP contraction requires permission. |
 | O05 | Reduction organization | Change the organization or mapping of a reduction to use the target more effectively. | PRAGMA §IV-D.1 studies max reduction. Specific MLIR rewrites and Ascend mapping are still to be selected; numeric order and edge cases require checking. |
 | O06 | Redundant layout and representation changes | Eliminate an inverse conversion pair or retain a representation across compatible operations. | Our DL-compiler candidate, not established by these paper passages. Physical layout, aliasing and downstream consumers determine legality and benefit. Ascend status unknown. |
+| O07 | Pass placement and ordering | Move, repeat or configure an existing pass after enabling facts or forms appear; test pipeline-only and joint IR/pipeline alternatives. | Proposed direction from project-owner feedback, 2026-11-11. Pass prerequisites and complete-route behavior must be checked. |
 
 Sources: [LPO §4.3 / Figure 4](https://arxiv.org/html/2508.16125v2#S4.SS3), [PRAGMA §IV-D](https://arxiv.org/html/2511.06345v2#S4.SS4).
 Local paper records: [[papers/LPO]] and [[papers/PRAGMA]].
@@ -20,9 +21,9 @@ LPO supplies examples of missed LLVM rewrites. PRAGMA supplies kernel-improvemen
 
 ## Short pitch wording
 
-> We will investigate candidate missed optimizations in local arithmetic and predicate simplification, memory-access combination, vectorization, reduction organization and layout conversion. The framework will test whether alternative MLIR produces a useful improvement through the same compilation route and target configuration.
+> We will investigate value ranges and precision through casts, predicates, vectorization, reductions and layout changes, together with pass placement and ordering. Candidate kernel/pipeline combinations are compared against a fixed recorded baseline. Memory transformations remain a later cross-pass semantics study until checking coverage is available.
 
-The shortlist can narrow with engineer input and integration evidence. Listing a family does not promise complete coverage.
+The shortlist can narrow with engineer input and integration evidence. Listing a family does not promise complete coverage. The issue is current matching behavior, implemented transformations and pipeline placement, not an inherent inability of pattern-based optimizers.
 
 ## An illustrative MLIR case
 
@@ -57,9 +58,9 @@ LPO §4.3 also records reports declined because a backend handled them, another 
 
 ## What each catalog entry needs
 
-- Original/candidate MLIR, source provenance and compiler revision.
+- Kernel variant, pipeline variant, case and trial identities; original/candidate MLIR, source provenance and compiler revision.
 - Required conditions: types/shapes/layouts, aliasing/effects, numeric semantics and target assumptions.
-- Relevant pipeline checkpoint, dialect/operation coverage and continuation path.
+- Baseline and candidate pipeline variants, exact pass sequences/options, checkpoints, dialect/operation coverage and continuation paths.
 - Selected correctness evidence and improvement metric.
 - Whether a difference survives later compilation.
 - Ascend status: engineer-reported, tested, handled already, unconfirmed or unsupported.
@@ -67,3 +68,5 @@ LPO §4.3 also records reports declined because a backend handled them, another 
 
 Scoping task: [ASC-44](https://linear.app/ascendoptimizationfinder/issue/ASC-44/classify-candidate-missed-optimizations-and-select-representative-mlir).
 Related: [[questions/Q07 - Initial classifiers and code classification scheme]].
+
+Record combinations, evidence, reports and environment continuation through [[framework/planning/experiment-contract|the common experiment contract]].

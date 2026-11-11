@@ -3,8 +3,8 @@
 **Status:** draft for outline approval. No visual style, image backend or sample slide has been approved.
 **Language:** English. **Format:** 16:9. **Length:** 12 slides.
 **Audience:** AscendNPU-IR compiler stakeholders, technical leads and potential internal collaborators.
-**Purpose:** explain and justify a bounded experiment in finding useful, reproducible compiler optimization opportunities with less expert investigation effort.
-**Source baseline:** research-vault drafts and candidate-family catalog at Git commit `43fbc4c`, plus the user's clarifications in this chat.
+**Purpose:** establish the performance problem, current practice and investigation gap before proposing a framework; then explain its goals, approach, constraints, MVP, risks and evaluation.
+**Source baseline:** research-vault drafts and candidate-family catalog, plus the user's requested problem-first pitch sequence. No new evidence is established by this presentation draft.
 **Evidence status:** framework design proposed; Ascend route, finding yield and effort savings unestablished.
 
 This is a content and visual storyboard. Bullet text is proposed on-slide copy; visual descriptions are production instructions, not extra slide text. Source links and evidence boundaries guide later notes and QA.
@@ -22,50 +22,39 @@ The codex-ppt outline gate is pending. This iteration creates only the outline.
 
 ## Narrative and Heilmeier mapping
 
-| Slides | Question | Intended takeaway |
+The narrative follows the user's requested pitch sequence. The problem, existing approaches and investigation gap come first. The proposed framework is introduced on slide 4; architecture follows the goals.
+
+| Slides | Narrative role | Heilmeier basis |
 | --- | --- | --- |
-| 1–2 | H01 / H04 | The desired outcome and intended customer, developer and technical value. |
-| 3 | H02 | The partial account of current practice and what still needs confirmation. |
-| 4–8 | H03 | A concrete proposed framework, candidate search scope, MLIR example, finding contract and supporting methods. |
-| 9 | H05 | The two primary uncertainties and the other risks to manage. |
-| 10 | H06 / H07 | Resource categories and the relative development stages; MVP by month 4. |
-| 11 | H08 | How useful findings, replay and costs will be assessed. |
-| 12 | Decision / next step | Establish one feasible Ascend route and run the bounded experiment. |
+| 1 | Performance and optimization problem | H01 motivation |
+| 2 | Existing approaches in AscendNPU-IR | H02 |
+| 3 | Repeated investigation work and the gap to structure | H02; H01 developer value |
+| 4 | Proposed solution in two sentences | H01; H03 |
+| 5 | Large goals and questions to resolve | H03; H08 |
+| 6–8 | How: framework, search families and an MLIR rewrite | H03; candidate-family catalog; LPO/PRAGMA |
+| 9 | Scope, semantic, evidence and resource constraints | H03; Q06; Q08 |
+| 10 | MVP, stages and required support | H06; H07 |
+| 11 | Risks | H05 |
+| 12 | Success evaluation | H08 |
 
-## Slide 1 — Finding missed optimizations in AscendNPU-IR
+## Slide 1 — Optimized kernels can still contain avoidable work
 
-**Role:** cover and proposition.
-**Intent:** state the concrete target and experimental objective immediately.
-
-**Proposed on-slide copy:**
-
-- An LLM-assisted framework for investigating alternative MLIR rewrites.
-- Produce useful findings that compiler engineers can reproduce and assess.
-- Test whether offloading repeated investigation work reduces expert effort.
-
-**Visual:** a simple original-MLIR → candidate-MLIR → runnable-finding motif. Show an explicit “Experimental project” label. No performance numbers.
-**Evidence boundary:** this is the proposed outcome, not an existing product or demonstrated saving.
-**Sources:** H01; H03 §1.
-**Required source images:** none.
-
-## Slide 2 — Make useful kernel improvements more consistent
-
-**Role:** value explanation.
-**Intent:** connect engineering work to NPU customers without promising a wider set of optimizations or a measured delivery benefit.
+**Role:** problem statement.
+**Intent:** establish the performance and optimization problem before introducing any solution.
 
 **Proposed on-slide copy:**
 
-- **NPU customers:** aim for more consistent delivery of useful kernel improvements.
-- **Compiler engineers:** reduce the work needed to construct alternatives, run comparisons and package evidence.
-- **Technical opportunity:** make optimization investigations repeatable and reusable.
-- **Hypothesis to test:** useful findings justify their preparation, checking and review costs.
+- Successful compilation and enabled optimizations do not guarantee efficient generated code.
+- Avoidable operations, memory traffic or unsuitable execution patterns can remain.
+- Finding a worthwhile improvement requires identifying the opportunity and establishing that an alternative helps.
+- NPU customers ultimately experience the efficiency of the kernels they run.
 
-**Visual:** a three-level chain: repeatable investigations → engineer-assessed compiler opportunities → intended benefits in deployed kernels. Distinguish immediate framework output from downstream compiler/product work.
-**Evidence boundary:** customers see the effects of later integrations; engineers use the framework. The intended customer effect remains downstream and unmeasured.
-**Sources:** H01; H04 cross-reference; H03 §4.
+**Visual:** a kernel-execution schematic with three potential sources of inefficiency: computation, data movement and execution organization. Show the workload/customer consequence, without performance numbers. No framework, LLM, candidate-generation loop or proposed solution appears on this slide.
+**Evidence boundary:** this states the problem class. It does not attribute every kernel bottleneck to the compiler or claim a measured Ascend defect.
+**Sources:** H01; candidate-family catalog; LPO and PRAGMA problem statements.
 **Required source images:** none.
 
-## Slide 3 — [REWORK] How optimization opportunities reach engineers today
+## Slide 2 — [REWORK] How optimization opportunities reach engineers today
 
 **Role:** current-practice context.
 **Intent:** preserve the partial account and its uncertainty rather than imply that the team lacks effective optimization work.
@@ -82,7 +71,58 @@ The codex-ppt outline gate is pending. This iteration creates only the outline.
 **Sources:** H02; Q02–Q04.
 **Required source images:** none.
 
-## Slide 4 — A framework coordinates the investigation
+## Slide 3 — Repeated investigations consume scarce engineer time
+
+**Role:** gap between current practice and a reusable investigation process.
+**Intent:** explain the work the project targets before naming the proposed solution.
+
+**Proposed on-slide copy:**
+
+- A slow case or optimization task still needs concrete alternatives to investigate.
+- Engineers choose transformations, coordinate checks and interpret comparisons.
+- Candidate construction, repeated execution and evidence preparation consume investigation time.
+- The gap to establish is how much of this work can be organized and reused across cases.
+
+**Visual:** a task/ticket enters a case-specific investigation. Show repeated activities around the engineer: construct an alternative, prepare/check the case, compare results, retain evidence. Highlight the repeated coordination effort. Do not draw the proposed framework yet.
+**Evidence boundary:** the user identifies engineer-led, case-specific search as the target gap. H02 has not established the extent of existing automation or reusable infrastructure. Present that boundary as a small “Existing reuse/automation to confirm” annotation; do not claim the whole team's work is unstructured.
+**Sources:** H01 developer value; H02 investigation notes and Q03–Q04; H03 §4.
+**Required source images:** none.
+
+## Slide 4 — Build a framework for reproducible optimization discovery
+
+**Role:** proposed solution in two sentences.
+**Intent:** name the target once the problem, current practice and gap have been established.
+
+**Proposed on-slide copy:**
+
+> Develop a framework that uses LLM-proposed MLIR rewrites, compilation, correctness checks and improvement comparisons to produce reproducible optimization findings for AscendNPU-IR.
+>
+> Offload repeated investigation work so compiler experts can focus on assessing useful opportunities.
+
+**Visual:** one simple transformation: supplied MLIR → investigation framework → reproducible finding. Keep component architecture for slide 6.
+**Evidence boundary:** intended capability and benefit, not an implemented system or demonstrated saving. This is the first slide to introduce the proposed framework and LLM role.
+**Sources:** H01; H03 §1 and §4.
+**Required source images:** none.
+
+## Slide 5 — Five goals shape the experiment
+
+**Role:** large work packages and questions.
+**Intent:** state what the experiment must achieve and resolve before explaining the implementation.
+
+**Proposed on-slide copy:**
+
+- **Useful opportunities:** which transformation families yield findings worth an engineer's attention?
+- **Dialect support:** deliver the AscendNPU-IR semantics and examples the agent needs to rewrite supported code.
+- **Credible comparisons:** establish a compatible compilation route, checking policy and improvement metric.
+- **Repeatable execution:** preserve attempts, budgets and evidence; support recovery and finding replay.
+- **Demonstrated value:** assess finding usefulness and the expert/resource cost of obtaining it.
+
+**Visual:** five goal cards, each linked to an observable output: scoped cases, dialect reference pack, exercised comparison route, runnable finding and evaluation record. Keep implementation components out of this goal overview.
+**Evidence boundary:** these are goals and open questions. No particular metric, checker, backend or full classifier set is selected.
+**Sources:** H03; H08; ASC-43; ASC-44.
+**Required source images:** none.
+
+## Slide 6 — A framework coordinates the investigation
 
 **Role:** architecture.
 **Intent:** make the system responsibilities concrete, with agent editing as one component.
@@ -94,12 +134,12 @@ The codex-ppt outline gate is pending. This iteration creates only the outline.
 - **Execution:** compiler continuation, correctness checks and the selected metric.
 - **Durable evidence:** every attempt, feedback, budget state, recovery and finding replay.
 
-**Visual:** one enclosing framework boundary. Show original snapshots and context entering the agent workspace; candidate snapshots join the unchanged original at the execution layer. Separate validation and metric outputs feed structured feedback back to the agent. Place the operation/artifact store under every stage, not only at the end.
+**Visual:** one enclosing framework boundary. At its output, show a small finding-bundle mockup with original/candidate code, conditions, check results, metric evidence and replay entry point; use field names rather than invented results. Show original snapshots and context entering the agent workspace; candidate snapshots join the unchanged original at the execution layer. Separate validation and metric outputs feed structured feedback back to the agent. Place the operation/artifact store under every stage, not only at the end.
 **Evidence boundary:** one proposed baseline agent session; backend, storage and concrete Ascend integration are unselected. No automatic compiler-pass implementation.
-**Sources:** H03 §§2.1–2.6; ASC-43.
+**Sources:** H03 §§2.1–2.6; ASC-43. LPO §3.3 and PRAGMA §III motivate independently checked rewrites and feedback; concrete Ascend support remains open.
 **Required source images:** none.
 
-## Slide 5 — Search for specific transformation families
+## Slide 7 — Search for specific transformation families
 
 **Role:** scope classification.
 **Intent:** give the audience recognizable search targets without claiming confirmed Ascend defects.
@@ -113,10 +153,11 @@ The codex-ppt outline gate is pending. This iteration creates only the outline.
 
 **Visual:** six compact family cards, retaining catalog identifiers O01–O06. Give each a very small structural before/after sketch rather than a generic icon. Use a clear provenance marker: “LPO: LLVM cases,” “PRAGMA: kernel cases,” or “Our candidate.”
 **Evidence boundary:** LPO motivates O01–O03; PRAGMA motivates O04–O05 at kernel level; O06 is our hypothesis. Applicability and benefit in Ascend remain open. Simple loop fusion is only an explanatory example; the project owner expects it to work already.
+**Visible source labels:** LPO — arXiv:2508.16125v2; PRAGMA — arXiv:2511.06345v2. Full references are below.
 **Sources:** [candidate-family catalog](../../research/Candidate%20optimization%20families.md); LPO §4.3 / Figure 4; PRAGMA §IV-D.
 **Required source images:** none.
 
-## Slide 6 — An MLIR rewrite can remove redundant work
+## Slide 8 — An MLIR rewrite can remove redundant work
 
 **Role:** code case study.
 **Intent:** show an actual rewrite with a short, understandable semantic explanation.
@@ -151,47 +192,41 @@ Candidate:
 **Sources:** catalog; LPO §4.3, case 3 / Figure 4(c),(f).
 **Required source images:** none.
 
-## Slide 7 — Return a runnable comparison
+## Slide 9 — Bound the search and the claims
 
-**Role:** output demonstration and evidence contract.
-**Intent:** make the finding tangible and explain what makes it worth reviewing.
+**Role:** constraints.
+**Intent:** state operating boundaries separately from goals, deliverables and risks.
 
 **Proposed on-slide copy:**
 
-- Saved original/candidate MLIR, change record and applicable conditions.
-- Compiler route, selected checks and independent metric results.
-- One entry point to rerun the comparison in its declared environment.
-- A visible record of coverage, assumptions and unresolved outcomes.
+- **Scope:** selected AscendNPU-IR checkpoints and operations, explicit editing boundaries and retained context.
+- **Semantics:** preserve required behavior; record aliasing, numerical and target assumptions.
+- **Evidence:** use a jointly supported compilation/checking/metric route; report its coverage.
+- **Resources:** enforce model, compilation and execution limits, including NPU use where required.
 
-**Visual:** a finding-report mockup linked to a compilation diagram. Both variants follow the same configured pipeline and target. Validation and metric assessment are separate branches, potentially consuming different checkpoints. The mockup uses “pending,” “not measured” or field names instead of fabricated results. Label any replay command as a proposed interface.
-**Evidence boundary:** a static metric can be used without claiming runtime speedup. Avoiding timing does not itself remove hardware requirements for validation. Checks establish only their declared coverage.
-**Sources:** H03 §§2.4–2.6; Q06; Q08.
+**Visual:** a bounded experiment envelope around an original/candidate comparison. Show configurable scope, checking, objective and resource profiles as inputs. A two-branch evidence diagram distinguishes correctness checking from improvement assessment.
+**Evidence boundary:** time is one possible metric, not a fixed requirement. A cheaper static indicator does not establish runtime speedup; avoiding timing does not establish device-free validation. Automatic compiler-pass writing and testcase generation remain later work.
+**Sources:** H03 §§2.1, 2.3–2.5; Q06; Q08.
 **Required source images:** none.
 
-## Slide 8 — Reuse methods from LPO and PRAGMA
+## Slide 10 — A focused MVP by month 4
 
-**Role:** related work and basis for confidence.
-**Intent:** explain why the experiment is worth trying and identify the target-specific work that remains.
+**Role:** MVP scope, staged implementation and resources.
+**Intent:** define the initial deliverable after the goals, mechanism and constraints are understood.
 
 **Proposed on-slide copy:**
 
-- **LPO:** local IR alternatives, independent checking and diagnostic feedback.
-- **PRAGMA:** profiling-informed refinement and variant-specific history.
-- **Ascend work:** dialect knowledge, compatible compilation/checking routes and a meaningful metric.
-- **Our evaluation:** useful findings and the total effort/resource cost of obtaining them.
+- Engineer-supplied MLIR at one supported checkpoint, with an explicit editing scope.
+- An agent that receives versioned dialect references, edits a copy and uses checking/comparison feedback.
+- One exercised compilation route, checking policy and improvement metric.
+- Persistent investigation state, interruption recovery and runnable finding replay.
 
-**Visual:** two source cards feed a proposed Ascend framework card. Each source card separates “method to examine” from “target assumptions.” Introduce Alive2 only inside the LPO card, labeled “LLVM refinement checker”; no arrow implies that it supports Ascend dialects. Profiling and multiple agents remain optional adaptations.
+**Visual:** a bounded MVP box above a relative timeline: month 1 feasibility; months 2–3 baseline; month 4 MVP; month 5 evaluation; month 6 one selected refinement. A small resource band lists one developer, part-time compiler expertise, model/host resources and NPU access as required. No monetary amounts or calendar dates.
+**Evidence boundary:** month 4 is a planning target conditional on access and route feasibility. Advanced classifiers, richer agent tools and broader coverage remain optional refinements. Baseline dialect knowledge delivery is required, not deferred.
+**Sources:** H06; H07; ASC-43; engineering backlog.
+**Required source images:** none.
 
-**Visible references:**
-
-- Xu et al., *LPO: Discovering Missed Peephole Optimizations with Large Language Models*, ASPLOS 2026. [arXiv:2508.16125v2](https://arxiv.org/abs/2508.16125v2).
-- Lei et al., *PRAGMA: A Profiling-Reasoned Multi-Agent Framework for Automatic Kernel Optimization*, 2025 preprint. [arXiv:2511.06345v2](https://arxiv.org/abs/2511.06345v2).
-
-**Evidence boundary:** neither paper establishes Ascend applicability or our proposed expert-effort saving. Do not transfer CPU/GPU speedups to this proposal.
-**Sources:** local LPO and PRAGMA notes; H03 §4.
-**Required source images:** none. Original explanatory diagrams will be generated; no paper figure is a strict input asset.
-
-## Slide 9 — Two uncertainties determine feasibility
+## Slide 11 — Two uncertainties determine feasibility
 
 **Role:** risks.
 **Intent:** foreground the project's primary concerns and keep the remaining risks visible.
@@ -208,24 +243,7 @@ Candidate:
 **Sources:** H05; Q06; Q08.
 **Required source images:** none.
 
-## Slide 10 — Deliver an MVP by month 4
-
-**Role:** staged plan and resource outline.
-**Intent:** give a bounded sequence and make the required support concrete without inventing a budget.
-
-**Proposed on-slide copy:**
-
-- **Month 1:** establish one feasible route and try direct agent rewrites.
-- **Months 2–3:** implement the baseline, including dialect references and persistent state.
-- **Month 4:** complete replay, recovery and MVP acceptance.
-- **Months 5–6:** evaluate the baseline, then implement and compare one selected refinement.
-
-**Visual:** a relative timeline with a prominent month-4 MVP marker. A small resource band lists one developer, part-time compiler expertise, model/host resources and NPU access where required. No calendar dates or monetary amounts.
-**Evidence boundary:** this is a planning target conditional on access and integration feasibility. Dialect knowledge delivery is part of MVP; optional classifiers, richer context and extra tools are not prerequisites for the baseline.
-**Sources:** H06; H07; ASC-43; engineering backlog.
-**Required source images:** none.
-
-## Slide 11 — Judge success by useful, replayable findings
+## Slide 12 — Judge success by useful, replayable findings
 
 **Role:** evaluation methodology.
 **Intent:** define observations that could support a decision rather than list generic progress signals.
@@ -240,23 +258,6 @@ Candidate:
 **Visual:** a protocol diagram with separate development and evaluation case sets. Every evaluation case enters an outcome ledger; retained findings link to review and replay. A compact evidence panel separates finding usefulness from expert-effort savings.
 **Evidence boundary:** at least one useful reproducible real-case finding is a proposed MVP target, not an achieved result. Expert-time-saving claims need a comparable reference workflow. Case count, budgets, repeat count and that reference remain to be established.
 **Sources:** H08; ASC-33; ASC-39; ASC-40.
-**Required source images:** none.
-
-## Slide 12 — Begin with one supported Ascend route
-
-**Role:** closing proposal and next step.
-**Intent:** end with an explicit, reviewable experiment rather than a broad platform promise.
-
-**Proposed on-slide copy:**
-
-- Supply representative AscendNPU-IR cases, semantic references and compiler access.
-- Establish one checkpoint, checking policy and improvement metric.
-- Run bounded rewrite investigations and retain reproducible evidence.
-- Use finding quality, integration effort and measured cost to decide the next step.
-
-**Visual:** a compact experiment charter: “Inputs and access” → “Bounded pilot” → “Evidence for continuation.” Include the intended customer effect as a small closing line: “More consistent delivery of useful kernel improvements.”
-**Evidence boundary:** kernel integration and writing/fixing optimization passes remain subsequent work. No broad portability promise, fixed speedup, guaranteed finding yield or guaranteed expert-effort saving.
-**Sources:** H01; H03; H06–H08.
 **Required source images:** none.
 
 ## Source index
@@ -275,10 +276,17 @@ Candidate:
 - [Engineering backlog](../../framework/planning/backlog.md)
 - [Research backlog](../../framework/planning/research-backlog.md)
 
+## Paper references for slides 6–8
+
+- Xu et al., *LPO: Discovering Missed Peephole Optimizations with Large Language Models*, ASPLOS 2026. [arXiv:2508.16125v2](https://arxiv.org/abs/2508.16125v2). Reuse candidates: local IR rewrites, independent checking and diagnostic feedback. Alive2 belongs to the LLVM reference workflow; Ascend compatibility is unestablished.
+- Lei et al., *PRAGMA: A Profiling-Reasoned Multi-Agent Framework for Automatic Kernel Optimization*, 2025 preprint. [arXiv:2511.06345v2](https://arxiv.org/abs/2511.06345v2). Reuse candidates: profiling-informed refinement and variant history. Profiling, multiple agents and reported CPU/GPU speedups are not adopted Ascend results.
+
+These motivate the approach and examples. They do not establish Ascend finding yield or expert-effort savings. Use compact citations on the relevant slides; preserve the full references in the outline and later presenter notes.
+
 ## Image inputs and approval state
 
 - Required source images: **none**.
 - All proposed visualizations are explanatory compositions built from the source content. No measured chart is proposed.
-- The code on slide 6 is an exact content constraint, not an image input.
+- The code on slide 8 is an exact content constraint, not an image input.
 - No images have been generated and no PPTX has been assembled.
 - **Awaiting:** approval or revision of this 12-slide narrative. Visual style, image backend and one sample slide follow in that order under the codex-ppt workflow.

@@ -63,9 +63,9 @@ The narrative follows the user's requested pitch sequence. The problem, existing
 - Nightly performance regression testing helps keep regressions out of upstream.
 - Performance tickets, kernel-specific tasks and optimization epics trigger investigations.
 - Engineers inspect generated code and use available profiling/checking tools.
-- To my knowledge, no proactive search for missed optimizations is currently performed in the project.
+- No proactive search for missed optimizations is currently performed in the project. (To my knowledge)
 
-**Visual:** observed entry points converging on an engineer investigation, beside an unfilled “Proactive opportunity search” lane. Keep “To my knowledge” visibly attached to the absence claim. Cross-accelerator comparisons may appear as a dashed, unconfirmed task source.
+**Visual:** observed entry points converging on an engineer investigation, beside an unfilled “Proactive opportunity search” lane. Present the absence claim as the main statement, with “(To my knowledge)” as a parenthetical qualification in this early draft. Cross-accelerator comparisons may appear as a dashed, unconfirmed task source.
 **Evidence boundary:** the absence of proactive search is the presenter's current understanding, not a confirmed team-wide finding. Preserve that qualification in this early pitch. Task selection and existing tools still need clarification. Keep “[REWORK]” in this draft slide's title.
 **Sources:** H02; Q02–Q04.
 **Required source images:** none.

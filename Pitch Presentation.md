@@ -1,3 +1,9 @@
+## Presentation draft
+
+[[output/ascend-optimization-pitch/outline|12-slide pitch outline — awaiting approval]]
+
+English content and visual storyboard prepared with codex-ppt. Outline approval precedes visual style, backend selection and sample-slide generation.
+
 - [[questions/H01 - What are we trying to do]]
 - [[questions/H02 - How is it done today]]
 - [[questions/H03 - What is new in our approach]]

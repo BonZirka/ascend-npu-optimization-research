@@ -12,13 +12,12 @@ This is a content and visual storyboard. Bullet text is proposed on-slide copy; 
 ## Progress
 
 - [x] User approved the 12-slide structure.
-- [x] User selected A · Technical schematic. [Approved style specimen](visual-directions.html)
-- [ ] **Active** — Confirm the built-in image generator for the slide 8 sample.
-- [ ] Generate and approve one representative sample slide.
-- [ ] Prepare slide jobs and recorded state.
-- [ ] Dispatch remaining slide-generation workers.
-- [ ] Record and inspect generated slide results.
-- [ ] Finish QA, presenter notes and PPTX assembly.
+- [x] User selected A · Technical schematic.
+- [x] User requested editable PowerPoint objects with a PDF exported from the PPTX.
+- [x] Built the 12-slide draft with native text, tables and diagram connectors.
+- [x] Exported the PDF from the PPTX and reviewed all 12 rendered pages.
+
+The deck is ready for content and visual review. Presenter notes include source references and the experimental assumptions behind each slide.
 
 ## Approved visual direction
 
@@ -120,7 +119,7 @@ The narrative follows the user's requested pitch sequence. The problem, existing
 - **Repeatable execution:** preserve attempts, budgets and evidence; support recovery and finding replay.
 - **Demonstrated value:** assess finding usefulness and the expert/resource cost of obtaining it.
 
-**Visual:** five goal cards, each linked to an observable output: scoped cases, dialect reference pack, exercised comparison route, runnable finding and evaluation record. Keep implementation components out of this goal overview.
+**Visual:** an editable two-column table pairs each goal with the question the experiment must answer.
 **Evidence boundary:** these are goals and open questions. No particular metric, checker, backend or full classifier set is selected.
 **Sources:** H03; H08; ASC-43; ASC-44.
 **Required source images:** none.
@@ -154,7 +153,7 @@ The narrative follows the user's requested pitch sequence. The problem, existing
 - **Target use:** vectorization/instruction forms; reduction organization.
 - **Representation:** unnecessary layout or conversion sequences.
 
-**Visual:** six compact family cards, retaining catalog identifiers O01–O06. Give each a very small structural before/after sketch rather than a generic icon. Use a clear provenance marker: “LPO: LLVM cases,” “PRAGMA: kernel cases,” or “Our candidate.”
+**Visual:** an editable table lists six families, a short example for each and its evidence basis. The source column identifies LPO LLVM cases, PRAGMA kernel examples and the additional project candidate.
 **Evidence boundary:** LPO motivates O01–O03; PRAGMA motivates O04–O05 at kernel level; O06 is our hypothesis. Applicability and benefit in Ascend remain open. Simple loop fusion is only an explanatory example; the project owner expects it to work already.
 **Visible source labels:** LPO — arXiv:2508.16125v2; PRAGMA — arXiv:2511.06345v2. Full references are below.
 **Sources:** [candidate-family catalog](../../research/Candidate%20optimization%20families.md); LPO §4.3 / Figure 4; PRAGMA §IV-D.
@@ -286,10 +285,9 @@ Candidate:
 
 These motivate the approach and examples. They do not establish Ascend finding yield or expert-effort savings. Use compact citations on the relevant slides; preserve the full references in the outline and later presenter notes.
 
-## Image inputs and approval state
+## Editable deliverables
 
-- Required source images: **none**.
-- All proposed visualizations are explanatory compositions built from the source content. No measured chart is proposed.
-- The code on slide 8 is an exact content constraint, not an image input.
-- No images have been generated and no PPTX has been assembled.
-- The proposed image backend is the built-in image generator. Backend confirmation precedes generation of the slide 8 sample.
+- [PowerPoint draft](ascend-optimization-pitch.pptx)
+- [PDF exported from the PowerPoint](ascend-optimization-pitch.pdf)
+
+The authoring format follows the user's request for editable slides. Text, MLIR code, tables and diagram connectors are native PowerPoint objects. The deck uses Arial and Courier New in the approved near-white, navy, blue and amber palette. The PDF was exported through LibreOffice, with sans serif and monospace font substitutions embedded in the output.

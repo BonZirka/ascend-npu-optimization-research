@@ -1,5 +1,7 @@
 ## Presentation draft
 
+[Editable PowerPoint](output/ascend-optimization-pitch/ascend-optimization-pitch.pptx) · [PDF export](output/ascend-optimization-pitch/ascend-optimization-pitch.pdf)
+
 [[output/ascend-optimization-pitch/outline|Approved 12-slide structure]]
 
 English content and visual storyboard prepared with codex-ppt. Sequence: problem → existing approaches → investigation gap → proposed framework → goals → approach → constraints → MVP → risks → success evaluation. The approved deck style is A · Technical schematic. [Style specimen](output/ascend-optimization-pitch/visual-directions.html).

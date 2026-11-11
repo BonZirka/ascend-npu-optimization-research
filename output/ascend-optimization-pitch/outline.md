@@ -1,6 +1,6 @@
 # Ascend Optimization Finder — presentation outline
 
-**Status:** draft for outline approval. No visual style, image backend or sample slide has been approved.
+**Status** — The 12-slide structure is approved. Visual direction is under review.
 **Language:** English. **Format:** 16:9. **Length:** 12 slides.
 **Audience:** AscendNPU-IR compiler stakeholders, technical leads and potential internal collaborators.
 **Purpose:** establish the performance problem, current practice and investigation gap before proposing a framework; then explain its goals, approach, constraints, MVP, risks and evaluation.
@@ -11,14 +11,16 @@ This is a content and visual storyboard. Bullet text is proposed on-slide copy; 
 
 ## Progress
 
-- [ ] **Active:** prepare and approve the outline; then confirm visual style and image backend.
+- [x] User approved the 12-slide structure.
+- [ ] **Active** — Choose the visual direction. [Compare two designs](visual-directions.html)
+- [ ] Confirm the image backend.
 - [ ] Generate and approve one representative sample slide.
 - [ ] Prepare slide jobs and recorded state.
 - [ ] Dispatch remaining slide-generation workers.
 - [ ] Record and inspect generated slide results.
 - [ ] Finish QA, presenter notes and PPTX assembly.
 
-The codex-ppt outline gate is pending. This iteration creates only the outline.
+Proposed sample: slide 8. Its MLIR tests code legibility and makes an incorrect glyph or line break easy to spot.
 
 ## Narrative and Heilmeier mapping
 
@@ -288,4 +290,4 @@ These motivate the approach and examples. They do not establish Ascend finding y
 - All proposed visualizations are explanatory compositions built from the source content. No measured chart is proposed.
 - The code on slide 8 is an exact content constraint, not an image input.
 - No images have been generated and no PPTX has been assembled.
-- **Awaiting:** approval or revision of this 12-slide narrative. Visual style, image backend and one sample slide follow in that order under the codex-ppt workflow.
+- Awaiting the visual direction choice, followed by image backend confirmation and review of one sample slide.

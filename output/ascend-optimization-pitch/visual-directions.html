@@ -1,0 +1,33 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Ascend Optimization Finder | Visual directions</title><style>
+*{box-sizing:border-box}body{margin:0;background:#e9ebed;color:#242a31;font:16px/1.5 system-ui,sans-serif}main{max-width:1560px;margin:auto;padding:clamp(16px,3vw,44px)}h1{font-size:1.45rem;margin:0 0 1rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,510px),1fr));gap:20px}
+section{background:var(--paper);color:var(--ink);padding:clamp(18px,2.2vw,36px);border:1px solid #b8bec1;min-width:0}.schematic{--paper:#fcfdff;--ink:#203248;--flow:#245994;--accent:#85530b;--soft:#fff0cf;--rule:#b9cde0;font-family:"Inter","Arial",sans-serif}
+.paper{--paper:#faf6ea;--ink:#292823;--flow:#444940;--accent:#803f31;--soft:#f5e5d8;--rule:#aaa99d;font-family:Georgia,serif}
+h2{margin:0;font-size:1.5rem}header p,.caption,footer{font:14px/1.5 system-ui,sans-serif}header p{margin:.3em 0}.palette{display:flex;margin:1em 0 1.5em}.palette i{width:38px;height:12px;border:1px solid #7775}.palette i:nth-child(1){background:var(--paper)}.palette i:nth-child(2){background:var(--ink)}.palette i:nth-child(3){background:var(--flow)}.palette i:nth-child(4){background:var(--accent)}
+h3{font-size:clamp(24px,2.6vw,36px);line-height:1.1;margin:0 0 .8em;max-width:24ch}h4,figcaption{font:600 14px/1.35 system-ui,sans-serif;color:var(--flow);margin:.8em 0 .3em}h4{margin-top:1.5em}figure{margin:0}pre{margin:0;overflow-x:auto;padding:.6em 0;color:var(--ink);font:clamp(12px,1vw,15px)/1.6 "IBM Plex Mono",Menlo,Consolas,monospace}.schematic pre{background:#edf3f9;padding:.7em}.removed{background:var(--soft);border-left:3px solid var(--accent);padding-left:3px}.paper .removed{border:0;border-bottom:1px solid var(--accent);padding:0}.note{font-size:.92em;color:var(--accent);border-left:2px solid var(--accent);padding-left:.7em}.route{display:flex;gap:.9em;align-items:center;margin:.35em 0;font-size:.92em}.route span:first-child{min-width:9.5em}.route b{color:var(--flow)}.schematic .route span{border:1px solid var(--rule);padding:.2em .65em}.paper .route span{border-bottom:1px solid var(--rule);padding:.2em .15em}.caption{margin:.6em 0}footer{border-top:1px solid var(--rule);margin-top:1.4em;padding-top:.8em}
+</style><main><h1>Ascend Optimization Finder · Visual directions</h1><div class="grid"><section class="schematic">
+<header><h2>A · Technical schematic</h2><p>White background, navy type, blue compiler paths and amber annotations.</p></header>
+<div class="palette" aria-label="Background, text, direction and annotation colors"><i></i><i></i><i></i><i></i></div>
+<h3>An MLIR rewrite can remove redundant work</h3>
+<figure><figcaption>Original</figcaption><pre><code><span class="removed">%ordinary = arith.cmpf ord, %x, %x : f32</span>
+<span class="removed">%safe = arith.select %ordinary, %x, %zero : f32</span>
+%equal = arith.cmpf oeq, %safe, %one : f32</code></pre>
+<figcaption>Candidate</figcaption><pre><code>%equal = arith.cmpf oeq, %x, %one : f32</code></pre>
+<p class="note">For NaN, ordered equality with one already returns false.</p></figure>
+<h4>Compiler comparison</h4>
+<div class="route"><span>Original MLIR</span><b>→</b><span>Compile</span></div>
+<div class="route"><span>Candidate MLIR</span><b>→</b><span>Compile</span></div>
+<p class="caption">Both versions use the same compiler build and target.</p>
+<footer>Use a wide process diagram for the architecture and aligned panels for code. Reserve the accent for the operations under discussion.</footer></section><section class="paper">
+<header><h2>B · Annotated research paper</h2><p>Warm paper, serif headings, graphite diagrams and rust annotations.</p></header>
+<div class="palette" aria-label="Background, text, direction and annotation colors"><i></i><i></i><i></i><i></i></div>
+<h3>An MLIR rewrite can remove redundant work</h3>
+<figure><figcaption>Original</figcaption><pre><code><span class="removed">%ordinary = arith.cmpf ord, %x, %x : f32</span>
+<span class="removed">%safe = arith.select %ordinary, %x, %zero : f32</span>
+%equal = arith.cmpf oeq, %safe, %one : f32</code></pre>
+<figcaption>Candidate</figcaption><pre><code>%equal = arith.cmpf oeq, %x, %one : f32</code></pre>
+<p class="note">For NaN, ordered equality with one already returns false.</p></figure>
+<h4>Compiler comparison</h4>
+<div class="route"><span>Original MLIR</span><b>→</b><span>Compile</span></div>
+<div class="route"><span>Candidate MLIR</span><b>→</b><span>Compile</span></div>
+<p class="caption">Both versions use the same compiler build and target.</p>
+<footer>Use generous margins, thin rules and short notes beside each example. Give a single diagram or code comparison most of each page.</footer></section></div></main></html>

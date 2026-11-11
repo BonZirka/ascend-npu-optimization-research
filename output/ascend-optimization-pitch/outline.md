@@ -28,7 +28,7 @@ The narrative follows the user's requested pitch sequence. The problem, existing
 | --- | --- | --- |
 | 1 | Performance and optimization problem | H01 motivation |
 | 2 | Existing approaches in AscendNPU-IR | H02 |
-| 3 | Repeated investigation work and the gap to structure | H02; H01 developer value |
+| 3 | Proactive-search gap and repeated investigation effort | H02; H01 developer value |
 | 4 | Proposed solution in two sentences | H01; H03 |
 | 5 | Large goals and questions to resolve | H03; H08 |
 | 6–8 | How: framework, search families and an MLIR rewrite | H03; candidate-family catalog; LPO/PRAGMA |
@@ -56,34 +56,34 @@ The narrative follows the user's requested pitch sequence. The problem, existing
 ## Slide 2 — [REWORK] How optimization opportunities reach engineers today
 
 **Role:** current-practice context.
-**Intent:** preserve the partial account and its uncertainty rather than imply that the team lacks effective optimization work.
+**Intent:** describe known improvement mechanisms and identify the absence of proactive search within the presenter's current knowledge.
 
 **Proposed on-slide copy:**
 
 - Nightly performance regression testing helps keep regressions out of upstream.
 - Performance tickets, kernel-specific tasks and optimization epics trigger investigations.
 - Engineers inspect generated code and use available profiling/checking tools.
-- How proactive search is organized, and how tasks are prioritized, still needs confirmation.
+- To my knowledge, no proactive search for missed optimizations is currently performed in the project.
 
-**Visual:** observed entry points converging on an engineer investigation. A small “Partial account — team confirmation needed” panel holds uncertainties. Cross-accelerator comparisons may appear as a dashed, unconfirmed task source.
-**Evidence boundary:** do not describe all work as reactive or assert that no systematic search exists. Keep “[REWORK]” in this draft slide's title.
+**Visual:** observed entry points converging on an engineer investigation, beside an unfilled “Proactive opportunity search” lane. Keep “To my knowledge” visibly attached to the absence claim. Cross-accelerator comparisons may appear as a dashed, unconfirmed task source.
+**Evidence boundary:** the absence of proactive search is the presenter's current understanding, not a confirmed team-wide finding. Preserve that qualification in this early pitch. Task selection and existing tools still need clarification. Keep “[REWORK]” in this draft slide's title.
 **Sources:** H02; Q02–Q04.
 **Required source images:** none.
 
-## Slide 3 — Repeated investigations consume scarce engineer time
+## Slide 3 — Proactive optimization discovery is the gap we target
 
-**Role:** gap between current practice and a reusable investigation process.
-**Intent:** explain the work the project targets before naming the proposed solution.
+**Role:** proactive-search gap and the engineering effort involved in filling it.
+**Intent:** connect the qualified observation on slide 2 to the proposed project's purpose before introducing the framework.
 
 **Proposed on-slide copy:**
 
-- A slow case or optimization task still needs concrete alternatives to investigate.
-- Engineers choose transformations, coordinate checks and interpret comparisons.
-- Candidate construction, repeated execution and evidence preparation consume investigation time.
-- The gap to establish is how much of this work can be organized and reused across cases.
+- Search existing compiled code for opportunities before a performance issue or optimization task identifies a case.
+- Establish a repeatable process for constructing alternatives, checking them and comparing results.
+- Reduce the engineer effort needed to carry out these repeated investigations.
+- Retain reproducible evidence for engineers to assess promising opportunities.
 
-**Visual:** a task/ticket enters a case-specific investigation. Show repeated activities around the engineer: construct an alternative, prepare/check the case, compare results, retain evidence. Highlight the repeated coordination effort. Do not draw the proposed framework yet.
-**Evidence boundary:** the user identifies engineer-led, case-specific search as the target gap. H02 has not established the extent of existing automation or reusable infrastructure. Present that boundary as a small “Existing reuse/automation to confirm” annotation; do not claim the whole team's work is unstructured.
+**Visual:** extend slide 2's unfilled lane into “Existing compiled code → proactive investigation → opportunities for engineer review.” Under the investigation, show repeated work: construct alternatives, check, compare and retain evidence. Keep this a description of the missing capability; framework components appear later.
+**Evidence boundary:** this gap follows the qualified current understanding on slide 2. Engineers can already discover opportunities within existing tasks; the proposed addition is an organized proactive search capability. Finding yield and effort savings remain to be tested.
 **Sources:** H01 developer value; H02 investigation notes and Q03–Q04; H03 §4.
 **Required source images:** none.
 

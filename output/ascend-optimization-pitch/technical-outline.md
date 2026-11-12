@@ -49,7 +49,7 @@ The entries can overlap: a test can lead to a ticket, a kernel task or an epic. 
 
 **Source basis:** Current practices and uncertainties; project-owner slide review, 2026-11-12.
 
-### 03 — [REWORK] Where compiler engineers spend time finding optimizations
+### 03 — [REWORK] Engineer time in optimization discovery
 
 **On-slide structure:** The iterative human investigation flow remains above four flat rows explaining the sources of discovery effort. The rows match the Proposition slide: blue bold headings on the left, plain descriptions on the right, thin horizontal separators and vertically centred text.
 

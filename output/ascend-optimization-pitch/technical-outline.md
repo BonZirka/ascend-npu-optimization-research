@@ -57,13 +57,13 @@ This describes investigation responsibilities, not an established absence of pro
 
 **Source basis:** Goal and intended value; current practices; framework investigation contracts; project-owner slide review, 2026-11-12.
 
-### 04 — Build a framework for reproducible optimization discovery
+### 04 — A framework for discovering missed compiler optimizations
 
-**On-slide structure:** Kernel variants and permitted pipeline alternatives enter a bounded investigation and produce reproducible comparison experiments.
+**On-slide structure:** Supplied kernels/IR, baseline configuration, search scope and resource limits feed the framework. Inside the boundary, the LLM proposes alternatives while compiler/checker/evaluator tools compile, check and compare; diagnostics and comparison results return to the LLM. The output is a reproducible finding containing the saved comparison, evidence and replay entry point. A separate engineer-review handoff decides subsequent compiler work. The bottom line identifies the recurring work to offload.
 
-The proposed framework searches MLIR alternatives and permitted pass-pipeline alternatives. A trial may change the IR, the pipeline or both. The baseline is fixed and versioned. Selected checks and a meaningful metric determine whether the complete candidate route is useful. An IR witness can motivate a new pass without automatically implementing that pass. Root-cause investigation and pass implementation remain later engineer work.
+The inputs do not require preconstructed variants. A finding requires a qualifying checked comparison under the selected policy and objective; concrete integration and coverage remain open. This slide introduces responsibility and output rather than repeating the activity list from slide 3. Whether useful findings justify preparation/review effort remains part of later evaluation.
 
-**Source basis:** Goal and intended value; Framework design; Project-owner clarification, 2026-11-11
+**Source basis:** Goal and intended value; framework investigation contracts; project-owner slide review, 2026-11-12.
 
 ### 05 — Research directions and concrete starting points
 

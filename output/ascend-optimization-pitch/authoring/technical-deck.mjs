@@ -95,10 +95,22 @@ goal.text.get('Experiment goal:').bold=true;
 goal.text.get('Experiment goal:').fill=P.blue;
 }
 {
-const s=slide('Build a framework for reproducible optimization discovery','The proposed framework searches MLIR alternatives and permitted pass-pipeline alternatives. A trial may change the IR, the pipeline or both. The baseline is fixed and versioned. Selected checks and a meaningful metric determine whether the complete candidate route is useful. An IR witness can motivate a new pass without automatically implementing that pass. Root-cause investigation and pass implementation remain later engineer work.','Goal and intended value; Framework design\nProject-owner clarification, 2026-11-11');
-t(s,'Proposal','Develop a framework that searches IR and pass-pipeline alternatives and returns reproducible optimization experiments for AscendNPU-IR.',60,180,1450,173,{size:43,bold:true});
-const n1=box(s,'Request','Kernel variants + context\npermitted pipelines + budget',60,444,350,100,{size:23}),n2=box(s,'Framework','Bounded investigation\nwith LLM-proposed alternatives',590,444,420,100,{bg:P.blue,color:'#FFFFFF',size:23}),n3=box(s,'Finding','Runnable experiment\nfor compiler review',1190,444,350,100);a(s,n1,n2);a(s,n2,n3);
-t(s,'Benefit','Offload variant construction, experiment execution and evidence collection. Measure whether useful findings justify preparation and review effort.',60,660,1460,107,{size:29});
+const s=slide('A framework for discovering missed compiler optimizations','The proposed AscendNPU-IR framework assigns responsibilities around an investigation. Engineers supply kernels/IR and context, a baseline configuration, permitted search scope and resource limits; preconstructed variants are not required. The LLM proposes IR or pass-pipeline alternatives. Compiler, selected checker and evaluator tools produce diagnostics and comparison results that guide further proposals. The baseline remains fixed. A qualifying finding contains saved baseline/candidate variants, check/metric evidence and an exercised replay recipe for compiler-engineer review. Engineers assess the finding and decide subsequent compiler work. Exact integrations and coverage remain to be established. Expert-effort evaluation is discussed later.','Goal and intended value; framework investigation contracts\nProject-owner slide review, 2026-11-12',42);
+t(s,'Proposal','Investigate IR and pass-pipeline alternatives in AscendNPU-IR,\nand produce reproducible findings for compiler engineers.',60,174,1480,111,{size:34,bold:true});
+t(s,'Input label','Input',60,292,340,38,{size:27,bold:true,color:P.blue});
+t(s,'Framework boundary','',450,330,650,330,{geometry:'rect',border:P.blue,dash:true});
+t(s,'Framework label','Framework',462,292,620,38,{size:27,bold:true,color:P.blue});
+t(s,'Output label','Output',1170,292,370,38,{size:27,bold:true,color:P.blue});
+const input=box(s,'Supplied input','Kernels / IR + context\nBaseline pipeline\nSearch scope\nResource limits',60,365,340,170,{size:25});
+const llm=box(s,'LLM proposals','LLM\nPropose IR / pipeline\nalternatives',475,365,270,145,{size:24,bg:P.lightPurple,color:P.purple});
+const tools=box(s,'Tool checks','Tools\nCompile, check\nand compare',800,365,275,145,{size:24});
+const finding=box(s,'Finding','Reproducible finding\nBaseline / candidate\nCheck + metric evidence\nReplay entry point',1170,365,370,170,{size:24});
+a(s,input,llm);a(s,llm,tools);a(s,tools,finding);
+const turn1=point(s,'Feedback turn 1',937,563),turn2=point(s,'Feedback turn 2',610,563);
+a(s,tools,turn1,{fromSide:'bottom',toSide:'top',color:P.amber,arrow:false});a(s,turn1,turn2,{fromSide:'left',toSide:'right',color:P.amber,arrow:false});a(s,turn2,llm,{fromSide:'top',toSide:'bottom',color:P.amber});
+t(s,'Tool feedback','Diagnostics + comparison results',500,593,575,40,{size:23,color:P.amber,center:true});
+const review=box(s,'Engineer review','Engineer review\nDecide subsequent\ncompiler work',1170,615,370,115,{size:24,bg:P.lightGreen,color:P.green});a(s,finding,review,{fromSide:'bottom',toSide:'top',color:P.green});
+t(s,'Offloaded work','Offload variant construction, experiment execution and evidence collection.',60,776,1480,65,{size:30});
 }
 {
 const s=slide('Research directions and concrete starting points','The studies remain open. New pass-ordering work compares fixed-pipeline IR rewrites, existing-pass pipeline variants and their combinations. A shared experiment format and continuation across environments are implementation requirements, with exact schemas and compatible execution bindings to design. Advanced selectors, richer context, tools and feedback policies remain comparisons after the baseline.','Framework research agenda; experiment records and continuation design\nProject-owner clarification, 2026-11-11');

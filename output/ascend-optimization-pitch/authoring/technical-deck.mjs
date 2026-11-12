@@ -127,7 +127,6 @@ label(s,'LPO: Discovering Missed Peephole Optimizations with Large Language Mode
 const lp=[['Existing\nLLVM IR',60,130],['Extract\nsequences',230,185],['LLM proposes\na rewrite',455,190],['LLVM\noptimizer',685,165],['Interestingness\nscreen',890,185],['Alive2\nrefinement check',1115,185],['Save\nsequence pair',1340,200]].map(([v,x,w])=>box(s,'LPO '+v,v,x,230,w,84,{size:22}));
 lp.slice(0,-1).forEach((n,i)=>a(s,n,lp[i+1]));
 const lf=box(s,'LPO feedback','Compiler errors / Alive2 counterexamples',500,365,780,54,{size:22,bg:P.pale,color:P.amber});a(s,lp[3],lf,{fromSide:'bottom',toSide:'top',kind:'elbow',color:P.amber});a(s,lp[5],lf,{fromSide:'bottom',toSide:'top',kind:'elbow',color:P.amber});a(s,lf,lp[2],{fromSide:'left',toSide:'bottom',kind:'elbow',color:P.amber});
-label(s,'Compare with the original sequence: interestingness screening, then refinement checking.',60,436,1480,P.muted,22);
 bar(s,60,495,1480);
 label(s,'PRAGMA: A Profiling-Reasoned Multi-Agent Framework for Automatic Kernel Optimization',60,518,1480,P.blue,26);
 const coder=box(s,'Coder','Coder (LLM)\ngenerates / edits kernel',60,615,270,84,{size:23,bg:P.lightPurple,color:P.purple}),verifier=box(s,'Verifier','Verifier\ncompile + compare outputs',425,615,330,84,{size:23}),profiler=box(s,'Profiler','Profiler\ncollect performance data',850,615,300,84,{size:23}),conductor=box(s,'Conductor','Conductor (LLM)\nproposes next edit',1245,615,295,84,{size:23,bg:P.lightPurple,color:P.purple});a(s,coder,verifier);a(s,verifier,profiler);a(s,profiler,conductor);
@@ -135,8 +134,6 @@ t(s,'Checks pass','Pass',758,622,89,30,{size:18,color:P.blue,center:true});
 const fail1=point(s,'Failure branch',590,754),fail2=point(s,'Failure delivery',1392,754);a(s,verifier,fail1,{fromSide:'bottom',toSide:'top',color:P.amber,arrow:false});a(s,fail1,fail2,{color:P.amber,arrow:false});a(s,fail2,conductor,{fromSide:'top',toSide:'bottom',color:P.amber});
 t(s,'Failure feedback','Compilation errors / output mismatches',650,717,690,30,{size:21,color:P.amber,center:true});
 const gp1=point(s,'Guidance turn',1392,588),gp2=point(s,'Guidance return',195,588);a(s,conductor,gp1,{fromSide:'top',toSide:'bottom',color:P.amber,arrow:false});a(s,gp1,gp2,{color:P.amber,arrow:false});a(s,gp2,coder,{fromSide:'bottom',toSide:'top',color:P.amber});t(s,'Guidance','Guidance for the next edit',570,552,600,30,{size:21,color:P.amber,center:true});
-t(s,'Conductor context','Conductor reasons over code, check/profile results and best-performing history.',60,790,1480,42,{size:22,color:P.muted});
-foot(s,'Simplified from LPO Fig. 2 / Algorithm 1 and PRAGMA Figs. 1–2. Source diagrams remain in the linked papers.');
 }
 {
 const s=slide('Proposed Ascend investigation architecture','Framework design defines stage contracts and a default search policy. Read-only input snapshots remain distinct from candidate working copies. A single agent session proposes candidate IR and permitted pipeline changes. Adapters compile the fixed baseline route and each candidate route through saved recipes. Candidate kernels and pipeline variants have separate identities. Typed feedback returns independent outcomes and evidence pointers to the same conversation. The durable store records intent and completion plus budget usage at every stage.','Framework design §§2.1–2.6; MVP dialect knowledge task');

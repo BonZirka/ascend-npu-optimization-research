@@ -59,7 +59,7 @@ This describes investigation responsibilities, not an established absence of pro
 
 ### 04 — Proposition
 
-**Goal:** Build an LLM-assisted framework with independent checks for every optimization proposal.
+**Goal:** Build an LLM-assisted framework for systematic discovery of missed optimizations in AscendNPU-IR, with verification of findings.
 
 **On-slide structure:** Three flat rows define the proposal rather than repeat the investigation workflow: the **search contract** (AscendNPU-IR kernel, region or corpus, edit permissions, checks and metric), the **same-target reference** (a fixed original kernel and target, with candidate IR or pass-order variants), and the **runnable finding** (baseline, candidate, validation results, metric comparison and replay command). The workflow diagram and the note about continuation across environments are removed from this slide.
 

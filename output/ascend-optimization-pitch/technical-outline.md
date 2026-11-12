@@ -12,7 +12,7 @@ The shared experiment format links kernel permutations, pipeline variants, cases
 
 ## Visual sources
 
-The exact full titles accompany editable reconstructions of **LPO Figure 2** and **PRAGMA Figures 1–2**. Their workflows motivate search/checking/feedback responsibilities. Joint Ascend pipeline search and portable records are our project design, not results established by those papers.
+The exact full titles accompany original figure crops of **LPO Figure 2** and **PRAGMA Figure 1**. Their workflows motivate search/checking/feedback responsibilities. Joint Ascend pipeline search and portable records are our project design, not results established by those papers.
 
 The MLIR case adapts LPO Figure 4(c,f). All slide text, code, tables and diagrams remain editable. No Ascend missed-optimization example, checker coverage, pipeline change or resource saving is claimed as demonstrated.
 
@@ -77,17 +77,17 @@ LLMs can already assist with this work. The proposed framework aims to make the 
 
 These are intended capabilities, not achieved results. Verification coverage and expert effort savings remain to be evaluated. Implementation stages and detailed architecture belong to later slides.
 
-### 06 — Two paper workflows inform the experiment
+### 05 — Two paper workflows inform the experiment
 
-**On-slide structure:** The exact full paper titles accompany editable reconstructions of LPO Figure 2 and PRAGMA Figures 1–2, with labeled feedback and paper-specific tools.
+**On-slide structure:** The full paper titles accompany original crops of LPO Figure 2 (PDF p. 5) and PRAGMA Figure 1 (PDF p. 3), displayed side by side. Source captions and headings are editable; figure contents preserve the papers’ original labels and connections.
 
-The top workflow is reconstructed from LPO Figure 2 and §3.2–3.3. Its extractor wraps dependent sequences, reoptimizes and deduplicates. opt -O3 preprocesses candidates; interestingness screens before Alive2 refinement checking. The lower workflow is reconstructed from PRAGMA Figures 1–2 and §III. A deterministic verifier compares outputs; a profiler gathers counters; the conductor reasons over code, logs, metric documentation and best history. The Ascend baseline can use one session; these papers motivate responsibilities and feedback signals.
+The LPO figure is reproduced from Figure 2 and described in §3.2–3.3. Its extractor wraps dependent sequences, reoptimizes and deduplicates. opt -O3 preprocesses candidates; interestingness screens before Alive2 refinement checking. The PRAGMA figure is reproduced from Figure 1 and described in §III. A deterministic verifier compares outputs; a profiler gathers counters; the conductor reasons over code, logs, metric documentation and best history. The Ascend baseline can use one session; these papers motivate responsibilities and feedback signals.
 
 **Source basis:** LPO Figure 2 and §3.2–3.3: https://arxiv.org/abs/2508.16125v2; PRAGMA Figures 1–2 and §III: https://arxiv.org/abs/2511.06345v2
 
 
 
-### 07 — Proposed Ascend investigation architecture
+### 06 — Proposed Ascend investigation architecture
 
 **On-slide structure:** A fixed baseline kernel/pipeline bypasses generation. The agent proposes scoped kernel/pipeline alternatives; adapters check and assess them, retaining trials, reports and pending work.
 
@@ -96,7 +96,7 @@ Framework design defines stage contracts and a default search policy. Read-only 
 **Source basis:** Framework design §§2.1–2.6; MVP dialect knowledge task
 
 
-### 05 — Research directions and concrete starting points
+### 07 — Research directions and concrete starting points
 
 **On-slide structure:** The agenda adds rewrite-only, pipeline-only and joint studies alongside the existing metrics, validation, harness, tool, selection and feedback studies.
 

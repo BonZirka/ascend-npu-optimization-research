@@ -61,12 +61,23 @@ function tbl(s,values,widths,y,heights,size=24){
  values.forEach((row,r)=>{table.rows[r].height=heights[r];row.forEach((v,c)=>{const cell=table.getCell(r,c);cell.fill=r===0?P.blue:(r%2===0?P.tint:P.bg);cell.text.style={typeface:FONT,fontSize:r===0?22:size,color:r===0?'#FFFFFF':P.ink,bold:r===0||c===0};});});return table;
 }
 {
-const s=slide('Compilers miss useful optimizations','Optimization opportunities can remain because an implemented recognizer does not cover a legal equivalent IR form, a transformation exposes useful forms or properties after a consuming pass has run, or a useful transformation is not implemented. A failed match alone is not evidence of a defect: required legality conditions may genuinely be absent. Analyses can be computed on demand; the placement example concerns changes to the program that make useful properties or forms available. These mechanisms can overlap and are not an exhaustive taxonomy. Their relevance to particular AscendNPU-IR cases remains to be investigated.','LPO motivation: '+LPO+'\nMLIR pass infrastructure: '+REF.passes);
-t(s,'Problem','A missed transformation can affect more than one instruction sequence: it may also prevent later optimizations from becoming applicable.',60,174,1470,165,{size:39,bold:true});
-section(s,'Pattern recognition','An existing transformation may not recognize an equivalent IR form, even when its legality conditions hold.',60,410,440,185);
-section(s,'Pass placement / ordering','A transformation may expose a useful IR form or property after the pass that could exploit it has already run.',580,410,440,185);
-section(s,'Missing transformations','Exploiting an opportunity may require extending a rule or analysis, or implementing another transformation.',1100,410,440,185);
-foot(s,'Rule quality, pipeline placement and missing transformations are investigation hypotheses, not confirmed Ascend diagnoses.');
+const s=slide('Compilers miss useful optimizations','The upper pipeline is a schematic dependency, not a trace diagnosing a particular compiler. A legality condition can hold while an implemented pattern fails to recognize the IR. A later pass can execute without applying a dependent rewrite because the enabling form was not produced. Misordering is another possible mechanism. The lower excerpt is a real documented LLVM missed-optimization case from LPO Figure 1(b,c), originating from a Rust clamp. SSA names are renamed and calls reflowed; the omitted function signature takes i32 x and returns i8 r. The alternative replaces comparison/select with signed max, followed by unsigned min and truncation. Four versus three counts only the shown IR operations, not runtime speedup. The generic cascade is not asserted as this case’s diagnosed cause.','Documented LLVM case: LPO §2.2, Figure 1(b,c): '+LPO+'\nLocal PDF: attachments/papers/LPO-2508.16125v2.pdf\nPass dependency illustration is schematic.');
+label(s,'Illustrative pass dependency',60,155,1480,P.muted,21);
+const input=box(s,'IR input','IR input',60,201,150,118,{size:25}),pa=box(s,'Pass A','Pass A\nEarlier transforms',255,201,180,118,{size:24}),pb=box(s,'Pass B','Pass B\nLegal rewrite\nnot matched',480,201,325,118,{size:25,bg:P.pale,color:P.amber}),pc=box(s,'Pass C','Pass C\nEnabling form absent\nrewrite not applied',850,201,325,118,{size:24,bg:P.pale,color:P.amber}),out=box(s,'Codegen','Suboptimal\ncodegen',1220,201,320,118,{size:27,bg:P.lightRed,color:P.red});
+a(s,input,pa);a(s,pa,pb);a(s,pb,pc,{color:P.amber});a(s,pc,out,{color:P.red});
+t(s,'Pattern heading','Pattern Blindness',60,367,440,43,{size:31,bold:true,color:P.blue});
+t(s,'Pattern explanation','Legality holds. IR shape unrecognized.',60,418,440,75,{size:26});
+t(s,'Ordering heading','Pass Misordering',580,367,440,43,{size:31,bold:true,color:P.blue});
+t(s,'Ordering explanation','Enabler runs after exploiter.',580,418,440,44,{size:26});
+const ex=t(s,'Exploiter','Exploiter',580,468,155,35,{size:22,color:P.amber}),en=t(s,'Enabler','Enabler',860,468,155,35,{size:22,color:P.blue});a(s,ex,en,{color:P.amber});
+t(s,'Logic heading','Missing Logic',1100,367,440,43,{size:31,bold:true,color:P.blue});
+t(s,'Logic explanation','Needs an extended analysis rule.',1100,418,440,75,{size:26});
+bar(s,60,532,1480);
+t(s,'IR case heading','LLVM IR excerpt: clamp i32 to [0, 255], then cast to i8',60,551,1480,38,{size:26,color:P.blue,bold:true});
+t(s,'Original heading','Observed sequence (4 operations)',60,601,710,33,{size:23,bold:true});
+t(s,'Alternative heading','Equivalent form (3 operations)',830,601,710,33,{size:23,bold:true});
+t(s,'Original LLVM','%neg = icmp slt i32 %x, 0\n%hi = call i32 @llvm.umin.i32(\n        i32 %x, i32 255)\n%v = trunc nuw i32 %hi to i8\n%r = select i1 %neg, i8 0, i8 %v',60,644,710,207,{mono:true,size:24,bg:P.tint,pad:12});
+t(s,'Alternative LLVM','%lo = call i32 @llvm.smax.i32(\n        i32 %x, i32 0)\n%hi = call i32 @llvm.umin.i32(\n        i32 %lo, i32 255)\n%r = trunc nuw i32 %hi to i8',830,644,710,207,{mono:true,size:24,bg:P.lightGreen,pad:12});
 }
 {
 const s=slide('[REWORK] How optimization opportunities reach engineers today','Current practices come from the project owner’s observations. Nightly testing helps prevent significant regressions reaching upstream. Optimization epics can proactively explore an optimization class, usually after a performance problem has already been noticed. The intended gap is routine discovery before a problem is noticed, not an assertion that the team never works proactively. The role of cross-platform comparisons in task selection remains uncertain.','Current practices and uncertainties',40);

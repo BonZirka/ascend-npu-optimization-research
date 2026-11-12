@@ -35,11 +35,11 @@ The MVP is a bounded integration, not exhaustive pipeline enumeration or a gener
 
 ### 01 — Compilers miss useful optimizations
 
-**On-slide structure:** A short premise explains that a missed transformation may block later optimizations. Three columns then cover pattern recognition, pass placement/ordering and missing transformations. These are overlapping possible mechanisms. A short note leaves Ascend-specific relevance open. The framework/search method is introduced later.
+**On-slide structure:** A native editable dependency pipeline replaces the premise paragraph. A legal rewrite can fail to match, leaving the form needed by a later transformation absent. The three columns use the requested concise labels: Pattern Blindness, Pass Misordering and Missing Logic. An arrow shows the exploiter preceding the enabler. The footer is removed. The lower area contains a documented LLVM clamp excerpt with the observed four-operation sequence and an equivalent three-operation form.
 
-Optimization opportunities can remain because an implemented recognizer does not cover a legal equivalent IR form, a transformation exposes useful forms or properties after a consuming pass has run, or a useful transformation is not implemented. A failed match alone is not evidence of a defect: required legality conditions may genuinely be absent. Analyses can be computed on demand; the placement example concerns changes to the program that make useful properties or forms available. These mechanisms can overlap and are not an exhaustive taxonomy. Their relevance to particular AscendNPU-IR cases remains to be investigated.
+The dependency pipeline is schematic. Pattern matching and legality are distinct, and a later pass may run without applying the dependent rewrite. The LLVM excerpt is a real reported example from Figure 1(b,c), with SSA names renamed and calls reflowed. It is not an Ascend finding, and the schematic is not asserted as that case's diagnosed cause. The instruction counts describe the excerpt, not measured runtime speedups. The paper's method is introduced later in the talk.
 
-**Source basis:** LPO motivation: https://arxiv.org/abs/2508.16125v2; MLIR pass infrastructure: https://mlir.llvm.org/docs/PassManagement/
+**Source basis:** LPO §2.2 / Figure 1(b,c), https://arxiv.org/abs/2508.16125v2. Detailed attribution and conditions remain in speaker notes.
 
 ### 02 — [REWORK] How optimization opportunities reach engineers today
 

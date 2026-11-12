@@ -245,6 +245,7 @@ const corpus=box(s,'Cases','Fixed held-out corpus\nseparate development cases',6
 tbl(s,[['Primary evidence','Additional outcomes'],['Engineer-reviewed useful findings','Rejected, duplicate, unsupported and inconclusive cases.'],['Replay and environment continuation','Resume pending trials elsewhere, retain provenance and rerun incompatible measurements.'],['At least one real case for MVP','Preparation/review effort, model use and host/NPU usage.']],[650,830],492,[52,80,80,80],25);
 t(s,'Protocol condition','Before the study, agree case selection, usefulness criteria, search budgets and repeats. Any effort-saving claim identifies its reference workflow.',60,817,1480,65,{size:22});
 }
+for(const [index,s] of deck.slides.items.entries()) t(s,'Slide number',String(index+1),1480,860,70,28,{size:18,color:P.muted});
 await fs.mkdir(path.join(root,'.codex-finalizer'),{recursive:true});
 await fs.mkdir(path.dirname(out),{recursive:true});
 const candidate=path.join(root,'.codex-finalizer','technical-candidate.pptx');

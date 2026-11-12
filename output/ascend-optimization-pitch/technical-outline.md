@@ -51,18 +51,19 @@ The entries can overlap: a test can lead to a ticket, a kernel task or an epic. 
 
 ### 03 — Where compiler engineers spend time finding optimizations
 
-**On-slide structure:** The iterative human investigation flow remains above a table explaining the sources of discovery effort.
+**On-slide structure:** The iterative human investigation flow remains above four flat rows explaining the sources of discovery effort. The rows match the Proposition slide: blue bold headings on the left, plain descriptions on the right, thin horizontal separators and vertically centred text.
 
-| Source of discovery effort | What the engineer has to work out |
-|---|---|
-| **Locating a promising opportunity** | Which parts of the generated code might admit a useful improvement, among many ordinary or already well-optimized sequences? |
-| **Constructing a better alternative** | Which equivalent IR form or pass arrangement could avoid the suspected inefficiency, using information available to the compiler? |
-| **Following the effect through compilation** | Does the alternative produce a useful downstream difference, or does later compilation erase its benefit or introduce another cost? |
-| **Navigating unsuccessful hypotheses** | When an attempt fails, what should be changed or investigated next, and when is further investigation no longer worthwhile? |
+**Locating a promising opportunity** — Which parts of the generated code might admit a useful improvement, among many ordinary or already well-optimized sequences?
+
+**Constructing a better alternative** — Which equivalent IR form or pass arrangement could avoid the suspected inefficiency, using information available to the compiler?
+
+**Following the effect through compilation** — Does the alternative produce a useful downstream difference, or does later compilation erase its benefit or introduce another cost?
+
+**Navigating unsuccessful hypotheses** — When an attempt fails, what should be changed or investigated next, and when is further investigation no longer worthwhile?
 
 The central effort is finding a useful alternative when none has been supplied. A suspected inefficiency must be connected to an equivalent alternative using facts available to the compiler, then evaluated through the downstream pipeline. Failed hypotheses still require choosing a next direction or deciding to stop.
 
-LLMs can already assist with this work. The proposed framework aims to make the assistance operate as a sustained, bounded search using configured tools and evidence. Engineers supply the applicable assumptions and evaluation policy in the MVP. The table describes the broader human effort without promising to replace every engineering decision.
+LLMs can already assist with this work. The proposed framework aims to make the assistance operate as a sustained, bounded search using configured tools and evidence. Engineers supply the applicable assumptions and evaluation policy in the MVP. The rows describe the broader human effort without promising to replace every engineering decision.
 
 ### 04 — Proposition
 

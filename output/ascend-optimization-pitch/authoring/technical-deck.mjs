@@ -85,7 +85,7 @@ gap.text.get('The gap:').bold=true;
 gap.text.get('The gap:').fill=P.blue;
 }
 {
-const s=slide("Where compiler engineers spend time finding optimizations","The diagram shows the investigation workflow. The table explains sources of search effort rather than experiment administration. The central difficulty is finding a useful alternative when none has been supplied. A slow kernel alone does not distinguish an unavoidable hardware cost, an algorithmic choice or a compiler opportunity. For example, a suspected redundant check requires connecting earlier value constraints, casts, available compiler facts and downstream code effects. An LLM can assist with all four sources of effort already. The proposed framework aims to sustain a bounded search using configured tools and evidence to guide subsequent attempts. The MVP relies on engineers to supply applicable assumptions and evaluation policy; it does not promise to replace all engineering decisions. Useful findings and reduced expert involvement remain evaluation goals.",'Goal and intended value; human investigation and search effort; project-owner slide review, 2026-11-12',40);
+const s=slide("Where compiler engineers spend time finding optimizations","The diagram shows the investigation workflow. The four rows explain sources of search effort rather than experiment administration. The central difficulty is finding a useful alternative when none has been supplied. A slow kernel alone does not distinguish an unavoidable hardware cost, an algorithmic choice or a compiler opportunity. For example, a suspected redundant check requires connecting earlier value constraints, casts, available compiler facts and downstream code effects. An LLM can assist with all four sources of effort already. The proposed framework aims to sustain a bounded search using configured tools and evidence to guide subsequent attempts. The MVP relies on engineers to supply applicable assumptions and evaluation policy; it does not promise to replace all engineering decisions. Useful findings and reduced expert involvement remain evaluation goals.",'Goal and intended value; human investigation and search effort; project-owner slide review, 2026-11-12',40);
 const input=box(s,'Inputs','Existing\nkernels / IR',60,230,230,106,{size:24}),inspect=box(s,'Reason','Inspect IR and\nform a hypothesis',350,230,240,106,{size:24}),propose=box(s,'Candidate','Propose an IR or\npipeline change',650,230,250,106,{size:24}),check=box(s,'Check and assess','Compile, check\nand compare',960,230,280,106,{size:24}),retain=box(s,'Retain','Retain a\nreproducible case',1300,230,240,106,{size:24,bg:P.lightGreen,color:P.green});
 a(s,input,inspect);a(s,inspect,propose);a(s,propose,check);a(s,check,retain,{color:P.green});
 t(s,'Acceptance condition','Meets correctness and\nimprovement criteria',1050,151,490,58,{size:23,color:P.green,center:true,middle:true});
@@ -94,7 +94,17 @@ a(s,conditionTop,conditionBottom,{fromSide:'bottom',toSide:'top',color:P.green,a
 const retryDown=point(s,'Retry down',1100,382),retryBack=point(s,'Retry return',470,382);
 a(s,check,retryDown,{fromSide:'bottom',toSide:'top',color:P.amber,arrow:false});a(s,retryDown,retryBack,{color:P.amber,arrow:false});a(s,retryBack,inspect,{fromSide:'top',toSide:'bottom',color:P.amber});
 t(s,'Retry condition','Rejected candidate or insufficient improvement',350,397,890,42,{size:23,color:P.amber,center:true,middle:true});
-tbl(s,[["Source of discovery effort", "What the engineer has to work out"], ["Locating a promising opportunity", "Which parts of the generated code might admit a useful improvement, among many ordinary or already well-optimized sequences?"], ["Constructing a better alternative", "Which equivalent IR form or pass arrangement could avoid the suspected inefficiency, using information available to the compiler?"], ["Following the effect through compilation", "Does the alternative produce a useful downstream difference, or does later compilation erase its benefit or introduce another cost?"], ["Navigating unsuccessful hypotheses", "When an attempt fails, what should be changed or investigated next, and when is further investigation no longer worthwhile?"]],[360,1120],468,[50,80,80,80,80],25);
+t(s,"Effort heading 1","Locating a promising opportunity",60,462,410,84,{size:28,bold:true,color:P.blue,middle:true});
+t(s,"Effort body 1","Which parts of the generated code might admit a useful improvement, among many ordinary or already well-optimized sequences?",520,462,1020,84,{size:26,middle:true});
+bar(s,60,552,1480);
+t(s,"Effort heading 2","Constructing a better alternative",60,558,410,84,{size:28,bold:true,color:P.blue,middle:true});
+t(s,"Effort body 2","Which equivalent IR form or pass arrangement could avoid the suspected inefficiency, using information available to the compiler?",520,558,1020,84,{size:26,middle:true});
+bar(s,60,648,1480);
+t(s,"Effort heading 3","Following the effect through compilation",60,654,410,84,{size:28,bold:true,color:P.blue,middle:true});
+t(s,"Effort body 3","Does the alternative produce a useful downstream difference, or does later compilation erase its benefit or introduce another cost?",520,654,1020,84,{size:26,middle:true});
+bar(s,60,744,1480);
+t(s,"Effort heading 4","Navigating unsuccessful hypotheses",60,750,410,84,{size:28,bold:true,color:P.blue,middle:true});
+t(s,"Effort body 4","When an attempt fails, what should be changed or investigated next, and when is further investigation no longer worthwhile?",520,750,1020,84,{size:26,middle:true});
 }
 
 {

@@ -96,7 +96,7 @@ goal.text.get('Experiment goal:').fill=P.blue;
 }
 {
 const s=slide('A framework for discovering missed compiler optimizations','This is the proposed project goal and a concise set of targets. It deliberately leaves component architecture to the later architecture slide. The goal is an LLM-assisted framework for AscendNPU-IR. Targets include useful IR/pipeline alternatives, explicit checks and assessment, reproducible findings, reduced recurring expert effort and persistent experiments that can continue in another environment. These are intended capabilities, not achieved results. Concrete checker/metric coverage and effort savings remain to be evaluated.','Goal and intended value; framework investigation contracts; experiment records and continuation requirements\nProject-owner slide review, 2026-11-12',42);
-const goal=t(s,'Goal','Goal: develop an LLM-assisted framework to find missed optimizations in AscendNPU-IR.',60,190,1480,125,{size:36});
+const goal=t(s,'Goal','Goal: Build an LLM-assisted framework that proposes MLIR rewrites and checks them against the original code on the same Ascend target.',60,174,1480,165,{size:44,bold:true});
 goal.text.get('Goal:').bold=true;
 goal.text.get('Goal:').fill=P.blue;
 t(s,'Targets heading','Targets:',60,355,1480,48,{size:32,bold:true,color:P.blue});

@@ -59,7 +59,7 @@ This describes investigation responsibilities, not an established absence of pro
 
 ### 04 — A framework for discovering missed compiler optimizations
 
-**On-slide structure:** An inline “Goal:” statement introduces the proposed LLM-assisted framework for AscendNPU-IR. A native editable bullet list under “Targets:” covers useful IR/pipeline alternatives, candidate checks and comparison, replayable findings, reduced recurring expert work and experiment continuation across environments. The component diagram is removed so architecture remains on its later slide.
+**On-slide structure:** The goal restores the wording and large bold style of the first deck version: build an LLM-assisted framework that proposes MLIR rewrites and checks them against the original code on the same Ascend target. The “Goal:” prefix remains inline. A native editable bullet list under “Targets:” covers useful IR/pipeline alternatives, candidate checks and comparison, replayable findings, reduced recurring expert work and experiment continuation across environments. The component diagram is removed so architecture remains on its later slide.
 
 These are project targets, not achieved results. Specific integrations, semantic/metric coverage and effort savings remain to be established.
 

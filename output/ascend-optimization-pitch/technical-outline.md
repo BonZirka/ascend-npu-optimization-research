@@ -12,7 +12,7 @@ The shared experiment format links kernel permutations, pipeline variants, cases
 
 ## Visual sources
 
-The exact full titles accompany original figure crops of **LPO Figure 2** and **PRAGMA Figure 1**. Their workflows motivate search/checking/feedback responsibilities. Joint Ascend pipeline search and portable records are our project design, not results established by those papers.
+The exact full titles accompany simplified editable summaries of **LPO Figure 2 / Algorithm 1** and **PRAGMA Figures 1–2**. Their workflows motivate search/checking/feedback responsibilities. Joint Ascend pipeline search and portable records are our project design, not results established by those papers.
 
 The MLIR case adapts LPO Figure 4(c,f). All slide text, code, tables and diagrams remain editable. No Ascend missed-optimization example, checker coverage, pipeline change or resource saving is claimed as demonstrated.
 
@@ -79,13 +79,11 @@ These are intended capabilities, not achieved results. Verification coverage and
 
 ### 05 — Two paper workflows inform the experiment
 
-**On-slide structure:** The full paper titles accompany original crops of LPO Figure 2 (PDF p. 5) and PRAGMA Figure 1 (PDF p. 3), displayed side by side. Source captions and headings are editable; figure contents preserve the papers’ original labels and connections.
+**On-slide structure:** Two editable pipeline summaries with full paper titles. LPO retains extraction, LLM proposal, LLVM optimization, improvement screening, Alive2 refinement and the compiler-error/counterexample repair path. The original sequence is the reference for both checks. PRAGMA retains Coder, Verifier, Profiler and Conductor, with a distinct failure path that bypasses profiling and a guidance path back to Coder.
 
-The LPO figure is reproduced from Figure 2 and described in §3.2–3.3. Its extractor wraps dependent sequences, reoptimizes and deduplicates. opt -O3 preprocesses candidates; interestingness screens before Alive2 refinement checking. The PRAGMA figure is reproduced from Figure 1 and described in §III. A deterministic verifier compares outputs; a profiler gathers counters; the conductor reasons over code, logs, metric documentation and best history. The Ascend baseline can use one session; these papers motivate responsibilities and feedback signals.
+**Deliberate simplification:** Extraction internals, prompt contents, retry limits, profiler product names and documentation inputs stay in the notes. PRAGMA's output comparisons provide empirical evidence; LPO's Alive2 check is a refinement check. The summaries preserve this distinction.
 
-**Source basis:** LPO Figure 2 and §3.2–3.3: https://arxiv.org/abs/2508.16125v2; PRAGMA Figures 1–2 and §III: https://arxiv.org/abs/2511.06345v2
-
-
+**Sources:** LPO Figure 2, Algorithm 1 and §§3.2–3.3; PRAGMA Figures 1–2 and §III-C.
 
 ### 06 — Proposed Ascend investigation architecture
 

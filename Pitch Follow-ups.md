@@ -6,4 +6,4 @@ Deferred changes to the presentation.
 
 - [ ] **Slide 2 — table alignment.**
 
-- [ ] **Slide 3 — consider reworking the slide.**
+- [ ] **Slide 3 — [REWORK] Consider reworking the slide.**

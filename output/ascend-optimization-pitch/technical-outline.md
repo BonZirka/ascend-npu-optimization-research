@@ -41,13 +41,13 @@ The dependency pipeline is schematic. Pattern matching and legality are distinct
 
 **Source basis:** LPO §2.2 / Figure 1(b,c), https://arxiv.org/abs/2508.16125v2. Detailed attribution and conditions remain in speaker notes.
 
-### 02 — [REWORK] How optimization opportunities reach engineers today
+### 02 — How performance work starts in AscendNPU-IR
 
-**On-slide structure:** A current-practice table recognizes optimization epics as proactive exploration usually prompted by an observed gap. The remaining gap concerns routine discovery before a problem is noticed.
+**On-slide structure:** The table names four entry points into performance work. It retains the “Trigger and engineering work” header. Regression testing aims to protect upstream against deterioration relative to a baseline, without asserting a guaranteed pre-integration test position. Kernel investigation includes profiling where feasible. Optimization epics are proactive exploration of a class; their typical selection triggers remain uncertain. “The gap” is a separate bold label beside the discovery statement, with no “To my knowledge” qualifier.
 
-Current practices come from the project owner’s observations. Nightly testing helps prevent significant regressions reaching upstream. Optimization epics can proactively explore an optimization class, usually after a performance problem has already been noticed. The intended gap is routine discovery before a problem is noticed, not an assertion that the team never works proactively. The role of cross-platform comparisons in task selection remains uncertain.
+The entries can overlap: a test can lead to a ticket, a kernel task or an epic. The presentation wording follows the project owner's review. Supporting workflow notes remain a partial account; removing an on-slide qualifier does not establish answers to the outstanding workflow questions.
 
-**Source basis:** Current practices and uncertainties
+**Source basis:** Current practices and uncertainties; project-owner slide review, 2026-11-12.
 
 ### 03 — Routine discovery needs a repeatable investigation process
 

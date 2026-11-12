@@ -35,11 +35,11 @@ The MVP is a bounded integration, not exhaustive pipeline enumeration or a gener
 
 ### 01 — Existing compilers miss useful optimizations
 
-**On-slide structure:** Matching quality, pass placement/ordering and new transformation opportunities. The motivation makes no claim of an inherent limit on pattern-based optimization.
+**On-slide structure:** Problem statement followed by pattern recognition, pass placement/ordering and missing transformations. These are overlapping possible mechanisms. A short note leaves Ascend-specific relevance open. The framework/search method is introduced later.
 
-The project investigates current compiler behavior, including matching quality and pass placement. No inherent inability of pattern-based optimization is claimed. A supported rule can miss the IR form presented to it, or execute before enabling facts or forms are exposed. Another useful transformation may require a new rule, analysis or pass. Search therefore covers both pass-ordering opportunities and new transformation opportunities, separately and together.
+Optimization opportunities can remain because an implemented recognizer does not cover a legal equivalent IR form, a transformation exposes useful forms or properties after a consuming pass has run, or a useful transformation is not implemented. A failed match alone is not evidence of a defect: required legality conditions may genuinely be absent. Analyses can be computed on demand; the placement example concerns changes to the program that make useful properties or forms available. These mechanisms can overlap and are not an exhaustive taxonomy. Their relevance to particular AscendNPU-IR cases remains to be investigated.
 
-**Source basis:** Project-owner clarification, 2026-11-11; LPO motivation: https://arxiv.org/abs/2508.16125v2; MLIR pass infrastructure: https://mlir.llvm.org/docs/PassManagement/
+**Source basis:** LPO motivation: https://arxiv.org/abs/2508.16125v2; MLIR pass infrastructure: https://mlir.llvm.org/docs/PassManagement/
 
 ### 02 — [REWORK] How optimization opportunities reach engineers today
 

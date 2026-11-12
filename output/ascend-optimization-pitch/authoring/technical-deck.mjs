@@ -61,14 +61,12 @@ function tbl(s,values,widths,y,heights,size=24){
  values.forEach((row,r)=>{table.rows[r].height=heights[r];row.forEach((v,c)=>{const cell=table.getCell(r,c);cell.fill=r===0?P.blue:(r%2===0?P.tint:P.bg);cell.text.style={typeface:FONT,fontSize:r===0?22:size,color:r===0?'#FFFFFF':P.ink,bold:r===0||c===0};});});return table;
 }
 {
-const s=slide('Existing compilers miss useful optimizations','The project investigates current compiler behavior, including matching quality and pass placement. No inherent inability of pattern-based optimization is claimed. A supported rule can miss the IR form presented to it, or execute before enabling facts or forms are exposed. Another useful transformation may require a new rule, analysis or pass. Search therefore covers both pass-ordering opportunities and new transformation opportunities, separately and together.','Project-owner clarification, 2026-11-11\nLPO motivation: '+LPO+'\nMLIR pass infrastructure: '+REF.passes);
-t(s,'Problem','A useful rewrite may fail to match or run at the wrong stage.\nOther opportunities need a new transformation.',60,174,1470,138,{size:41,bold:true});
-section(s,'Rule / matching quality','An available rewrite may fail to match the IR form produced by the current pipeline.',60,374,440,145);
-section(s,'Pass placement / ordering','A producing pass may expose ranges, precision or other facts after a consuming pass has run.',580,374,440,145);
-section(s,'New pass opportunities','A useful transformation or coordinated sequence may need a new rule, analysis or pass.',1100,374,440,145);
-bar(s,60,653,1480);
-t(s,'Search goal','Find useful IR alternatives and pass sequences. Compare the complete candidate route against the recorded baseline under the selected checks and metric.',60,690,1470,112,{size:30});
-foot(s,'Rule quality, pipeline placement and missing transformations are investigation hypotheses, not confirmed Ascend diagnoses.');
+const s=slide('Existing compilers miss useful optimizations','Optimization opportunities can remain because an implemented recognizer does not cover a legal equivalent IR form, a transformation exposes useful forms or properties after a consuming pass has run, or a useful transformation is not implemented. A failed match alone is not evidence of a defect: required legality conditions may genuinely be absent. Analyses can be computed on demand; the placement example concerns changes to the program that make useful properties or forms available. These mechanisms can overlap and are not an exhaustive taxonomy. Their relevance to particular AscendNPU-IR cases remains to be investigated.','LPO motivation: '+LPO+'\nMLIR pass infrastructure: '+REF.passes);
+t(s,'Problem','An existing transformation may not recognize the current IR form,\nor its pass may run before that form appears.\nOther opportunities need a new transformation.',60,174,1470,165,{size:39,bold:true});
+section(s,'Pattern recognition','An existing transformation may not recognize an equivalent IR form, even when its legality conditions hold.',60,410,440,185);
+section(s,'Pass placement / ordering','A transformation may expose a useful IR form or property after the pass that could exploit it has already run.',580,410,440,185);
+section(s,'Missing transformations','Exploiting an opportunity may require extending a rule or analysis, or implementing another transformation.',1100,410,440,185);
+foot(s,'Which mechanisms account for AscendNPU-IR opportunities remains to be investigated.');
 }
 {
 const s=slide('[REWORK] How optimization opportunities reach engineers today','Current practices come from the project owner’s observations. Nightly testing helps prevent significant regressions reaching upstream. Optimization epics can proactively explore an optimization class, usually after a performance problem has already been noticed. The intended gap is routine discovery before a problem is noticed, not an assertion that the team never works proactively. The role of cross-platform comparisons in task selection remains uncertain.','Current practices and uncertainties',40);

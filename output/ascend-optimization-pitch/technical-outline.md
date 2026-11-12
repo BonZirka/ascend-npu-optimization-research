@@ -49,17 +49,20 @@ The entries can overlap: a test can lead to a ticket, a kernel task or an epic. 
 
 **Source basis:** Current practices and uncertainties; project-owner slide review, 2026-11-12.
 
-### 03 — Optimization discovery repeats analysis, validation and comparison
+### 03 — Where compiler engineers spend time finding optimizations
 
-**On-slide structure:** The iterative investigation flow remains above an editable table explaining the human work inside the steps. The retry path is labelled **Rejected candidate or insufficient improvement**; the path to retention is labelled **Meets correctness and improvement criteria**.
+**On-slide structure:** The iterative human investigation flow remains above a table explaining the sources of discovery effort.
 
-| Investigation work | What the engineer must do |
+| Source of discovery effort | What the engineer has to work out |
 |---|---|
-| **Understand the opportunity** | Reconstruct relevant data flow, memory effects and target constraints. Identify a potentially better IR form or pass arrangement. |
-| **Construct and validate the experiment** | Prepare compilable variants and test inputs. Establish the conditions under which the change preserves behaviour and select applicable checks. |
-| **Assess and document the finding** | Compare variants using a meaningful metric, investigate the result and preserve a runnable reproduction. |
+| **Locating a promising opportunity** | Which parts of the generated code might admit a useful improvement, among many ordinary or already well-optimized sequences? |
+| **Constructing a better alternative** | Which equivalent IR form or pass arrangement could avoid the suspected inefficiency, using information available to the compiler? |
+| **Following the effect through compilation** | Does the alternative produce a useful downstream difference, or does later compilation erase its benefit or introduce another cost? |
+| **Navigating unsuccessful hypotheses** | When an attempt fails, what should be changed or investigated next, and when is further investigation no longer worthwhile? |
 
-The context-reuse note and Experiment goal band remain removed. The table explains human responsibilities without implying that every operation is manual or unsupported by existing tools. Correctness checks provide evidence within their supported coverage.
+The central effort is finding a useful alternative when none has been supplied. A suspected inefficiency must be connected to an equivalent alternative using facts available to the compiler, then evaluated through the downstream pipeline. Failed hypotheses still require choosing a next direction or deciding to stop.
+
+LLMs can already assist with this work. The proposed framework aims to make the assistance operate as a sustained, bounded search using configured tools and evidence. Engineers supply the applicable assumptions and evaluation policy in the MVP. The table describes the broader human effort without promising to replace every engineering decision.
 
 ### 04 — Proposition
 

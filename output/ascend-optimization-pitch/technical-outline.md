@@ -35,7 +35,7 @@ The MVP is a bounded integration, not exhaustive pipeline enumeration or a gener
 
 ### 01 — Compilers miss useful optimizations
 
-**On-slide structure:** A native editable dependency pipeline replaces the premise paragraph. A legal rewrite can fail to match, leaving the form needed by a later transformation absent. The three columns use the requested concise labels: Pattern Blindness, Pass Misordering and Missing Logic. An arrow shows the exploiter preceding the enabler. The footer is removed. The lower area contains a documented LLVM clamp excerpt with the observed four-operation sequence and an equivalent three-operation form.
+**On-slide structure:** A native editable dependency pipeline replaces the premise paragraph. A legal rewrite can fail to match, leaving the form needed by a later transformation absent. The three columns restore the full explanations under Pattern recognition, Pass placement / ordering and Missing transformations. The dependency caption is removed. The footer is removed. The lower area contains a documented LLVM clamp excerpt with the observed four-operation sequence and an equivalent three-operation form.
 
 The dependency pipeline is schematic. Pattern matching and legality are distinct, and a later pass may run without applying the dependent rewrite. The LLVM excerpt is a real reported example from Figure 1(b,c), with SSA names renamed and calls reflowed. It is not an Ascend finding, and the schematic is not asserted as that case's diagnosed cause. The instruction counts describe the excerpt, not measured runtime speedups. The paper's method is introduced later in the talk.
 

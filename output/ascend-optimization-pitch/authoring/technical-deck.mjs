@@ -62,16 +62,14 @@ function tbl(s,values,widths,y,heights,size=24){
 }
 {
 const s=slide('Compilers miss useful optimizations','The upper pipeline is a schematic dependency, not a trace diagnosing a particular compiler. A legality condition can hold while an implemented pattern fails to recognize the IR. A later pass can execute without applying a dependent rewrite because the enabling form was not produced. Misordering is another possible mechanism. The lower excerpt is a real documented LLVM missed-optimization case from LPO Figure 1(b,c), originating from a Rust clamp. SSA names are renamed and calls reflowed; the omitted function signature takes i32 x and returns i8 r. The alternative replaces comparison/select with signed max, followed by unsigned min and truncation. Four versus three counts only the shown IR operations, not runtime speedup. The generic cascade is not asserted as this case’s diagnosed cause.','Documented LLVM case: LPO §2.2, Figure 1(b,c): '+LPO+'\nLocal PDF: attachments/papers/LPO-2508.16125v2.pdf\nPass dependency illustration is schematic.');
-label(s,'Illustrative pass dependency',60,155,1480,P.muted,21);
 const input=box(s,'IR input','IR input',60,201,150,118,{size:25}),pa=box(s,'Pass A','Pass A\nEarlier transforms',255,201,180,118,{size:24}),pb=box(s,'Pass B','Pass B\nLegal rewrite\nnot matched',480,201,325,118,{size:25,bg:P.pale,color:P.amber}),pc=box(s,'Pass C','Pass C\nEnabling form absent\nrewrite not applied',850,201,325,118,{size:24,bg:P.pale,color:P.amber}),out=box(s,'Codegen','Suboptimal\ncodegen',1220,201,320,118,{size:27,bg:P.lightRed,color:P.red});
 a(s,input,pa);a(s,pa,pb);a(s,pb,pc,{color:P.amber});a(s,pc,out,{color:P.red});
-t(s,'Pattern heading','Pattern Blindness',60,367,440,43,{size:31,bold:true,color:P.blue});
-t(s,'Pattern explanation','Legality holds. IR shape unrecognized.',60,418,440,75,{size:26});
-t(s,'Ordering heading','Pass Misordering',580,367,440,43,{size:31,bold:true,color:P.blue});
-t(s,'Ordering explanation','Enabler runs after exploiter.',580,418,440,44,{size:26});
-const ex=t(s,'Exploiter','Exploiter',580,468,155,35,{size:22,color:P.amber}),en=t(s,'Enabler','Enabler',860,468,155,35,{size:22,color:P.blue});a(s,ex,en,{color:P.amber});
-t(s,'Logic heading','Missing Logic',1100,367,440,43,{size:31,bold:true,color:P.blue});
-t(s,'Logic explanation','Needs an extended analysis rule.',1100,418,440,75,{size:26});
+t(s,'Pattern heading','Pattern recognition',60,350,440,43,{size:31,bold:true,color:P.blue});
+t(s,'Pattern explanation','An existing transformation may not recognize an equivalent IR form, even when its legality conditions hold.',60,405,440,110,{size:26});
+t(s,'Ordering heading','Pass placement / ordering',580,350,440,43,{size:31,bold:true,color:P.blue});
+t(s,'Ordering explanation','A transformation may expose a useful IR form or property after the pass that could exploit it has already run.',580,405,440,110,{size:26});
+t(s,'Logic heading','Missing transformations',1100,350,440,43,{size:31,bold:true,color:P.blue});
+t(s,'Logic explanation','Exploiting an opportunity may require extending a rule or analysis, or implementing another transformation.',1100,405,440,110,{size:26});
 bar(s,60,532,1480);
 t(s,'IR case heading','LLVM IR excerpt: clamp i32 to [0, 255], then cast to i8',60,551,1480,38,{size:26,color:P.blue,bold:true});
 t(s,'Original heading','Observed sequence (4 operations)',60,601,710,33,{size:23,bold:true});

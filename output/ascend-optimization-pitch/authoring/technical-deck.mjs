@@ -96,7 +96,7 @@ goal.text.get('Experiment goal:').fill=P.blue;
 }
 {
 const s=slide('Proposition','The proposal is a configurable framework for optimization investigations in AscendNPU-IR, rather than another illustration of the investigation workflow. An engineer supplies a kernel, region or corpus, edit permissions, a checking policy and an improvement metric. The original kernel and its baseline pipeline remain the reference on a fixed target. Candidates may vary IR, permitted pass ordering or both. A finding packages the baseline, candidate, results and replay instructions for compiler engineers. Independent checks supply evidence according to their supported coverage; successful compilation alone does not prove semantic equivalence. Useful findings and reduced recurring expert effort remain evaluation goals.','Goal and intended value; framework input and configuration contracts; baseline and finding contracts\nProject-owner slide review, 2026-11-12');
-const goal=t(s,'Goal','Goal: Build an LLM-assisted framework for systematic discovery of missed optimizations in AscendNPU-IR, with verification of findings.',60,174,1480,152,{size:44,bold:true});
+const goal=t(s,'Goal','Goal: Build an LLM-assisted framework for systematic discovery of missed optimizations in AscendNPU-IR and verification of findings.',60,174,1480,152,{size:44,bold:true});
 goal.text.get('Goal:').fill=P.blue;
 t(s,'Search contract heading','Search contract',60,386,410,56,{size:33,bold:true,color:P.blue});
 t(s,'Search contract body','AscendNPU-IR kernel, region or corpus.\nExplicit edit permissions, checks and improvement metric.',520,386,1020,100,{size:31});

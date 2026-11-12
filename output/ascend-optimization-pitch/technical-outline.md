@@ -51,9 +51,15 @@ The entries can overlap: a test can lead to a ticket, a kernel task or an epic. 
 
 ### 03 — Optimization discovery repeats analysis, validation and comparison
 
-**On-slide structure:** The investigation flow is the centrepiece. Existing kernels/IR lead to inspection and hypothesis formation, an IR or pipeline proposal, compilation/checking/comparison, and retention of a reproducible case. A return path from comparison to hypothesis formation is labelled **Rejected candidate or insufficient improvement**. The forward path to retention is labelled **Meets correctness and improvement criteria**.
+**On-slide structure:** The iterative investigation flow remains above an editable table explaining the human work inside the steps. The retry path is labelled **Rejected candidate or insufficient improvement**; the path to retention is labelled **Meets correctness and improvement criteria**.
 
-The context-reuse note, prerequisites table and Experiment goal band are removed. The diagram makes iteration visible without asserting that every step is manual. Correctness criteria refer to the chosen checking policy and its supported coverage.
+| Investigation work | What the engineer must do |
+|---|---|
+| **Understand the opportunity** | Reconstruct relevant data flow, memory effects and target constraints. Identify a potentially better IR form or pass arrangement. |
+| **Construct and validate the experiment** | Prepare compilable variants and test inputs. Establish the conditions under which the change preserves behaviour and select applicable checks. |
+| **Assess and document the finding** | Compare variants using a meaningful metric, investigate the result and preserve a runnable reproduction. |
+
+The context-reuse note and Experiment goal band remain removed. The table explains human responsibilities without implying that every operation is manual or unsupported by existing tools. Correctness checks provide evidence within their supported coverage.
 
 ### 04 — Proposition
 

@@ -85,17 +85,16 @@ gap.text.get('The gap:').bold=true;
 gap.text.get('The gap:').fill=P.blue;
 }
 {
-const s=slide('Optimization discovery repeats analysis, validation and comparison','Optimization investigation is iterative. An engineer inspects existing code and forms a hypothesis, proposes an IR or pipeline change, then compiles, checks and compares it. A rejected candidate or insufficient improvement prompts another hypothesis. A candidate meeting the selected correctness and improvement criteria can be retained as a reproducible case. Checking criteria provide evidence within the selected validation coverage, not an automatic proof of semantic equivalence. The flow describes investigation responsibilities; it does not assert that every step is manual or that the team lacks existing tools.','Goal and intended value; investigation workflow; project-owner slide review, 2026-11-12',40);
-const input=box(s,'Inputs','Existing\nkernels / IR',60,330,230,150,{size:27}),inspect=box(s,'Reason','Inspect IR and\nform a hypothesis',350,330,240,150,{size:27}),propose=box(s,'Candidate','Propose an IR or\npipeline change',650,330,250,150,{size:27}),check=box(s,'Check and assess','Compile, check\nand compare',960,330,280,150,{size:27}),retain=box(s,'Retain','Retain a\nreproducible case',1300,330,240,150,{size:27,bg:P.lightGreen,color:P.green});
+const s=slide('Optimization discovery repeats analysis, validation and comparison','The diagram shows the iterative investigation workflow. The table explains the human work inside its steps: reconstruct context and identify a potentially better form, prepare and validate a comparable experiment, then assess and preserve the finding. Existing tools may support this work; the slide does not imply every operation is manual. Correctness checks supply evidence within their supported coverage. The next slide proposes a framework to offload recurring investigation work.','Goal and intended value; investigation workflow; project-owner slide review, 2026-11-12',40);
+const input=box(s,'Inputs','Existing\nkernels / IR',60,230,230,106,{size:24}),inspect=box(s,'Reason','Inspect IR and\nform a hypothesis',350,230,240,106,{size:24}),propose=box(s,'Candidate','Propose an IR or\npipeline change',650,230,250,106,{size:24}),check=box(s,'Check and assess','Compile, check\nand compare',960,230,280,106,{size:24}),retain=box(s,'Retain','Retain a\nreproducible case',1300,230,240,106,{size:24,bg:P.lightGreen,color:P.green});
 a(s,input,inspect);a(s,inspect,propose);a(s,propose,check);a(s,check,retain,{color:P.green});
-t(s,'Acceptance condition','Meets correctness and\nimprovement criteria',1050,215,490,78,{size:27,color:P.green,center:true,middle:true});
-const conditionTop=point(s,'Acceptance label anchor',1270,294),conditionBottom=point(s,'Acceptance path anchor',1270,404);
+t(s,'Acceptance condition','Meets correctness and\nimprovement criteria',1050,151,490,58,{size:23,color:P.green,center:true,middle:true});
+const conditionTop=point(s,'Acceptance label anchor',1270,209),conditionBottom=point(s,'Acceptance path anchor',1270,282);
 a(s,conditionTop,conditionBottom,{fromSide:'bottom',toSide:'top',color:P.green,arrow:false});
-const retryDown=point(s,'Retry down',1100,650),retryBack=point(s,'Retry return',470,650);
-a(s,check,retryDown,{fromSide:'bottom',toSide:'top',color:P.amber,arrow:false});
-a(s,retryDown,retryBack,{color:P.amber,arrow:false});
-a(s,retryBack,inspect,{fromSide:'top',toSide:'bottom',color:P.amber});
-t(s,'Retry condition','Rejected candidate or insufficient improvement',350,688,890,86,{size:28,color:P.amber,center:true,middle:true});
+const retryDown=point(s,'Retry down',1100,382),retryBack=point(s,'Retry return',470,382);
+a(s,check,retryDown,{fromSide:'bottom',toSide:'top',color:P.amber,arrow:false});a(s,retryDown,retryBack,{color:P.amber,arrow:false});a(s,retryBack,inspect,{fromSide:'top',toSide:'bottom',color:P.amber});
+t(s,'Retry condition','Rejected candidate or insufficient improvement',350,397,890,42,{size:23,color:P.amber,center:true,middle:true});
+tbl(s,[['Investigation work','What the engineer must do'],['Understand the opportunity','Reconstruct relevant data flow, memory effects and target constraints. Identify a potentially better IR form or pass arrangement.'],['Construct and validate the experiment','Prepare compilable variants and test inputs. Establish the conditions under which the change preserves behaviour and select applicable checks.'],['Assess and document the finding','Compare variants using a meaningful metric, investigate the result and preserve a runnable reproduction.']],[360,1120],468,[50,100,120,100],25);
 }
 
 {

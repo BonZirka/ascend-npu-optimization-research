@@ -43,7 +43,7 @@ The dependency pipeline is schematic. Pattern matching and legality are distinct
 
 ### 02 — How performance work starts in AscendNPU-IR
 
-**On-slide structure:** The table names four entry points into performance work. It retains the “Trigger and engineering work” header. Regression testing aims to protect upstream against deterioration relative to a baseline, without asserting a guaranteed pre-integration test position. Kernel investigation includes profiling where feasible. Optimization epics are proactive exploration of a class; their typical selection triggers remain uncertain. “The gap” is a separate bold label beside the discovery statement, with no “To my knowledge” qualifier.
+**On-slide structure:** The table names four entry points into performance work. It retains the “Trigger and engineering work” header. Regression testing aims to protect upstream against deterioration relative to a baseline, without asserting a guaranteed pre-integration test position. Kernel investigation includes profiling where feasible. Optimization epics describe proactive improvements to related compiler optimizations, with vectorization and redundant-check elimination as illustrative examples. Internal questions about task selection are omitted from the slide. The gap statement is a single inline paragraph, with “The gap:” in blue and bold and the remainder in normal navy text.
 
 The entries can overlap: a test can lead to a ticket, a kernel task or an epic. The presentation wording follows the project owner's review. Supporting workflow notes remain a partial account; removing an on-slide qualifier does not establish answers to the outstanding workflow questions.
 

@@ -33,7 +33,7 @@ The MVP is a bounded integration, not exhaustive pipeline enumeration or a gener
 
 ## Slide guide
 
-### 01 — Existing compilers miss useful optimizations
+### 01 — Compilers miss useful optimizations
 
 **On-slide structure:** Problem statement followed by pattern recognition, pass placement/ordering and missing transformations. These are overlapping possible mechanisms. A short note leaves Ascend-specific relevance open. The framework/search method is introduced later.
 

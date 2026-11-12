@@ -85,15 +85,19 @@ gap.text.get('The gap:').bold=true;
 gap.text.get('The gap:').fill=P.blue;
 }
 {
-const s=slide('Optimization discovery repeats analysis, validation and comparison','This slide describes the work needed to investigate optimization candidates, not a claim that the team lacks a process or manually repeats every step. Candidates may change IR or pass pipelines. Proposing an alternative does not establish legality: compilation, selected correctness checks and improvement assessment remain explicit. Relevant context and compatible baseline results can be reused. The intended experiment is to obtain useful reproducible findings with less expert involvement in recurring execution and checking; whether that reduces total preparation/review effort must be evaluated.','Goal and intended value; current practices; framework investigation contracts\nProject-owner slide review, 2026-11-12',40);
-const input=box(s,'Inputs','Existing\nkernels / IR',60,198,230,112,{size:25}),inspect=box(s,'Reason','Inspect IR and\nform a hypothesis',350,198,240,112,{size:25}),propose=box(s,'Candidate','Propose an IR or\npipeline change',650,198,250,112,{size:25}),check=box(s,'Check and assess','Compile, check\nand compare',960,198,280,112,{size:25}),retain=box(s,'Retain','Retain a\nreproducible case',1300,198,240,112,{size:25});
-a(s,input,inspect);a(s,inspect,propose);a(s,propose,check);a(s,check,retain);
-t(s,'Reuse context','Compatible context, test material and baseline results can be reused across candidates.',60,338,1480,43,{size:24,color:P.muted});
-tbl(s,[['Work','Required context and inputs'],['Understand the region','Relevant definitions, uses, types, effects, aliasing, shapes/layouts and numerical constraints.'],['Compile and check','Compiler entry point, enclosing module, pipeline/target settings and applicable check inputs or harness.'],['Assess and retain','Corresponding output artifacts, selected metric, comparison conditions and saved reproduction steps.']],[360,1120],399,[53,97,97,97],25);
-const goal=t(s,'Experiment goal','Experiment goal: obtain useful, reproducible findings with less expert involvement in execution and checking.',60,774,1480,76,{size:27,bg:P.pale,middle:true,pad:13});
-goal.text.get('Experiment goal:').bold=true;
-goal.text.get('Experiment goal:').fill=P.blue;
+const s=slide('Optimization discovery repeats analysis, validation and comparison','Optimization investigation is iterative. An engineer inspects existing code and forms a hypothesis, proposes an IR or pipeline change, then compiles, checks and compares it. A rejected candidate or insufficient improvement prompts another hypothesis. A candidate meeting the selected correctness and improvement criteria can be retained as a reproducible case. Checking criteria provide evidence within the selected validation coverage, not an automatic proof of semantic equivalence. The flow describes investigation responsibilities; it does not assert that every step is manual or that the team lacks existing tools.','Goal and intended value; investigation workflow; project-owner slide review, 2026-11-12',40);
+const input=box(s,'Inputs','Existing\nkernels / IR',60,330,230,150,{size:27}),inspect=box(s,'Reason','Inspect IR and\nform a hypothesis',350,330,240,150,{size:27}),propose=box(s,'Candidate','Propose an IR or\npipeline change',650,330,250,150,{size:27}),check=box(s,'Check and assess','Compile, check\nand compare',960,330,280,150,{size:27}),retain=box(s,'Retain','Retain a\nreproducible case',1300,330,240,150,{size:27,bg:P.lightGreen,color:P.green});
+a(s,input,inspect);a(s,inspect,propose);a(s,propose,check);a(s,check,retain,{color:P.green});
+t(s,'Acceptance condition','Meets correctness and\nimprovement criteria',1050,215,490,78,{size:27,color:P.green,center:true,middle:true});
+const conditionTop=point(s,'Acceptance label anchor',1270,294),conditionBottom=point(s,'Acceptance path anchor',1270,404);
+a(s,conditionTop,conditionBottom,{fromSide:'bottom',toSide:'top',color:P.green,arrow:false});
+const retryDown=point(s,'Retry down',1100,650),retryBack=point(s,'Retry return',470,650);
+a(s,check,retryDown,{fromSide:'bottom',toSide:'top',color:P.amber,arrow:false});
+a(s,retryDown,retryBack,{color:P.amber,arrow:false});
+a(s,retryBack,inspect,{fromSide:'top',toSide:'bottom',color:P.amber});
+t(s,'Retry condition','Rejected candidate or insufficient improvement',350,688,890,86,{size:28,color:P.amber,center:true,middle:true});
 }
+
 {
 const s=slide('Proposition',"The three objectives define the intended technical capabilities: explore alternative IR forms and pass arrangements in existing AscendNPU-IR kernels, establish correctness checks and improvement criteria, and automate recurring experimentation with reproducible findings for compiler engineers. These are project objectives, not achieved results. Independent verification is limited by the selected checking methods and their supported coverage. Useful findings and reduced expert effort remain to be evaluated. Implementation stages and detailed architecture are presented later.",'Goal and intended value; framework investigation objectives; project-owner slide review, 2026-11-12');
 const goal=t(s,'Goal','Goal: Build an LLM-assisted framework for systematic discovery of missed optimizations in AscendNPU-IR and verification of findings.',60,174,1480,152,{size:44,bold:true});

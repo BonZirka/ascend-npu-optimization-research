@@ -51,11 +51,9 @@ The entries can overlap: a test can lead to a ticket, a kernel task or an epic. 
 
 ### 03 — Optimization discovery repeats analysis, validation and comparison
 
-**On-slide structure:** Five editable stages run from existing kernels/IR through inspection, a proposed IR/pipeline change, compilation/checking/comparison and a reproducible case. A short note allows reuse of compatible context and baseline results. The table names required context and inputs for understanding, checking and assessing a candidate. The concluding band states the intended experiment benefit: useful reproducible findings with less expert involvement in execution and checking.
+**On-slide structure:** The investigation flow is the centrepiece. Existing kernels/IR lead to inspection and hypothesis formation, an IR or pipeline proposal, compilation/checking/comparison, and retention of a reproducible case. A return path from comparison to hypothesis formation is labelled **Rejected candidate or insufficient improvement**. The forward path to retention is labelled **Meets correctness and improvement criteria**.
 
-This describes investigation responsibilities, not an established absence of process or universal manual work in the team. Legality is checked after proposing a candidate. Repetition does not imply recreating every input from scratch. Reduced total expert effort remains an evaluation question.
-
-**Source basis:** Goal and intended value; current practices; framework investigation contracts; project-owner slide review, 2026-11-12.
+The context-reuse note, prerequisites table and Experiment goal band are removed. The diagram makes iteration visible without asserting that every step is manual. Correctness criteria refer to the chosen checking policy and its supported coverage.
 
 ### 04 — Proposition
 

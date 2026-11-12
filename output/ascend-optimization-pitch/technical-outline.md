@@ -57,13 +57,13 @@ This describes investigation responsibilities, not an established absence of pro
 
 **Source basis:** Goal and intended value; current practices; framework investigation contracts; project-owner slide review, 2026-11-12.
 
-### 04 — A framework for discovering missed compiler optimizations
+### 04 — Proposition
 
 **Goal:** Build an LLM-assisted framework with independent checks for every optimization proposal.
 
-**On-slide structure:** An editable three-stage map replaces the targets list: **Propose** (MLIR rewrites and pass-pipeline variants), **Check** (compilation, behaviour checks and comparison using the chosen metric), and **Export** (replayable findings and automated experiment reports). Diagnostics and results feed the next proposal. A shared persistence line makes continuation across environments visible without turning the overview into a component diagram.
+**On-slide structure:** Three flat rows define the proposal rather than repeat the investigation workflow: the **search contract** (AscendNPU-IR kernel, region or corpus, edit permissions, checks and metric), the **same-target reference** (a fixed original kernel and target, with candidate IR or pass-order variants), and the **runnable finding** (baseline, candidate, validation results, metric comparison and replay command). The workflow diagram and the note about continuation across environments are removed from this slide.
 
-The LLM proposes candidates. Independent checks supply the acceptance evidence under an explicit checking policy. Compilation alone is not an equivalence proof, and available validation coverage remains to be established. Useful findings and reduced recurring expert effort are evaluation goals, not achieved results. This is slide 4; the preceding investigation slide remains in place.
+The baseline pipeline also remains fixed as a reference when candidates vary pass ordering. Independent checking supplies evidence under the configured policy, not an automatic proof of equivalence. Validation coverage, useful findings and expert effort savings remain to be evaluated. Architecture and continuation requirements belong to their later slides.
 
 ### 05 — Research directions and concrete starting points
 

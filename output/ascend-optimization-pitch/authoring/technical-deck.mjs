@@ -95,26 +95,17 @@ goal.text.get('Experiment goal:').bold=true;
 goal.text.get('Experiment goal:').fill=P.blue;
 }
 {
-const s=slide('A framework for discovering missed compiler optimizations','The proposed framework targets AscendNPU-IR. The LLM supplies candidate ideas, while independent compiler checks, applicable behaviour checks and the selected improvement metric determine which candidates qualify as findings. Successful compilation alone does not establish semantic equivalence. Available validation coverage and assumptions remain explicit, and experiments must evaluate whether the approach yields useful findings with less recurring expert effort. The three stages are a high-level map, not a component architecture. Persistent records retain variants, checks, metrics and reports so interrupted experiments can continue in compatible environments. Export produces replayable cases and automates reporting for compiler engineers.','Goal and intended value; framework investigation contracts; experiment records and continuation requirements\nProject-owner slide review, 2026-11-12',42);
+const s=slide('Proposition','The proposal is a configurable framework for optimization investigations in AscendNPU-IR, rather than another illustration of the investigation workflow. An engineer supplies a kernel, region or corpus, edit permissions, a checking policy and an improvement metric. The original kernel and its baseline pipeline remain the reference on a fixed target. Candidates may vary IR, permitted pass ordering or both. A finding packages the baseline, candidate, results and replay instructions for compiler engineers. Independent checks supply evidence according to their supported coverage; successful compilation alone does not prove semantic equivalence. Useful findings and reduced recurring expert effort remain evaluation goals.','Goal and intended value; framework input and configuration contracts; baseline and finding contracts\nProject-owner slide review, 2026-11-12');
 const goal=t(s,'Goal','Goal: Build an LLM-assisted framework with independent checks for every optimization proposal.',60,174,1480,152,{size:44,bold:true});
 goal.text.get('Goal:').fill=P.blue;
-const propose=box(s,'Propose stage','',60,390,430,220,{bg:P.tint,color:P.blue});
-const check=box(s,'Check stage','',585,390,430,220,{bg:P.lightGreen,color:P.green});
-const exp=box(s,'Export stage','',1110,390,430,220,{bg:P.tint,color:P.blue});
-t(s,'Propose heading','Propose',85,416,380,54,{size:38,bold:true,color:P.blue});
-t(s,'Propose detail','MLIR rewrites and\npass-pipeline variants.',85,496,380,92,{size:28});
-t(s,'Check heading','Check',610,416,380,54,{size:38,bold:true,color:P.green});
-t(s,'Check detail','Compile and check behaviour.\nCompare the chosen metric.',610,496,380,92,{size:28});
-t(s,'Export heading','Export',1135,416,380,54,{size:38,bold:true,color:P.blue});
-t(s,'Export detail','Replayable findings.\nAutomated experiment reports.',1135,496,380,92,{size:28});
-a(s,propose,check);a(s,check,exp);
-const down=point(s,'Feedback down',800,672),back=point(s,'Feedback return',275,672);
-a(s,check,down,{fromSide:'bottom',toSide:'top',color:P.green,arrow:false});
-a(s,down,back,{color:P.green,arrow:false});
-a(s,back,propose,{fromSide:'top',toSide:'bottom',color:P.green});
-t(s,'Feedback label','Diagnostics and results guide the next proposal',60,702,955,42,{size:25,color:P.green,center:true});
-bar(s,60,786,1480);
-t(s,'Persistent experiment records','Saved experiments support continuation across environments.',60,809,1480,40,{size:25,color:P.muted});
+t(s,'Search contract heading','Search contract',60,386,410,56,{size:33,bold:true,color:P.blue});
+t(s,'Search contract body','AscendNPU-IR kernel, region or corpus.\nExplicit edit permissions, checks and improvement metric.',520,386,1020,100,{size:31});
+bar(s,60,510,1480);
+t(s,'Reference heading','Same-target reference',60,548,410,56,{size:33,bold:true,color:P.blue});
+t(s,'Reference body','Fixed original kernel and target.\nCandidates may change IR, pass ordering or both.',520,548,1020,100,{size:31});
+bar(s,60,672,1480);
+t(s,'Finding heading','Runnable finding',60,710,410,56,{size:33,bold:true,color:P.blue});
+t(s,'Finding body','Baseline and candidate, validation results,\nmetric comparison and a replay command.',520,710,1020,100,{size:31});
 }
 
 {

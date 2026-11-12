@@ -80,7 +80,7 @@ t(s,'Alternative LLVM','%lo = call i32 @llvm.smax.i32(\n        i32 %x, i32 0)\n
 {
 const s=slide('How performance work starts in AscendNPU-IR','Current practices come from the project owner’s observations. Nightly testing helps prevent significant regressions reaching upstream. Optimization epics can proactively explore an optimization class, usually after a performance problem has already been noticed. The intended gap is routine discovery before a problem is noticed, not an assertion that the team never works proactively. The role of cross-platform comparisons in task selection remains uncertain.','Current practices and uncertainties',40);
 tbl(s,[['Entry point','Trigger and engineering work'],['Nightly performance regression testing','Detect deterioration against a baseline to help keep regressions out of upstream. Investigate or revert offending changes.'],['Performance issue tickets','Investigate slow cases discovered in already merged code.'],['Kernel-specific tasks','Investigate a selected kernel through generated-code inspection and profiling where feasible.'],['Optimization epics','Proactively improve related compiler optimizations, for example vectorization or redundant-check elimination.']],[445,1035],174,[55,102,91,102,102],26);
-const gap=t(s,'Discovery gap','The gap: routine discovery of optimization opportunities before a performance problem is noticed.',60,691,1480,112,{size:30,bg:P.pale,pad:16});
+const gap=t(s,'Discovery gap','The gap: routine discovery of optimization opportunities before a performance problem is noticed.',60,691,1480,112,{size:30,bg:P.pale,pad:16,center:true,middle:true});
 gap.text.get('The gap:').bold=true;
 gap.text.get('The gap:').fill=P.blue;
 }

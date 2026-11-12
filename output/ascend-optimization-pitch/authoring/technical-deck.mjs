@@ -95,17 +95,17 @@ goal.text.get('Experiment goal:').bold=true;
 goal.text.get('Experiment goal:').fill=P.blue;
 }
 {
-const s=slide('Proposition','The proposal is a configurable framework for optimization investigations in AscendNPU-IR, rather than another illustration of the investigation workflow. An engineer supplies a kernel, region or corpus, edit permissions, a checking policy and an improvement metric. The original kernel and its baseline pipeline remain the reference on a fixed target. Candidates may vary IR, permitted pass ordering or both. A finding packages the baseline, candidate, results and replay instructions for compiler engineers. Independent checks supply evidence according to their supported coverage; successful compilation alone does not prove semantic equivalence. Useful findings and reduced recurring expert effort remain evaluation goals.','Goal and intended value; framework input and configuration contracts; baseline and finding contracts\nProject-owner slide review, 2026-11-12');
+const s=slide('Proposition',"The three objectives define the intended technical capabilities: explore alternative IR forms and pass arrangements in existing AscendNPU-IR kernels, establish correctness checks and improvement criteria, and automate recurring experimentation with reproducible findings for compiler engineers. These are project objectives, not achieved results. Independent verification is limited by the selected checking methods and their supported coverage. Useful findings and reduced expert effort remain to be evaluated. Implementation stages and detailed architecture are presented later.",'Goal and intended value; framework investigation objectives; project-owner slide review, 2026-11-12');
 const goal=t(s,'Goal','Goal: Build an LLM-assisted framework for systematic discovery of missed optimizations in AscendNPU-IR and verification of findings.',60,174,1480,152,{size:44,bold:true});
 goal.text.get('Goal:').fill=P.blue;
-t(s,'Search contract heading','Search contract',60,386,410,56,{size:33,bold:true,color:P.blue});
-t(s,'Search contract body','AscendNPU-IR kernel, region or corpus.\nExplicit edit permissions, checks and improvement metric.',520,386,1020,100,{size:31});
+t(s,"Explore opportunities heading","Explore optimization opportunities",60,386,410,100,{size:33,bold:true,color:P.blue,middle:true});
+t(s,"Explore opportunities body","Search alternative IR forms and pass arrangements\nin existing AscendNPU-IR kernels.",520,386,1020,100,{size:31,middle:true});
 bar(s,60,510,1480);
-t(s,'Reference heading','Same-target reference',60,548,410,56,{size:33,bold:true,color:P.blue});
-t(s,'Reference body','Fixed original kernel and target.\nCandidates may change IR, pass ordering or both.',520,548,1020,100,{size:31});
+t(s,"Acceptance criteria heading","Establish reliable acceptance criteria",60,548,410,100,{size:33,bold:true,color:P.blue,middle:true});
+t(s,"Acceptance criteria body","Determine how to check correctness\nand demonstrate improvement.",520,548,1020,100,{size:31,middle:true});
 bar(s,60,672,1480);
-t(s,'Finding heading','Runnable finding',60,710,410,56,{size:33,bold:true,color:P.blue});
-t(s,'Finding body','Baseline and candidate, validation results,\nmetric comparison and a replay command.',520,710,1020,100,{size:31});
+t(s,"Offload investigation heading","Offload recurring investigation work",60,710,410,100,{size:33,bold:true,color:P.blue,middle:true});
+t(s,"Offload investigation body","Automate experiments and produce reproducible findings\nfor compiler engineers.",520,710,1020,100,{size:31,middle:true});
 }
 
 {

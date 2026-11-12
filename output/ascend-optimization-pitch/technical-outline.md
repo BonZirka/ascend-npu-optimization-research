@@ -61,9 +61,13 @@ This describes investigation responsibilities, not an established absence of pro
 
 **Goal:** Build an LLM-assisted framework for systematic discovery of missed optimizations in AscendNPU-IR and verification of findings.
 
-**On-slide structure:** Three flat rows define the proposal rather than repeat the investigation workflow: the **search contract** (AscendNPU-IR kernel, region or corpus, edit permissions, checks and metric), the **same-target reference** (a fixed original kernel and target, with candidate IR or pass-order variants), and the **runnable finding** (baseline, candidate, validation results, metric comparison and replay command). The workflow diagram and the note about continuation across environments are removed from this slide.
+**On-slide structure:** Three objectives replace the input/comparison/output contract while retaining the flat three-row layout:
 
-The baseline pipeline also remains fixed as a reference when candidates vary pass ordering. Independent checking supplies evidence under the configured policy, not an automatic proof of equivalence. Validation coverage, useful findings and expert effort savings remain to be evaluated. Architecture and continuation requirements belong to their later slides.
+- **Explore optimization opportunities** — search alternative IR forms and pass arrangements in existing AscendNPU-IR kernels.
+- **Establish reliable acceptance criteria** — determine how to check correctness and demonstrate improvement.
+- **Offload recurring investigation work** — automate experiments and produce reproducible findings for compiler engineers.
+
+These are intended capabilities, not achieved results. Verification coverage and expert effort savings remain to be evaluated. Implementation stages and detailed architecture belong to later slides.
 
 ### 05 — Research directions and concrete starting points
 

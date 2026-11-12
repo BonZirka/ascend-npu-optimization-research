@@ -35,7 +35,7 @@ The MVP is a bounded integration, not exhaustive pipeline enumeration or a gener
 
 ### 01 — Compilers miss useful optimizations
 
-**On-slide structure:** Problem statement followed by pattern recognition, pass placement/ordering and missing transformations. These are overlapping possible mechanisms. A short note leaves Ascend-specific relevance open. The framework/search method is introduced later.
+**On-slide structure:** A short premise explains that a missed transformation may block later optimizations. Three columns then cover pattern recognition, pass placement/ordering and missing transformations. These are overlapping possible mechanisms. A short note leaves Ascend-specific relevance open. The framework/search method is introduced later.
 
 Optimization opportunities can remain because an implemented recognizer does not cover a legal equivalent IR form, a transformation exposes useful forms or properties after a consuming pass has run, or a useful transformation is not implemented. A failed match alone is not evidence of a defect: required legality conditions may genuinely be absent. Analyses can be computed on demand; the placement example concerns changes to the program that make useful properties or forms available. These mechanisms can overlap and are not an exhaustive taxonomy. Their relevance to particular AscendNPU-IR cases remains to be investigated.
 

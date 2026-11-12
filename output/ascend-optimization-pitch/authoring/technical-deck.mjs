@@ -62,7 +62,7 @@ function tbl(s,values,widths,y,heights,size=24){
 }
 {
 const s=slide('Compilers miss useful optimizations','Optimization opportunities can remain because an implemented recognizer does not cover a legal equivalent IR form, a transformation exposes useful forms or properties after a consuming pass has run, or a useful transformation is not implemented. A failed match alone is not evidence of a defect: required legality conditions may genuinely be absent. Analyses can be computed on demand; the placement example concerns changes to the program that make useful properties or forms available. These mechanisms can overlap and are not an exhaustive taxonomy. Their relevance to particular AscendNPU-IR cases remains to be investigated.','LPO motivation: '+LPO+'\nMLIR pass infrastructure: '+REF.passes);
-t(s,'Problem','An existing transformation may not recognize the current IR form,\nor its pass may run before that form appears.\nOther opportunities need a new transformation.',60,174,1470,165,{size:39,bold:true});
+t(s,'Problem','A missed transformation can affect more than one instruction sequence: it may also prevent later optimizations from becoming applicable.',60,174,1470,165,{size:39,bold:true});
 section(s,'Pattern recognition','An existing transformation may not recognize an equivalent IR form, even when its legality conditions hold.',60,410,440,185);
 section(s,'Pass placement / ordering','A transformation may expose a useful IR form or property after the pass that could exploit it has already run.',580,410,440,185);
 section(s,'Missing transformations','Exploiting an opportunity may require extending a rule or analysis, or implementing another transformation.',1100,410,440,185);

@@ -10,7 +10,7 @@ const python=process.env.RUNTIME_PYTHON;
 if(!moduleRoot||!skill||!python) throw new Error('Set RUNTIME_NODE_MODULES, PRESENTATIONS_SKILL_DIR and RUNTIME_PYTHON from the Codex workspace dependencies.');
 const runtimeRequire=createRequire(path.join(moduleRoot,'package.json'));
 const {Presentation,PresentationFile}=await import(pathToFileURL(runtimeRequire.resolve('@oai/artifact-tool')).href);
-const {finalizePresentation}=await import(pathToFileURL(path.join(skill,'container_tools/artifact_tool_utils.mjs')).href);
+const {finalizePresentation,makeNativeBulletParagraphs}=await import(pathToFileURL(path.join(skill,'container_tools/artifact_tool_utils.mjs')).href);
 const root=process.env.PITCH_BUILD_ROOT?path.resolve(process.env.PITCH_BUILD_ROOT):await fs.mkdtemp(path.join(os.tmpdir(),'ascend-pitch-'));
 const out=process.env.PITCH_OUTPUT||path.join(root,'final','ascend-optimization-technical.pptx');
 const P={bg:'#FCFDFF',ink:'#203248',blue:'#245994',muted:'#4B6178',line:'#B8C8D9',tint:'#EDF3F9',amber:'#85530B',pale:'#FFF0CF',green:'#246553',lightGreen:'#EDF7F2',purple:'#645184',lightPurple:'#F2EFF8',red:'#9C3F36',lightRed:'#FBEFEC'};
@@ -95,22 +95,20 @@ goal.text.get('Experiment goal:').bold=true;
 goal.text.get('Experiment goal:').fill=P.blue;
 }
 {
-const s=slide('A framework for discovering missed compiler optimizations','The proposed AscendNPU-IR framework assigns responsibilities around an investigation. Engineers supply kernels/IR and context, a baseline configuration, permitted search scope and resource limits; preconstructed variants are not required. The LLM proposes IR or pass-pipeline alternatives. Compiler, selected checker and evaluator tools produce diagnostics and comparison results that guide further proposals. The baseline remains fixed. A qualifying finding contains saved baseline/candidate variants, check/metric evidence and an exercised replay recipe for compiler-engineer review. Engineers assess the finding and decide subsequent compiler work. Exact integrations and coverage remain to be established. Expert-effort evaluation is discussed later.','Goal and intended value; framework investigation contracts\nProject-owner slide review, 2026-11-12',42);
-t(s,'Proposal','Investigate IR and pass-pipeline alternatives in AscendNPU-IR,\nand produce reproducible findings for compiler engineers.',60,174,1480,111,{size:34,bold:true});
-t(s,'Input label','Input',60,292,340,38,{size:27,bold:true,color:P.blue});
-t(s,'Framework boundary','',450,330,650,330,{geometry:'rect',border:P.blue,dash:true});
-t(s,'Framework label','Framework',462,292,620,38,{size:27,bold:true,color:P.blue});
-t(s,'Output label','Output',1170,292,370,38,{size:27,bold:true,color:P.blue});
-const input=box(s,'Supplied input','Kernels / IR + context\nBaseline pipeline\nSearch scope\nResource limits',60,365,340,170,{size:25});
-const llm=box(s,'LLM proposals','LLM\nPropose IR / pipeline\nalternatives',475,365,270,145,{size:24,bg:P.lightPurple,color:P.purple});
-const tools=box(s,'Tool checks','Tools\nCompile, check\nand compare',800,365,275,145,{size:24});
-const finding=box(s,'Finding','Reproducible finding\nBaseline / candidate\nCheck + metric evidence\nReplay entry point',1170,365,370,170,{size:24});
-a(s,input,llm);a(s,llm,tools);a(s,tools,finding);
-const turn1=point(s,'Feedback turn 1',937,563),turn2=point(s,'Feedback turn 2',610,563);
-a(s,tools,turn1,{fromSide:'bottom',toSide:'top',color:P.amber,arrow:false});a(s,turn1,turn2,{fromSide:'left',toSide:'right',color:P.amber,arrow:false});a(s,turn2,llm,{fromSide:'top',toSide:'bottom',color:P.amber});
-t(s,'Tool feedback','Diagnostics + comparison results',500,593,575,40,{size:23,color:P.amber,center:true});
-const review=box(s,'Engineer review','Engineer review\nDecide subsequent\ncompiler work',1170,615,370,115,{size:24,bg:P.lightGreen,color:P.green});a(s,finding,review,{fromSide:'bottom',toSide:'top',color:P.green});
-t(s,'Offloaded work','Offload variant construction, experiment execution and evidence collection.',60,776,1480,65,{size:30});
+const s=slide('A framework for discovering missed compiler optimizations','This is the proposed project goal and a concise set of targets. It deliberately leaves component architecture to the later architecture slide. The goal is an LLM-assisted framework for AscendNPU-IR. Targets include useful IR/pipeline alternatives, explicit checks and assessment, reproducible findings, reduced recurring expert effort and persistent experiments that can continue in another environment. These are intended capabilities, not achieved results. Concrete checker/metric coverage and effort savings remain to be evaluated.','Goal and intended value; framework investigation contracts; experiment records and continuation requirements\nProject-owner slide review, 2026-11-12',42);
+const goal=t(s,'Goal','Goal: develop an LLM-assisted framework to find missed optimizations in AscendNPU-IR.',60,190,1480,125,{size:36});
+goal.text.get('Goal:').bold=true;
+goal.text.get('Goal:').fill=P.blue;
+t(s,'Targets heading','Targets:',60,355,1480,48,{size:32,bold:true,color:P.blue});
+const targets=t(s,'Targets','',60,425,1480,365,{size:30});
+targets.text=makeNativeBulletParagraphs([
+ 'Find useful IR rewrites and pass-pipeline alternatives.',
+ 'Check candidate validity and compare results using an explicit metric.',
+ 'Export reproducible findings that compiler engineers can replay and assess.',
+ 'Reduce recurring expert work in constructing, running and documenting experiments.',
+ 'Preserve experiment state, variants and reports for continuation across environments.'
+],{marginLeftPoints:22,hangingPoints:11,spaceAfterPoints:14});
+targets.text.style={typeface:FONT,fontSize:30,color:P.ink,autoFit:'none',insets:0,wrap:'square'};
 }
 {
 const s=slide('Research directions and concrete starting points','The studies remain open. New pass-ordering work compares fixed-pipeline IR rewrites, existing-pass pipeline variants and their combinations. A shared experiment format and continuation across environments are implementation requirements, with exact schemas and compatible execution bindings to design. Advanced selectors, richer context, tools and feedback policies remain comparisons after the baseline.','Framework research agenda; experiment records and continuation design\nProject-owner clarification, 2026-11-11');

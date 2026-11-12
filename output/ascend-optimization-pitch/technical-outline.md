@@ -59,11 +59,11 @@ This describes investigation responsibilities, not an established absence of pro
 
 ### 04 — A framework for discovering missed compiler optimizations
 
-**On-slide structure:** Supplied kernels/IR, baseline configuration, search scope and resource limits feed the framework. Inside the boundary, the LLM proposes alternatives while compiler/checker/evaluator tools compile, check and compare; diagnostics and comparison results return to the LLM. The output is a reproducible finding containing the saved comparison, evidence and replay entry point. A separate engineer-review handoff decides subsequent compiler work. The bottom line identifies the recurring work to offload.
+**On-slide structure:** An inline “Goal:” statement introduces the proposed LLM-assisted framework for AscendNPU-IR. A native editable bullet list under “Targets:” covers useful IR/pipeline alternatives, candidate checks and comparison, replayable findings, reduced recurring expert work and experiment continuation across environments. The component diagram is removed so architecture remains on its later slide.
 
-The inputs do not require preconstructed variants. A finding requires a qualifying checked comparison under the selected policy and objective; concrete integration and coverage remain open. This slide introduces responsibility and output rather than repeating the activity list from slide 3. Whether useful findings justify preparation/review effort remains part of later evaluation.
+These are project targets, not achieved results. Specific integrations, semantic/metric coverage and effort savings remain to be established.
 
-**Source basis:** Goal and intended value; framework investigation contracts; project-owner slide review, 2026-11-12.
+**Source basis:** Goal and intended value; framework investigation contracts; experiment records and continuation requirements; project-owner slide review, 2026-11-12.
 
 ### 05 — Research directions and concrete starting points
 

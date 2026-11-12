@@ -95,21 +95,28 @@ goal.text.get('Experiment goal:').bold=true;
 goal.text.get('Experiment goal:').fill=P.blue;
 }
 {
-const s=slide('A framework for discovering missed compiler optimizations','This is the proposed project goal and a concise set of targets. It deliberately leaves component architecture to the later architecture slide. The goal is an LLM-assisted framework for AscendNPU-IR. Targets include useful IR/pipeline alternatives, explicit checks and assessment, reproducible findings, reduced recurring expert effort and persistent experiments that can continue in another environment. These are intended capabilities, not achieved results. Concrete checker/metric coverage and effort savings remain to be evaluated.','Goal and intended value; framework investigation contracts; experiment records and continuation requirements\nProject-owner slide review, 2026-11-12',42);
-const goal=t(s,'Goal','Goal: Build an LLM-assisted framework that proposes MLIR rewrites and checks them against the original code on the same Ascend target.',60,174,1480,165,{size:44,bold:true});
-goal.text.get('Goal:').bold=true;
+const s=slide('A framework for discovering missed compiler optimizations','The proposed framework targets AscendNPU-IR. The LLM supplies candidate ideas, while independent compiler checks, applicable behaviour checks and the selected improvement metric determine which candidates qualify as findings. Successful compilation alone does not establish semantic equivalence. Available validation coverage and assumptions remain explicit, and experiments must evaluate whether the approach yields useful findings with less recurring expert effort. The three stages are a high-level map, not a component architecture. Persistent records retain variants, checks, metrics and reports so interrupted experiments can continue in compatible environments. Export produces replayable cases and automates reporting for compiler engineers.','Goal and intended value; framework investigation contracts; experiment records and continuation requirements\nProject-owner slide review, 2026-11-12',42);
+const goal=t(s,'Goal','Goal: Build an LLM-assisted framework with independent checks for every optimization proposal.',60,174,1480,152,{size:44,bold:true});
 goal.text.get('Goal:').fill=P.blue;
-t(s,'Targets heading','Targets:',60,355,1480,48,{size:32,bold:true,color:P.blue});
-const targets=t(s,'Targets','',60,425,1480,365,{size:30});
-targets.text=makeNativeBulletParagraphs([
- 'Find useful IR rewrites and pass-pipeline alternatives.',
- 'Check candidate validity and compare results using an explicit metric.',
- 'Export reproducible findings that compiler engineers can replay and assess.',
- 'Reduce recurring expert work in constructing, running and documenting experiments.',
- 'Preserve experiment state, variants and reports for continuation across environments.'
-],{marginLeftPoints:22,hangingPoints:11,spaceAfterPoints:14});
-targets.text.style={typeface:FONT,fontSize:30,color:P.ink,autoFit:'none',insets:0,wrap:'square'};
+const propose=box(s,'Propose stage','',60,390,430,220,{bg:P.tint,color:P.blue});
+const check=box(s,'Check stage','',585,390,430,220,{bg:P.lightGreen,color:P.green});
+const exp=box(s,'Export stage','',1110,390,430,220,{bg:P.tint,color:P.blue});
+t(s,'Propose heading','Propose',85,416,380,54,{size:38,bold:true,color:P.blue});
+t(s,'Propose detail','MLIR rewrites and\npass-pipeline variants.',85,496,380,92,{size:28});
+t(s,'Check heading','Check',610,416,380,54,{size:38,bold:true,color:P.green});
+t(s,'Check detail','Compile and check behaviour.\nCompare the chosen metric.',610,496,380,92,{size:28});
+t(s,'Export heading','Export',1135,416,380,54,{size:38,bold:true,color:P.blue});
+t(s,'Export detail','Replayable findings.\nAutomated experiment reports.',1135,496,380,92,{size:28});
+a(s,propose,check);a(s,check,exp);
+const down=point(s,'Feedback down',800,672),back=point(s,'Feedback return',275,672);
+a(s,check,down,{fromSide:'bottom',toSide:'top',color:P.green,arrow:false});
+a(s,down,back,{color:P.green,arrow:false});
+a(s,back,propose,{fromSide:'top',toSide:'bottom',color:P.green});
+t(s,'Feedback label','Diagnostics and results guide the next proposal',60,702,955,42,{size:25,color:P.green,center:true});
+bar(s,60,786,1480);
+t(s,'Persistent experiment records','Saved experiments support continuation across environments.',60,809,1480,40,{size:25,color:P.muted});
 }
+
 {
 const s=slide('Research directions and concrete starting points','The studies remain open. New pass-ordering work compares fixed-pipeline IR rewrites, existing-pass pipeline variants and their combinations. A shared experiment format and continuation across environments are implementation requirements, with exact schemas and compatible execution bindings to design. Advanced selectors, richer context, tools and feedback policies remain comparisons after the baseline.','Framework research agenda; experiment records and continuation design\nProject-owner clarification, 2026-11-11');
 tbl(s,[['Study','Concrete starting points','What to compare','Evidence to retain'],['Pass / rewrite search','MLIR textual pass pipelines.\nIR variants + scoped pass edits.','Rewrite only, ordering only and combined candidates.','Full pass sequences, checkpoints and paired results.'],['Improvement metrics','MLIR op statistics.\nLLVM TTI / llvm-mca.\nAscend msProf.','Cheap indicators vs downstream code or execution.','Coverage, downstream survival and collection cost.'],['Compilation / checks','MLIR verifier / Alive2.\nMLIR-TV / xdsl-smt.','Checkpoint compatibility and cross-pass semantic coverage.','Route matrix, assumptions and reproducible probes.'],['Agent context','Codex / Claude Code / OpenCode.\nSQL agents / PaperQA.','Direct dialect context vs retrieval or added analyses.','Useful findings, invalid edits and context cost.'],['Agent tools','File edits and diagnostics.\nOperation-aware editor.','IR / pipeline edit controls and checking tools.','Valid proposals, reachable changes and total cost.'],['Region discovery','Use-def / effect scans.\nCost or profile estimates.','Supplied range vs prompted, static or cost-guided selection.','Coverage, useful yield and selection cost.'],['Feedback / policy','LPO errors / counterexamples.\nPRAGMA profiles and history.','Feedback detail, continuation and budget allocation.','Attempt traces, useful yield and expensive checks.']],[235,415,440,390],168,[54,87,87,87,87,87,87,87],23);

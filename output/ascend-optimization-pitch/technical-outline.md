@@ -59,11 +59,11 @@ This describes investigation responsibilities, not an established absence of pro
 
 ### 04 — A framework for discovering missed compiler optimizations
 
-**On-slide structure:** The goal restores the wording and large bold style of the first deck version: build an LLM-assisted framework that proposes MLIR rewrites and checks them against the original code on the same Ascend target. The “Goal:” prefix remains inline. A native editable bullet list under “Targets:” covers useful IR/pipeline alternatives, candidate checks and comparison, replayable findings, reduced recurring expert work and experiment continuation across environments. The component diagram is removed so architecture remains on its later slide.
+**Goal:** Build an LLM-assisted framework with independent checks for every optimization proposal.
 
-These are project targets, not achieved results. Specific integrations, semantic/metric coverage and effort savings remain to be established.
+**On-slide structure:** An editable three-stage map replaces the targets list: **Propose** (MLIR rewrites and pass-pipeline variants), **Check** (compilation, behaviour checks and comparison using the chosen metric), and **Export** (replayable findings and automated experiment reports). Diagnostics and results feed the next proposal. A shared persistence line makes continuation across environments visible without turning the overview into a component diagram.
 
-**Source basis:** Goal and intended value; framework investigation contracts; experiment records and continuation requirements; project-owner slide review, 2026-11-12.
+The LLM proposes candidates. Independent checks supply the acceptance evidence under an explicit checking policy. Compilation alone is not an equivalence proof, and available validation coverage remains to be established. Useful findings and reduced recurring expert effort are evaluation goals, not achieved results. This is slide 4; the preceding investigation slide remains in place.
 
 ### 05 — Research directions and concrete starting points
 

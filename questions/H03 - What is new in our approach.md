@@ -6,6 +6,8 @@
 
 **Extension recorded 2026-11-11:** [[framework/planning/experiment-contract|Kernel/pipeline variants, common experiment records and continuation in another environment]] adds requirements from project-owner feedback. Schemas, supported pass edits and concrete environment bindings remain proposed.
 
+**Usage scenarios:** [[usage-scenarios/README|Concrete user journeys and open interface decisions]] develop the interaction around the proposed mechanism below.
+
 ## 1. Proposed contribution
 
 We propose an **LLM-assisted framework for investigating potential missed optimizations in AscendNPU-IR**. It would investigate alternatives for selected code and permitted pass-pipeline variants, coordinate checks and improvement comparisons, and use their results as feedback for further search.

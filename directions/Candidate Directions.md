@@ -13,3 +13,5 @@ These capabilities were discussed while considering the papers below. **None has
 - **D04 — [[directions/D04 - Domain-specific agent instructions and context|Domain-specific agent instructions and context]].** Proposed study of prompt construction and information delivery across agent harnesses from any domain. See [[questions/Q09 - Agent prompt construction and information delivery|Q09]] for the open question and initial reference map.
 
 - **D05 — [[directions/D05 - Agent tools and editing constraints|Agent tools and editing constraints]].** Proposed comparison of agent tool access and ordinary versus constrained IR editing, starting with LPO reference analysis. See [[questions/Q10 - Agent tools and editing constraints|Q10]].
+
+- **D06 — [[directions/D06 - Suppressing engineer-rejected optimization candidates|Suppressing engineer-rejected optimization candidates]].** Proposed study of persistent review feedback that prevents repeated metric-improving false positives, including rejection scope, equivalent rewrites and safeguards against suppressing useful alternatives.

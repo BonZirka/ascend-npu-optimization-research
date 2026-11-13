@@ -4,7 +4,7 @@
 
 **Template:** [[templates/Usage Scenario|Usage scenario template]].
 
-**Shared design basis:** [[usage-scenarios/README#Shared specificity ladder|Specificity ladder]] and [[usage-scenarios/README#Manual workflow exploration before automation|manual workflow exploration before automation]].
+**Shared design basis:** [[usage-scenarios/README#Scenario-specific starting information|Scenario-specific starting information]] and [[usage-scenarios/README#Manual workflow exploration before automation|manual workflow exploration before automation]].
 
 ## 1. Situation and intended outcome
 
@@ -31,6 +31,8 @@ The existing performance-regression workflow described in H02 is context. This p
 | Persistent state and result location | Deployment must retain search progress and evidence beyond a disposable CI worker. Concrete storage and review destinations are open. |
 
 Initial integration and profile maintenance require explicit effort. Per-night operation should use that setup without repeated manual case preparation.
+
+For this broad-discovery scenario, the scheduled job seeks any qualifying improvement within the configured scope and budget. Engineers supply no per-kernel ranges or hypotheses for each run. Selecting promising regions and proposals belongs to the delegated search. The forms of configuration or guidance useful for CI will be explored separately from US01.
 
 ## 4. Main flow
 
@@ -74,7 +76,7 @@ Evaluate distinct engineer-accepted opportunities over multiple runs, repeated f
 
 ## 9. Open decisions
 
-- **Deferred:** work through the specificity ladder and manually explore the corresponding workflow before choosing interaction, interface/API and automation designs.
+- **Deferred:** identify the relevant starting information and guidance for this scenario and manually explore its workflow before choosing interaction, interface/API and automation designs.
 - What CI platform and artifact source should the first integration use?
 - What is searched each night, and when is previously investigated code revisited?
 - What can proceed on host resources, and what requires an NPU-capable environment?

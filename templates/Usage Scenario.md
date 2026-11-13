@@ -4,7 +4,7 @@
 
 **Template:** [[templates/Usage Scenario|Usage scenario template]].
 
-**Shared design basis:** [[usage-scenarios/README#Shared specificity ladder|Specificity ladder]] and [[usage-scenarios/README#Manual workflow exploration before automation|manual workflow exploration before automation]].
+**Shared design basis:** [[usage-scenarios/README#Scenario-specific starting information|Scenario-specific starting information]] and [[usage-scenarios/README#Manual workflow exploration before automation|manual workflow exploration before automation]].
 
 ## 1. Situation and intended outcome
 
@@ -16,7 +16,7 @@ Name the primary actor and supporting roles. State who or what initiates the sce
 
 ## 3. Starting material and preparation
 
-List required artifacts, context, profiles, environments and limits. Identify who prepares each item. Distinguish reusable integration setup from per-investigation work. Expose prerequisites that still require research. Address the shared specificity ladder during the deferred scenario discussion.
+List required artifacts, context, profiles, environments and limits. Identify who prepares each item. Distinguish reusable integration setup from per-investigation work. Expose prerequisites that still require research. During the deferred discussion, identify the meaningful levels or forms of guidance for this scenario; adapt or extend them through manual exploration.
 
 ## 4. Main flow
 

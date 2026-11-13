@@ -4,7 +4,7 @@
 
 **Template:** [[templates/Usage Scenario|Usage scenario template]].
 
-**Shared design basis:** [[usage-scenarios/README#Shared specificity ladder|Specificity ladder]] and [[usage-scenarios/README#Manual workflow exploration before automation|manual workflow exploration before automation]].
+**Shared design basis:** [[usage-scenarios/README#Scenario-specific starting information|Scenario-specific starting information]] and [[usage-scenarios/README#Manual workflow exploration before automation|manual workflow exploration before automation]].
 
 ## 1. Situation and intended outcome
 
@@ -19,6 +19,18 @@ The engineer wants a reproducible comparison showing a candidate compiler opport
 **Trigger:** a kernel-specific task, performance issue or manual inspection. An integration maintainer supplies reusable project profiles where available; the same person may initially perform both roles.
 
 ## 3. Starting material and preparation
+
+### Starting points to explore
+
+Examples discussed for US01:
+
+1. The engineer supplies only the kernel and delegates opportunity selection and investigation.
+2. The engineer supplies a region of interest, with further investigation delegated.
+3. The engineer identifies a bottleneck without knowing the rewrite.
+4. The engineer supplies a transformation hypothesis without a complete candidate.
+5. The engineer supplies an existing rewrite to assess or refine.
+
+This is a working, potentially incomplete set of US01 subcases. Their concrete interactions remain deferred to manual workflow exploration. Supplying a region or diagnosis can still lead to unattended investigation.
 
 | Material | Preparation and responsibility |
 | --- | --- |
@@ -73,7 +85,7 @@ Evaluate useful findings and engineer preparation, intervention and review effor
 
 ## 9. Open decisions
 
-- **Deferred:** work through the specificity ladder and manually explore the corresponding workflow before choosing interaction, interface/API and automation designs.
+- **Deferred:** identify the relevant starting information and guidance for this scenario and manually explore its workflow before choosing interaction, interface/API and automation designs.
 - Is the primary entry point an existing kernel build workflow or engineer-prepared IR?
 - What work must the engineer repeat for every kernel, and what can profiles absorb?
 - Which checkpoint, checks and metric support the first usable route?

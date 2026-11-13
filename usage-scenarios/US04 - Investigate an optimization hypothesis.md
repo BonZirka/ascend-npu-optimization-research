@@ -4,7 +4,7 @@
 
 **Template:** [[templates/Usage Scenario|Usage scenario template]].
 
-**Shared design basis:** [[usage-scenarios/README#Shared specificity ladder|Specificity ladder]] and [[usage-scenarios/README#Manual workflow exploration before automation|manual workflow exploration before automation]].
+**Shared design basis:** [[usage-scenarios/README#Scenario-specific starting information|Scenario-specific starting information]] and [[usage-scenarios/README#Manual workflow exploration before automation|manual workflow exploration before automation]].
 
 ## 1. Situation and intended outcome
 
@@ -70,7 +70,7 @@ Evaluate useful witnesses, breadth of tested applicability, failed/inconclusive 
 
 ## 9. Open decisions
 
-- **Deferred:** work through the specificity ladder and manually explore the corresponding workflow before choosing interaction, interface/API and automation designs.
+- **Deferred:** identify the relevant starting information and guidance for this scenario and manually explore its workflow before choosing interaction, interface/API and automation designs.
 - How should a hypothesis be expressed: instructions, a named category, supplied examples or a combination?
 - What classifiers and bounded pass spaces can the integration actually support?
 - How should the framework select comparisons across supplied cases and variants?

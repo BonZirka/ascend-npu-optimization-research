@@ -4,6 +4,8 @@
 
 **Template:** [[templates/Usage Scenario|Usage scenario template]].
 
+**Shared design basis:** [[usage-scenarios/README#Shared specificity ladder|Specificity ladder]] and [[usage-scenarios/README#Manual workflow exploration before automation|manual workflow exploration before automation]].
+
 ## 1. Situation and intended outcome
 
 An engineer has a collection of existing kernels or IR snapshots and wants to look for opportunities without an identified problem in each input. This is a deliberately launched search campaign; the engineer need not open a separate task for every kernel.
@@ -68,6 +70,7 @@ Evaluate distinct useful findings, case coverage, review effort and resource use
 
 ## 9. Open decisions
 
+- **Deferred:** work through the specificity ladder and manually explore the corresponding workflow before choosing interaction, interface/API and automation designs.
 - How should work be allocated across a heterogeneous collection?
 - Does the first corpus route investigate entire inputs or require region discovery?
 - How are equivalent opportunities grouped without hiding distinct applicability conditions?

@@ -4,6 +4,8 @@
 
 **Template:** [[templates/Usage Scenario|Usage scenario template]].
 
+**Shared design basis:** [[usage-scenarios/README#Shared specificity ladder|Specificity ladder]] and [[usage-scenarios/README#Manual workflow exploration before automation|manual workflow exploration before automation]].
+
 ## 1. Situation and intended outcome
 
 An AscendNPU-IR engineer has a task to improve a particular kernel, or suspects an inefficient region in its generated IR. A performance concern supplies a reason to investigate; a useful alternative may still be unknown.
@@ -71,6 +73,7 @@ Evaluate useful findings and engineer preparation, intervention and review effor
 
 ## 9. Open decisions
 
+- **Deferred:** work through the specificity ladder and manually explore the corresponding workflow before choosing interaction, interface/API and automation designs.
 - Is the primary entry point an existing kernel build workflow or engineer-prepared IR?
 - What work must the engineer repeat for every kernel, and what can profiles absorb?
 - Which checkpoint, checks and metric support the first usable route?

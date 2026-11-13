@@ -4,6 +4,8 @@
 
 **Template:** [[templates/Usage Scenario|Usage scenario template]].
 
+**Shared design basis:** [[usage-scenarios/README#Shared specificity ladder|Specificity ladder]] and [[usage-scenarios/README#Manual workflow exploration before automation|manual workflow exploration before automation]].
+
 ## 1. Situation and intended outcome
 
 Describe the real situation, what the user already knows, and the decision or result they need. Explain why the investigation is useful.
@@ -14,7 +16,7 @@ Name the primary actor and supporting roles. State who or what initiates the sce
 
 ## 3. Starting material and preparation
 
-List required artifacts, context, profiles, environments and limits. Identify who prepares each item. Distinguish reusable integration setup from per-investigation work. Expose prerequisites that still require research.
+List required artifacts, context, profiles, environments and limits. Identify who prepares each item. Distinguish reusable integration setup from per-investigation work. Expose prerequisites that still require research. Address the shared specificity ladder during the deferred scenario discussion.
 
 ## 4. Main flow
 
@@ -30,7 +32,7 @@ State the artifacts/evidence the user receives, what can be reproduced, and the 
 
 ## 7. Architecture and interface implications
 
-List consequences this journey creates for architecture and interfaces. Mark recommendations and unresolved choices. Record concrete decisions separately once agreed.
+List consequences this journey creates for architecture and interfaces. Mark recommendations and unresolved choices. Ground interaction, interface/API and automation choices in manual workflow trials. Record concrete decisions separately once agreed.
 
 ## 8. Intended value and evaluation
 

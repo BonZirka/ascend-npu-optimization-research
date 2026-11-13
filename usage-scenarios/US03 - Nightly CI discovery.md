@@ -4,6 +4,8 @@
 
 **Template:** [[templates/Usage Scenario|Usage scenario template]].
 
+**Shared design basis:** [[usage-scenarios/README#Shared specificity ladder|Specificity ladder]] and [[usage-scenarios/README#Manual workflow exploration before automation|manual workflow exploration before automation]].
+
 ## 1. Situation and intended outcome
 
 The team wants routine discovery of optimization opportunities in existing code, without waiting for an engineer to notice a performance problem or create an investigation task.
@@ -72,6 +74,7 @@ Evaluate distinct engineer-accepted opportunities over multiple runs, repeated f
 
 ## 9. Open decisions
 
+- **Deferred:** work through the specificity ladder and manually explore the corresponding workflow before choosing interaction, interface/API and automation designs.
 - What CI platform and artifact source should the first integration use?
 - What is searched each night, and when is previously investigated code revisited?
 - What can proceed on host resources, and what requires an NPU-capable environment?

@@ -51,7 +51,7 @@ Generating new test programs is a separate tentative extension. This scenario st
 
 ## 6. Result and next action
 
-The engineer receives individual reproducible findings plus a campaign-level account of work and resource use. Each finding can be inspected independently through US05.
+The engineer receives individual reproducible findings plus a campaign-level account of work and resource use. Each finding retains an independently runnable comparison. Device-dependent evaluation can be continued through [[usage-scenarios/US06 - Investigate on host and evaluate on NPU|US06]].
 
 The summary should support decisions about where further engineer investigation is justified. A finding count alone does not establish the number of distinct compiler opportunities.
 

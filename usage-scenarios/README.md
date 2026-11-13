@@ -10,13 +10,13 @@ Every scenario follows [[templates/Usage Scenario|the shared template]], includi
 | US02 | [[usage-scenarios/US02 - Search a collection on demand\|Search a collection on demand]] | Engineer launches a campaign over existing inputs without a known problem in every case. |
 | US03 | [[usage-scenarios/US03 - Nightly CI discovery\|Nightly CI discovery]] | A scheduled CI job routinely seeks opportunities without waiting for a noticed problem. |
 | US04 | [[usage-scenarios/US04 - Investigate an optimization hypothesis\|Investigate an optimization hypothesis]] | Engineer focuses a single-input or collection search on a suspected opportunity or pass interaction. |
-| US05 | [[usage-scenarios/US05 - Review and reproduce a finding\|Review and reproduce a finding]] | Engineer independently reproduces and assesses a candidate from manual or scheduled search. |
+| US06 | [[usage-scenarios/US06 - Investigate on host and evaluate on NPU\|Investigate on host and evaluate on NPU]] | Prepare alternatives without an NPU, then continue the saved investigation on an NPU machine, potentially using runtime in place of the host metric. |
 
 ## Relationships
 
-Engineer-initiated and CI-initiated investigations provide different operational contexts. A collection is usable in either. A hypothesis is a possible focus within a chosen investigation. Review follows findings from any producer.
+Engineer-initiated and CI-initiated investigations provide different operational contexts. A collection is usable in either. A hypothesis is a possible focus within a chosen investigation. US06 develops investigation across a host and an NPU-capable environment, including assessment of the same snapshot under a different metric. Engineer review remains an activity following findings from any producer. US05 was retired as a standalone review scenario; other identifiers remain stable.
 
-These scenarios are distinct from the input modes in [[questions/H03 - What is new in our approach|H03]]: whole-input, specified-range and region-discovery modes can serve several journeys. Recovery and environment continuation are branches within them, supported by [[framework/planning/experiment-contract|the experiment contract]]. Review-based suppression remains a separate proposed research direction, [[directions/D06 - Suppressing engineer-rejected optimization candidates|D06]].
+These scenarios are distinct from the input modes in [[questions/H03 - What is new in our approach|H03]]: whole-input, specified-range and region-discovery modes can serve several journeys. Recovery can apply within each journey. US06 gives environment continuation an explicit usage scenario, supported by [[framework/planning/experiment-contract|the experiment contract]]. Review-based suppression remains a separate proposed research direction, [[directions/D06 - Suppressing engineer-rejected optimization candidates|D06]].
 
 ## Scenario-specific starting information
 

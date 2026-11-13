@@ -41,7 +41,7 @@ For this broad-discovery scenario, the scheduled job seeks any qualifying improv
 3. It establishes the applicable baseline and searches selected cases within the shared budget, coordinating compilation, behavior checks and metric evaluation.
 4. It persists completed and pending operations, evidence and usage throughout the run.
 5. At completion or a limit, it publishes a machine-readable execution outcome and reviewable findings/progress artifacts through the selected integration.
-6. Engineers review candidate opportunities through US05. Later runs determine whether prior work is reusable, needs renewed checks or should be revisited.
+6. Engineers review candidate opportunities. Deferred device-dependent investigation can follow US06. Later runs determine whether prior work is reusable, needs renewed checks or should be revisited.
 
 ## 5. Alternative paths and outcomes
 
@@ -86,6 +86,6 @@ Evaluate distinct engineer-accepted opportunities over multiple runs, repeated f
 
 ## 10. Connections
 
-[[usage-scenarios/README|Scenario index]] · [[usage-scenarios/US02 - Search a collection on demand|US02: on-demand campaign]] · [[usage-scenarios/US05 - Review and reproduce a finding|US05: review]]
+[[usage-scenarios/README|Scenario index]] · [[usage-scenarios/US02 - Search a collection on demand|US02: on-demand campaign]] · [[usage-scenarios/US06 - Investigate on host and evaluate on NPU|US06: later NPU evaluation]]
 
 Basis: project-owner clarification, 2026-11-13; [[questions/H02 - How is it done today|H02]], [[questions/H03 - What is new in our approach|H03 persistence and search policies]], [[framework/planning/experiment-contract|Environment continuation]], [[directions/D03 - Tracking opportunities across compiler revisions|D03]].

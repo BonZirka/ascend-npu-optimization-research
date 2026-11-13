@@ -66,7 +66,7 @@ Distinguish reusable integration setup from preparation repeated for each kernel
 
 A qualifying finding contains the original and candidate IR/pipeline versions, assumptions, checking evidence, metric comparison and a replay entry point. Static evidence supports a claim about the selected indicator; runtime gains require execution measurements.
 
-The engineer reviews whether the candidate warrants compiler work and can reproduce it through US05. Diagnosing the responsible pass or implementing a fix can follow.
+The engineer reviews whether the candidate warrants compiler work and can replay its recorded comparison. Deferred NPU evaluation or investigation of the same snapshot under another metric follows US06. Diagnosing the responsible pass or implementing a fix can follow.
 
 ## 7. Architecture and interface implications
 
@@ -93,6 +93,6 @@ Evaluate useful findings and engineer preparation, intervention and review effor
 
 ## 10. Connections
 
-[[usage-scenarios/README|Scenario index]] · [[usage-scenarios/US05 - Review and reproduce a finding|US05: review]]
+[[usage-scenarios/README|Scenario index]] · [[usage-scenarios/US06 - Investigate on host and evaluate on NPU|US06: later NPU evaluation]]
 
 Basis: [[questions/H02 - How is it done today|H02]], [[questions/H03 - What is new in our approach|H03 §§2.1–2.6]], [[framework/planning/experiment-contract|Experiment contracts]].

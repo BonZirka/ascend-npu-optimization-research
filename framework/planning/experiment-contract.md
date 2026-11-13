@@ -61,6 +61,8 @@ Schema versioning, validation, artifact integrity and migration behavior are imp
 
 ## Continue an unfinished experiment elsewhere
 
+The concrete journey is [[usage-scenarios/US06 - Investigate on host and evaluate on NPU|US06: host investigation and later NPU evaluation]]. The host and NPU stages belong to one continued investigation of the saved snapshot; the metric can change between stages. Assessments under a changed objective follow the linked-trial rule above while preserving the earlier metric results.
+
 Continuation restores pending investigation work. Finding replay repeats a saved comparison. Both use the same recorded recipes and artifact identities, but continuation also needs pending operations, search progress, agent context and spent/reserved budgets.
 
 A host environment might perform IR review and cheap checks while a lab environment can complete NPU-dependent work. The following is a proposed interface, not an implemented command:
